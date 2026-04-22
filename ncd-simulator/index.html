@@ -1,0 +1,3054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>China Commercial Auto Insurance NCD Exemption Scenario Simulator</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23b8602e'/%3E%3Cpath d='M17 20h12c9.4 0 15 4.8 15 12S38.4 44 29 44H17V20zm10.8 18.1c6.2 0 10.1-2.3 10.1-6.1s-3.9-6.1-10.1-6.1h-4.7v12.2h4.7z' fill='%23fff7ee'/%3E%3C/svg%3E">
+  <script src="./vendor-mathjax/MathJax.js?config=scipy-mathjax"></script>
+  <style>
+    :root {
+      --bg: #f5f2e8;
+      --panel: rgba(255, 251, 244, 0.84);
+      --panel-strong: rgba(255, 252, 247, 0.95);
+      --ink: #1f2730;
+      --muted: #5c6670;
+      --line: rgba(31, 39, 48, 0.12);
+      --shadow: 0 18px 46px rgba(66, 51, 35, 0.12);
+      --accent: #b8602e;
+      --accent-soft: rgba(184, 96, 46, 0.14);
+      --good: #0f7b6c;
+      --good-soft: rgba(15, 123, 108, 0.14);
+      --bad: #b44335;
+      --bad-soft: rgba(180, 67, 53, 0.14);
+      --chart-grid: rgba(31, 39, 48, 0.16);
+      --teal-neg5: #074d5f;
+      --teal-0: #0d7a74;
+      --teal-1: #199084;
+      --teal-2: #2ca58d;
+      --lime-3: #69b782;
+      --sand-4: #a8bf7a;
+      --amber-5: #d4b35b;
+      --gold-6: #de9865;
+      --orange-7: #db785f;
+      --coral-8: #cd5d57;
+      --brick-9: #ae453e;
+      --font-body: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --font-display: "Iowan Old Style", Georgia, "Times New Roman", serif;
+      --eyebrow-size: 13px;
+      --hero-title-size: clamp(30px, 3.6vw, 48px);
+      --hero-copy-size: 16px;
+      --pill-size: 13px;
+      --action-link-size: 14px;
+      --note-title-size: 13px;
+      --note-body-size: 14px;
+      --section-title-size: 18px;
+      --subtle-size: 13px;
+      --label-size: 14px;
+      --mini-size: 12px;
+      --metric-label-size: 13px;
+      --metric-value-size: clamp(24px, 2.2vw, 34px);
+      --metric-foot-size: 12px;
+      --timeline-readout-size: 14px;
+      --chart-swatch-size: 12px;
+      --legend-size: 12px;
+      --matrix-note-size: 12px;
+      --matrix-font-size: 12px;
+      --matrix-head-size: 13px;
+      --data-table-size: 13px;
+      --formula-title-size: 15px;
+      --formula-body-size: 13px;
+      --formula-display-size: 26px;
+      --check-size: 13px;
+      --tag-size: 12px;
+      --footnote-size: 12px;
+      --button-min-height: 42px;
+      --card-padding: 18px;
+      --panel-padding: 18px;
+      --section-padding: 16px;
+      --compare-head-min-height: 136px;
+      --compare-title-min-height: 56px;
+      --compare-subtitle-min-height: 54px;
+      --compare-note-min-height: 52px;
+      --compare-chart-height: 434px;
+      --compare-legend-min-height: 104px;
+      --compare-matrix-height: 720px;
+      --line-chart-height: 372px;
+    }
+
+    body[data-presentation-mode="on"] {
+      --eyebrow-size: 15px;
+      --hero-title-size: clamp(42px, 4.2vw, 64px);
+      --hero-copy-size: 21px;
+      --pill-size: 16px;
+      --action-link-size: 17px;
+      --note-title-size: 15px;
+      --note-body-size: 18px;
+      --section-title-size: 25px;
+      --subtle-size: 18px;
+      --label-size: 18px;
+      --mini-size: 15px;
+      --metric-label-size: 16px;
+      --metric-value-size: clamp(34px, 3vw, 50px);
+      --metric-foot-size: 15px;
+      --timeline-readout-size: 18px;
+      --chart-swatch-size: 16px;
+      --legend-size: 16px;
+      --matrix-note-size: 17px;
+      --matrix-font-size: 17px;
+      --matrix-head-size: 18px;
+      --data-table-size: 17px;
+      --formula-title-size: 20px;
+      --formula-body-size: 16px;
+      --formula-display-size: 32px;
+      --check-size: 16px;
+      --tag-size: 15px;
+      --footnote-size: 15px;
+      --button-min-height: 54px;
+      --card-padding: 24px;
+      --panel-padding: 24px;
+      --section-padding: 20px;
+      --compare-head-min-height: 186px;
+      --compare-title-min-height: 74px;
+      --compare-subtitle-min-height: 76px;
+      --compare-note-min-height: 82px;
+      --compare-chart-height: 512px;
+      --compare-legend-min-height: 144px;
+      --compare-matrix-height: 900px;
+      --line-chart-height: 436px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--font-body);
+      background:
+        radial-gradient(circle at top right, rgba(211, 162, 114, 0.32), transparent 32%),
+        radial-gradient(circle at left 18% top 22%, rgba(29, 133, 120, 0.12), transparent 28%),
+        linear-gradient(180deg, #f8f4eb 0%, #f2efe7 60%, #efe8db 100%);
+      line-height: 1.6;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      border-radius: 999px;
+      pointer-events: none;
+      filter: blur(24px);
+      opacity: 0.5;
+    }
+
+    body::before {
+      width: 320px;
+      height: 320px;
+      left: -90px;
+      top: 240px;
+      background: rgba(15, 123, 108, 0.16);
+    }
+
+    body::after {
+      width: 420px;
+      height: 420px;
+      right: -160px;
+      bottom: -120px;
+      background: rgba(184, 96, 46, 0.12);
+    }
+
+    .page {
+      width: min(1540px, calc(100% - 32px));
+      margin: 24px auto 48px;
+    }
+
+    body[data-presentation-mode="on"] .page {
+      width: min(1680px, calc(100% - 28px));
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 30px 34px 28px;
+      border: 1px solid rgba(122, 89, 58, 0.14);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255, 250, 243, 0.94), rgba(251, 247, 240, 0.88)),
+        linear-gradient(120deg, rgba(15, 123, 108, 0.08), rgba(184, 96, 46, 0.06));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    body[data-presentation-mode="on"] .hero {
+      padding: 38px 40px 34px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      right: -120px;
+      top: -120px;
+      background: radial-gradient(circle, rgba(184, 96, 46, 0.18), transparent 68%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(31, 39, 48, 0.05);
+      color: var(--muted);
+      font-size: var(--eyebrow-size);
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 16px 0 10px;
+      font-family: var(--font-display);
+      font-size: var(--hero-title-size);
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 920px;
+      font-size: var(--hero-copy-size);
+      color: var(--muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(31, 39, 48, 0.08);
+      color: var(--muted);
+      font-size: var(--pill-size);
+    }
+
+    body[data-presentation-mode="on"] .pill {
+      padding: 12px 18px;
+    }
+
+    .hero-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    .presentation-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: min(100%, 460px);
+      padding: 13px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(31, 39, 48, 0.1);
+      background: rgba(255, 255, 255, 0.64);
+      cursor: pointer;
+      transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background 140ms ease;
+    }
+
+    .presentation-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(31, 39, 48, 0.1);
+      border-color: rgba(15, 123, 108, 0.2);
+    }
+
+    .presentation-toggle-copy {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .presentation-toggle-title {
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .presentation-toggle-note {
+      font-size: var(--subtle-size);
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .presentation-toggle-control {
+      position: relative;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 74px;
+      height: 42px;
+    }
+
+    body[data-presentation-mode="on"] .presentation-toggle-control {
+      width: 84px;
+      height: 48px;
+    }
+
+    .presentation-toggle-control input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .presentation-toggle-track {
+      position: relative;
+      display: inline-flex;
+      width: 74px;
+      height: 42px;
+      border-radius: 999px;
+      background: rgba(31, 39, 48, 0.14);
+      box-shadow: inset 0 0 0 1px rgba(31, 39, 48, 0.08);
+      transition: background 160ms ease, box-shadow 160ms ease;
+    }
+
+    body[data-presentation-mode="on"] .presentation-toggle-track {
+      width: 84px;
+      height: 48px;
+    }
+
+    .presentation-toggle-track::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: #fff8f0;
+      box-shadow: 0 8px 18px rgba(31, 39, 48, 0.18);
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    body[data-presentation-mode="on"] .presentation-toggle-track::after {
+      top: 5px;
+      left: 5px;
+      width: 38px;
+      height: 38px;
+    }
+
+    .presentation-toggle-control input:checked + .presentation-toggle-track {
+      background: linear-gradient(135deg, rgba(15, 123, 108, 0.86), rgba(33, 148, 132, 0.9));
+      box-shadow: inset 0 0 0 1px rgba(15, 123, 108, 0.16);
+    }
+
+    .presentation-toggle-control input:checked + .presentation-toggle-track::after {
+      transform: translateX(32px);
+      background: #fffdf7;
+    }
+
+    body[data-presentation-mode="on"] .presentation-toggle-control input:checked + .presentation-toggle-track::after {
+      transform: translateX(36px);
+    }
+
+    body[data-presentation-mode="on"] .presentation-toggle {
+      border-color: rgba(15, 123, 108, 0.22);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(238, 249, 246, 0.72));
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: var(--button-min-height);
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(31, 39, 48, 0.1);
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: var(--action-link-size);
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    }
+
+    .hero-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(31, 39, 48, 0.12);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .hero-link-primary {
+      background: linear-gradient(135deg, #b8602e, #cc7b44);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .hero-note-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .hero-note-card {
+      position: relative;
+      overflow: hidden;
+      padding: 14px 15px;
+      border-radius: 18px;
+      border: 1px solid rgba(31, 39, 48, 0.08);
+      background: rgba(255, 255, 255, 0.58);
+    }
+
+    body[data-presentation-mode="on"] .hero-note-card {
+      padding: 18px 18px 20px;
+    }
+
+    .hero-note-card::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      right: -36px;
+      bottom: -62px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(184, 96, 46, 0.14), transparent 72%);
+    }
+
+    .hero-note-title {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: var(--note-title-size);
+      color: var(--muted);
+    }
+
+    .hero-note-body {
+      position: relative;
+      z-index: 1;
+      margin: 8px 0 0;
+      font-size: var(--note-body-size);
+      line-height: 1.6;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 390px) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+      align-items: start;
+    }
+
+    .panel,
+    .workspace-card,
+    .chart-card,
+    .table-card,
+    .note-card,
+    .line-card {
+      border: 1px solid rgba(31, 39, 48, 0.08);
+      border-radius: 24px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .panel {
+      position: sticky;
+      top: 20px;
+      padding: var(--panel-padding);
+    }
+
+    .section {
+      padding: var(--section-padding);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.42);
+      border: 1px solid rgba(31, 39, 48, 0.06);
+    }
+
+    .section + .section {
+      margin-top: 14px;
+    }
+
+    .section h2,
+    .workspace-card h2,
+    .chart-card h2,
+    .table-card h2,
+    .note-card h2,
+    .line-card h2 {
+      margin: 0 0 6px;
+      font-size: var(--section-title-size);
+      font-weight: 700;
+    }
+
+    .section p,
+    .subtle {
+      margin: 0;
+      font-size: var(--subtle-size);
+      color: var(--muted);
+    }
+
+    .control-group {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .control-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 96px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .control-row label {
+      display: grid;
+      gap: 6px;
+      font-size: var(--label-size);
+      color: var(--ink);
+    }
+
+    .control-row .label-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .mini {
+      font-size: var(--mini-size);
+      color: var(--muted);
+    }
+
+    input[type="number"],
+    select {
+      width: 100%;
+      height: 40px;
+      padding: 0 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(31, 39, 48, 0.14);
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--ink);
+      font: inherit;
+      font-size: var(--label-size);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
+    input[type="checkbox"] {
+      accent-color: var(--accent);
+    }
+
+    .duo-input {
+      display: grid;
+      gap: 6px;
+    }
+
+    .dist-grid,
+    .poisson-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .dist-item,
+    .poisson-item {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(31, 39, 48, 0.08);
+    }
+
+    .dist-item label,
+    .poisson-item {
+      display: grid;
+      gap: 6px;
+      font-size: var(--subtle-size);
+    }
+
+    .poisson-item strong {
+      font-size: var(--section-title-size);
+      font-family: var(--font-display);
+      line-height: 1.2;
+    }
+
+    .poisson-item span:last-child {
+      color: var(--muted);
+      font-size: var(--subtle-size);
+    }
+
+    .totals-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(31, 39, 48, 0.12);
+      font-size: var(--subtle-size);
+      color: var(--muted);
+    }
+
+    details {
+      margin-top: 14px;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 700;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .advanced-body {
+      margin-top: 12px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .model-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(31, 39, 48, 0.08);
+    }
+
+    .model-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .model-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(31, 39, 48, 0.08);
+      font-size: var(--subtle-size);
+      color: var(--muted);
+    }
+
+    .formula-inline {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(31, 39, 48, 0.05);
+      overflow-x: auto;
+    }
+
+    .probability-note {
+      margin-top: 10px;
+      font-size: var(--subtle-size);
+      color: var(--muted);
+    }
+
+    .workspace {
+      display: grid;
+      gap: 18px;
+    }
+
+    .workspace-card {
+      padding: var(--card-padding);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .metric-card {
+      position: relative;
+      overflow: hidden;
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--panel-strong);
+      border: 1px solid rgba(31, 39, 48, 0.08);
+    }
+
+    .metric-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -26px -36px auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(184, 96, 46, 0.14), transparent 64%);
+    }
+
+    .metric-label {
+      position: relative;
+      z-index: 1;
+      font-size: var(--metric-label-size);
+      color: var(--muted);
+    }
+
+    .metric-value {
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
+      font-size: var(--metric-value-size);
+      line-height: 1.1;
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+
+    .metric-foot {
+      position: relative;
+      z-index: 1;
+      margin-top: 8px;
+      font-size: var(--metric-foot-size);
+      color: var(--muted);
+    }
+
+    .good {
+      color: var(--good);
+    }
+
+    .bad {
+      color: var(--bad);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(31, 39, 48, 0.07);
+    }
+
+    .timeline-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      min-height: var(--button-min-height);
+      padding: 10px 16px;
+      font: inherit;
+      font-size: var(--label-size);
+      cursor: pointer;
+      transition: transform 140ms ease, box-shadow 140ms ease, opacity 140ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(31, 39, 48, 0.12);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #b8602e, #cc7b44);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: rgba(31, 39, 48, 0.08);
+      color: var(--ink);
+    }
+
+    .timeline-readout {
+      font-size: var(--timeline-readout-size);
+      color: var(--muted);
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .matrix-wide {
+      grid-column: 1 / -1;
+    }
+
+    .chart-card,
+    .line-card,
+    .table-card,
+    .note-card {
+      padding: var(--card-padding);
+    }
+
+    .chart-card header,
+    .line-card header,
+    .table-card header,
+    .note-card header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .compare-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .compare-card-head {
+      display: grid;
+      gap: 12px;
+      min-height: var(--compare-head-min-height);
+    }
+
+    .compare-card .compare-card-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 0;
+    }
+
+    .compare-card-copy {
+      display: grid;
+      align-content: start;
+      height: calc(var(--compare-title-min-height) + var(--compare-subtitle-min-height));
+    }
+
+    .compare-title {
+      display: flex;
+      align-items: flex-start;
+      min-height: var(--compare-title-min-height);
+      height: var(--compare-title-min-height);
+    }
+
+    .compare-subtitle {
+      display: flex;
+      align-items: flex-start;
+      min-height: var(--compare-subtitle-min-height);
+      height: var(--compare-subtitle-min-height);
+    }
+
+    .compare-note {
+      display: flex;
+      align-items: flex-start;
+      min-height: var(--compare-note-min-height);
+      height: var(--compare-note-min-height);
+      margin-bottom: 0;
+    }
+
+    .chart-visual-shell {
+      min-height: var(--compare-chart-height);
+      height: var(--compare-chart-height);
+    }
+
+    .chart-visual-shell svg,
+    .line-visual-shell svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .compare-legend {
+      min-height: var(--compare-legend-min-height);
+      height: var(--compare-legend-min-height);
+      align-content: flex-start;
+    }
+
+    .matrix-visual-shell {
+      min-height: var(--compare-matrix-height);
+      height: var(--compare-matrix-height);
+      max-height: var(--compare-matrix-height);
+      overflow: auto;
+      scrollbar-gutter: stable both-edges;
+    }
+
+    .line-visual-shell {
+      min-height: var(--line-chart-height);
+      height: var(--line-chart-height);
+    }
+
+    .chart-swatch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: var(--chart-swatch-size);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    body[data-presentation-mode="on"] .chart-swatch {
+      padding: 8px 14px;
+    }
+
+    .swatch-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      overflow: visible;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(31, 39, 48, 0.08);
+      font-size: var(--legend-size);
+      color: var(--muted);
+    }
+
+    body[data-presentation-mode="on"] .legend-item {
+      padding: 8px 14px;
+    }
+
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    .matrix-note {
+      margin-bottom: 10px;
+      font-size: var(--matrix-note-size);
+      color: var(--muted);
+    }
+
+    .matrix-table {
+      min-width: 760px;
+      font-size: var(--matrix-font-size);
+    }
+
+    .matrix-table th,
+    .matrix-table td {
+      min-width: 74px;
+      padding: 10px 8px;
+      text-align: center;
+      border: 1px solid rgba(31, 39, 48, 0.08);
+    }
+
+    body[data-presentation-mode="on"] .matrix-table th,
+    body[data-presentation-mode="on"] .matrix-table td {
+      min-width: 88px;
+      padding: 14px 10px;
+    }
+
+    .matrix-table th:first-child,
+    .matrix-table td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 1;
+      background: rgba(242, 239, 231, 0.96);
+      text-align: center;
+    }
+
+    .matrix-table thead th {
+      background: rgba(236, 240, 245, 0.92);
+      font-size: var(--matrix-head-size);
+      font-weight: 700;
+    }
+
+    .matrix-table tbody td {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--data-table-size);
+    }
+
+    th,
+    td {
+      padding: 12px 10px;
+      border-bottom: 1px solid rgba(31, 39, 48, 0.08);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .delta-cell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .delta-cell::before {
+      content: "";
+      position: absolute;
+      inset: 18% auto 18% 0;
+      width: var(--delta-width, 0%);
+      opacity: var(--delta-opacity, 0);
+      border-radius: 999px;
+      background: var(--delta-color, transparent);
+    }
+
+    .delta-cell span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .formula-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(31, 39, 48, 0.08);
+    }
+
+    .formula-card h3 {
+      margin: 0 0 8px;
+      font-size: var(--formula-title-size);
+    }
+
+    .formula {
+      display: block;
+      margin: 0 0 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(31, 39, 48, 0.05);
+      font-size: var(--formula-body-size);
+      line-height: 1.6;
+    }
+
+    .latex-formula {
+      display: block;
+      font-size: var(--formula-display-size);
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .latex-formula .MathJax,
+    .latex-formula .MathJax_Display,
+    .latex-formula .MathJax_SVG,
+    .latex-formula .MathJax_SVG_Display,
+    .latex-formula mjx-container {
+      font-size: 1em !important;
+    }
+
+    .latex-formula svg {
+      max-width: none;
+    }
+
+    .formula-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-gutter: stable both-edges;
+      scrollbar-width: thin;
+    }
+
+    .formula-scroll::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .formula-scroll::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: rgba(92, 102, 112, 0.35);
+    }
+
+    .formula-scroll::-webkit-scrollbar-track {
+      border-radius: 999px;
+      background: rgba(31, 39, 48, 0.08);
+    }
+
+    .formula-scroll .MathJax_SVG_Display {
+      overflow: visible !important;
+      text-align: left !important;
+    }
+
+    .formula-scroll .MathJax_SVG {
+      display: inline-block !important;
+      min-width: max-content;
+    }
+
+    .formula-scroll .MathJax_SVG svg {
+      width: auto !important;
+      height: auto !important;
+      max-width: none !important;
+    }
+
+    .checks {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(31, 39, 48, 0.08);
+      font-size: var(--check-size);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 52px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: var(--tag-size);
+      font-weight: 700;
+    }
+
+    .tag-pass {
+      background: var(--good-soft);
+      color: var(--good);
+    }
+
+    .tag-fail {
+      background: var(--bad-soft);
+      color: var(--bad);
+    }
+
+    .footnote {
+      margin-top: 10px;
+      font-size: var(--footnote-size);
+      color: var(--muted);
+    }
+
+    .hide-mobile {
+      display: inline;
+    }
+
+    @media (max-width: 1180px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .panel {
+        position: static;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .chart-grid,
+      .matrix-grid,
+      .notes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .compare-card-head,
+      .compare-card-copy,
+      .compare-title,
+      .compare-subtitle,
+      .compare-note,
+      .compare-legend,
+      .chart-visual-shell,
+      .matrix-visual-shell,
+      .line-visual-shell {
+        min-height: 0;
+        max-height: none;
+        height: auto;
+      }
+
+      .latex-formula {
+        font-size: 22px;
+      }
+
+      .hero-note-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 18px, 100%);
+        margin: 12px auto 28px;
+      }
+
+      .hero,
+      .panel,
+      .workspace-card,
+      .chart-card,
+      .line-card,
+      .table-card,
+      .note-card {
+        border-radius: 20px;
+      }
+
+      .hero {
+        padding: 22px 20px;
+      }
+
+      .hero-actions,
+      .hero-toolbar,
+      .hero-note-grid {
+        margin-top: 18px;
+      }
+
+      .panel,
+      .workspace-card,
+      .chart-card,
+      .line-card,
+      .table-card,
+      .note-card {
+        padding: 16px;
+      }
+
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dist-grid,
+      .poisson-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .control-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hide-mobile {
+        display: none;
+      }
+
+      .hero-link {
+        width: 100%;
+      }
+
+      .presentation-toggle {
+        width: 100%;
+      }
+
+      .latex-formula {
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="eyebrow">China Commercial Auto Insurance · NCD Scenario Simulator</div>
+      <h1>Connected Vehicle NCD Exemption Scenario Simulator</h1>
+      <p id="heroDescription">
+        Compare a simplified annual Markov transition model for the base NCD renewal rule with an exemption scenario,
+        and observe how the level distribution evolves under different assumptions. The page assumes a closed renewing portfolio and recalculates locally in real time.
+      </p>
+      <div class="pill-row">
+        <span class="pill" id="regionPill">Region: Beijing / Xiamen</span>
+        <span class="pill">Closed renewing portfolio</span>
+        <span class="pill">Annual at-fault claim counts follow a Poisson model</span>
+        <span class="pill">λ and F use the same definition</span>
+        <span class="pill" id="minLevelPill">Lower bound -5</span>
+        <span class="pill" id="exemptionPolicyPill">Up to 1 exemption per policy term</span>
+      </div>
+      <div class="hero-toolbar">
+        <label class="presentation-toggle" for="presentationModeToggle">
+          <span class="presentation-toggle-copy">
+            <span class="presentation-toggle-title">Presentation Mode</span>
+            <span class="presentation-toggle-note">Larger type and a more stable side-by-side reading baseline for large-screen presentations.</span>
+          </span>
+          <span class="presentation-toggle-control">
+            <input id="presentationModeToggle" type="checkbox" aria-label="Toggle presentation mode">
+            <span class="presentation-toggle-track"></span>
+          </span>
+        </label>
+      </div>
+      <div class="hero-actions">
+        <a class="hero-link hero-link-primary" href="./math_model.md">Open Model Notes</a>
+        <a class="hero-link" href="./README.md">Open README</a>
+      </div>
+      <div class="hero-note-grid">
+        <article class="hero-note-card">
+          <p class="hero-note-title">Positioning</p>
+          <p class="hero-note-body">This is a transparent analytical framework for discussing trade-offs, not a policy interpretation or formal pricing basis.</p>
+        </article>
+        <article class="hero-note-card">
+          <p class="hero-note-title">Suggested Reading Order</p>
+          <p class="hero-note-body">Start with T, F, e, M, region, and the initial distribution, then review the average NCD coefficient path, the difference matrix, and the current-round comparison table.</p>
+        </article>
+        <article class="hero-note-card">
+          <p class="hero-note-title">Use Boundary</p>
+          <p class="hero-note-body">The results reflect relative changes under the current simplifying assumptions only. They are suitable for communication and sensitivity analysis, not formal market rules.</p>
+        </article>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="panel">
+        <section class="section">
+          <h2>Core Inputs</h2>
+          <p>The page uses the simplified NCD assumptions implemented here. Any change immediately updates the charts and summary outputs.</p>
+          <div class="control-group">
+            <div class="control-row">
+              <label for="regionSelect">
+                <span class="label-line">
+                  <span>Region</span>
+                  <span class="mini">Determines the lowest reachable NCD level</span>
+                </span>
+              </label>
+              <select id="regionSelect">
+                <option value="beijing_xiamen" selected>Beijing / Xiamen</option>
+                <option value="non_beijing_xiamen">Other Regions</option>
+              </select>
+            </div>
+
+            <div class="control-row">
+              <div class="duo-input">
+                <label for="roundsRange">
+                  <span class="label-line">
+                    <span>Projection Horizon T</span>
+                    <span class="mini" id="roundsLabel">10 rounds</span>
+                  </span>
+                </label>
+                <input id="roundsRange" type="range" min="0" max="100" step="1" value="10">
+              </div>
+              <label for="roundsInput">
+                <span class="hide-mobile">Direct Entry</span>
+                <input id="roundsInput" type="number" min="0" max="100" step="1" value="10">
+              </label>
+            </div>
+
+            <div class="control-row">
+              <div class="duo-input">
+                <label for="frequencyRange">
+                  <span class="label-line">
+                    <span>Annual At-Fault Claim Frequency F</span>
+                    <span class="mini" id="frequencyLabel">35.0%</span>
+                  </span>
+                </label>
+                <input id="frequencyRange" type="range" min="0" max="100" step="0.1" value="35">
+              </div>
+              <label for="frequencyInput">
+                <span class="hide-mobile">Percent</span>
+                <input id="frequencyInput" type="number" min="0" max="100" step="0.1" value="35">
+              </label>
+            </div>
+
+            <div class="control-row">
+              <div class="duo-input">
+                <label for="exemptionRange">
+                  <span class="label-line">
+                    <span>Exemption Trigger Probability per At-Fault Claim e</span>
+                    <span class="mini" id="exemptionLabel">0.100%</span>
+                  </span>
+                </label>
+                <input id="exemptionRange" type="range" min="0" max="100" step="0.001" value="0.1">
+              </div>
+              <label for="exemptionInput">
+                <span class="hide-mobile">Percent</span>
+                <input id="exemptionInput" type="number" min="0" max="100" step="0.001" value="0.1">
+              </label>
+            </div>
+
+            <div class="control-row">
+              <label for="maxExemptionsSelect">
+                <span class="label-line">
+                  <span>Autonomous-Driving NCD Exemption Cap M</span>
+                  <span class="mini">Realised exemptions cannot exceed annual claim count</span>
+                </span>
+              </label>
+              <select id="maxExemptionsSelect">
+                <option value="0">0</option>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+
+            <div class="control-row">
+              <label for="populationInput">
+                <span class="label-line">
+                  <span>Population N</span>
+                  <span class="mini">Used only to convert shares to counts</span>
+                </span>
+              </label>
+              <input id="populationInput" type="number" min="1" step="100000" value="100000000">
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Initial NCD Distribution</h2>
+          <p>Enter percentages. If the total is not 100%, the simulator normalises the distribution before calculation.</p>
+          <div class="dist-grid" id="distributionGrid"></div>
+          <div class="totals-row">
+            <span>Entered total: <strong id="distributionTotal">100.0%</strong></span>
+            <span>Normalised before simulation</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Advanced Assumptions</h2>
+          <details open>
+            <summary>Expand or collapse advanced settings</summary>
+            <div class="advanced-body">
+              <div>
+                <p>At-fault claim counts are modeled with a Poisson distribution, and the core input F is used directly as the Poisson parameter λ, so F = E[K] = λ.</p>
+                <div class="model-card">
+                  <div class="model-chip-row">
+                    <span class="model-chip">K ~ Poisson(λ)</span>
+                    <span class="model-chip" id="frequencyValue">F = 35.0%</span>
+                    <span class="model-chip" id="lambdaValue">λ = 0.3500</span>
+                    <span class="model-chip">E(K) = λ = F</span>
+                  </div>
+                  <div class="formula-inline">\[ F = E[K] = \lambda \]</div>
+                  <div class="formula-inline">\[ \Pr(K=k) = e^{-F}\frac{F^k}{k!} \]</div>
+                  <div class="formula-inline">\[ \Pr(K \ge 1) = 1 - e^{-F} \]</div>
+                  <div class="probability-note" id="poissonClampNote">F is entered as a percentage but used internally in decimal form, so 35% means F = 0.35. To support the regional lower bound and an exemption cap of up to M = 4, the matrix enumerates \(K=0..14\) exactly and pools the tail mass for \(K \ge 15\) into level 5.</div>
+                  <div class="poisson-grid" id="claimProbabilityPreview"></div>
+                </div>
+              </div>
+
+              <div class="control-row">
+                <div class="duo-input">
+                  <label for="speedRange">
+                    <span class="label-line">
+                      <span>Animation Speed</span>
+                      <span class="mini" id="speedLabel">900 ms/step</span>
+                    </span>
+                  </label>
+                  <input id="speedRange" type="range" min="240" max="1800" step="60" value="900">
+                </div>
+                <label for="displayMode">
+                  <span class="hide-mobile">Main View</span>
+                  <select id="displayMode">
+                    <option value="share">By Share</option>
+                    <option value="count">By Count</option>
+                  </select>
+                </label>
+              </div>
+
+              <label class="label-line" for="highlightDiff">
+                <span>Highlight Difference Results</span>
+                <input id="highlightDiff" type="checkbox" checked>
+              </label>
+            </div>
+          </details>
+        </section>
+
+        <section class="section">
+          <h2>Model Validation</h2>
+          <p>Each recalculation checks matrix validity, rule consistency, and key worked examples.</p>
+          <div class="checks" id="checksList"></div>
+          <div class="footnote" id="checksNote"></div>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <section class="workspace-card">
+          <h2>Results Overview</h2>
+          <p class="subtle">The page defaults to the final round. Use the time slider or Play to observe the migration under the base and exemption scenarios.</p>
+          <div class="metric-grid">
+            <article class="metric-card">
+              <div class="metric-label">Current Round</div>
+              <div class="metric-value" id="selectedRoundValue">Round 10</div>
+              <div class="metric-foot">Projection horizon <span id="selectedRoundFoot">T = 10</span></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">Base Average NCD Coefficient</div>
+              <div class="metric-value" id="baseCoeffValue">0.0000</div>
+              <div class="metric-foot">All renewing vehicles in the selected round</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">Exemption Average NCD Coefficient</div>
+              <div class="metric-value" id="exemptCoeffValue">0.0000</div>
+              <div class="metric-foot" id="exemptCoeffFoot">Scenario setting: up to 1 exempted at-fault claim per policy term</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">Premium Impact Ratio</div>
+              <div class="metric-value" id="premiumImpactRatioValue">100.00%</div>
+              <div class="metric-foot">Definition: with exemption ÷ without exemption · below 100% indicates a lower overall premium level</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">Average Coefficient Improvement</div>
+              <div class="metric-value good" id="coeffDeltaValue">0.0000</div>
+              <div class="metric-foot">Definition: exemption scenario - base scenario</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">Net Gain in Preferred-Tier Vehicles</div>
+              <div class="metric-value" id="benefitVehicleValue">0</div>
+              <div class="metric-foot" id="benefitVehicleFoot">Net change across levels -5 to 0</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">Peak Improvement Round</div>
+              <div class="metric-value good" id="maxGapRoundValue">Round 0</div>
+              <div class="metric-foot">Round where base - exemption reaches its maximum</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">Maximum Improvement Gap</div>
+              <div class="metric-value good" id="maxGapValue">+0.0000</div>
+              <div class="metric-foot">Definition: base - exemption</div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">Residual Gap at Round T</div>
+              <div class="metric-value good" id="terminalGapValue">+0.0000</div>
+              <div class="metric-foot">Shows the remaining improvement after long-run convergence</div>
+            </article>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-top">
+              <div class="btn-row">
+                <button class="btn-primary" id="playButton" type="button">Play Evolution</button>
+                <button class="btn-secondary" id="resetButton" type="button">Reset Defaults</button>
+              </div>
+              <div class="timeline-readout" id="timelineReadout">Viewing round 10 / 10</div>
+            </div>
+            <input id="timeSlider" type="range" min="0" max="10" step="1" value="10">
+          </div>
+        </section>
+
+        <div class="chart-grid">
+          <article class="chart-card compare-card">
+            <div class="compare-card-head">
+              <header class="compare-card-header">
+                <div class="compare-card-copy">
+                  <h2 class="compare-title" id="baseChartTitle">Base Scenario Distribution Migration</h2>
+                  <p class="subtle compare-subtitle" id="baseChartSubtitle">Reference path used for comparison with the exemption scenario.</p>
+                </div>
+                <div class="chart-swatch"><span class="swatch-dot" style="background:#b8602e"></span> Base Scenario</div>
+              </header>
+            </div>
+            <div class="chart-visual-shell">
+              <svg id="baseChart" viewBox="0 0 760 360" role="img" aria-label="Base-scenario NCD distribution migration chart"></svg>
+            </div>
+            <div class="legend compare-legend" id="legendBase"></div>
+          </article>
+
+          <article class="chart-card compare-card">
+            <div class="compare-card-head">
+              <header class="compare-card-header">
+                <div class="compare-card-copy">
+                  <h2 class="compare-title" id="exemptChartTitle">Exemption Scenario Distribution Migration</h2>
+                  <p class="subtle compare-subtitle" id="exemptChartSubtitle">Scenario setting: up to 1 exempted at-fault claim per policy term.</p>
+                </div>
+                <div class="chart-swatch"><span class="swatch-dot" style="background:#0f7b6c"></span> Exemption Scenario</div>
+              </header>
+            </div>
+            <div class="chart-visual-shell">
+              <svg id="exemptChart" viewBox="0 0 760 360" role="img" aria-label="Exemption-scenario NCD distribution migration chart"></svg>
+            </div>
+            <div class="legend compare-legend" id="legendExempt"></div>
+          </article>
+        </div>
+
+        <div class="matrix-grid">
+          <article class="table-card compare-card">
+            <div class="compare-card-head">
+              <header class="compare-card-header">
+                <div class="compare-card-copy">
+                  <h2 class="compare-title" id="baseMatrixTitle">Transition Matrix (Base Scenario)</h2>
+                  <p class="subtle compare-subtitle" id="baseMatrixSubtitle">One-step transition matrix. Rows are current levels and columns are next-period levels.</p>
+                </div>
+                <div class="chart-swatch"><span class="swatch-dot" style="background:#b8602e"></span> Probability Heatmap</div>
+              </header>
+              <div class="matrix-note compare-note">Each row should sum to 100%. Darker cells indicate higher transition probabilities.</div>
+            </div>
+            <div class="table-wrap matrix-visual-shell" id="baseMatrixTable"></div>
+          </article>
+
+          <article class="table-card compare-card">
+            <div class="compare-card-head">
+              <header class="compare-card-header">
+                <div class="compare-card-copy">
+                  <h2 class="compare-title" id="exemptMatrixTitle">Transition Matrix (Exemption Scenario)</h2>
+                  <p class="subtle compare-subtitle" id="exemptMatrixSubtitle">One-step annual transition matrix after applying the exemption scenario.</p>
+                </div>
+                <div class="chart-swatch"><span class="swatch-dot" style="background:#0f7b6c"></span> Exemption Scenario</div>
+              </header>
+              <div class="matrix-note compare-note">Compared with the base matrix, this shows where the exemption preserves or returns vehicles to better NCD levels.</div>
+            </div>
+            <div class="table-wrap matrix-visual-shell" id="exemptMatrixTable"></div>
+          </article>
+
+          <article class="table-card matrix-wide">
+            <header>
+              <div>
+                <h2>Difference Matrix (Exemption Scenario - Base Scenario)</h2>
+                <p class="subtle">Net one-step transition impact of the exemption scenario, shown in basis points (bp).</p>
+              </div>
+              <div class="chart-swatch"><span class="swatch-dot" style="background:#0f7b6c"></span> Green up, red down</div>
+            </header>
+            <div class="matrix-note">Green indicates a higher probability under the exemption scenario and red indicates a lower one. Each row should sum to approximately 0.</div>
+            <div class="table-wrap" id="differenceMatrixTable"></div>
+          </article>
+        </div>
+
+        <article class="line-card">
+          <header>
+            <div>
+              <h2>Average NCD Coefficient Path</h2>
+              <p class="subtle">Lower lines indicate a better overall discount level. The dashed line marks the current viewing round.</p>
+            </div>
+            <div class="chart-swatch"><span class="swatch-dot" style="background:#0f7b6c"></span> The exemption effect usually appears as a lower average coefficient</div>
+          </header>
+          <div class="line-visual-shell">
+            <svg id="lineChart" viewBox="0 0 1480 360" role="img" aria-label="Average NCD coefficient comparison line chart"></svg>
+          </div>
+        </article>
+
+        <article class="table-card">
+          <header>
+            <div>
+              <h2>Current-Round Level Comparison</h2>
+              <p class="subtle">Shows shares, vehicle counts, and net changes relative to the base scenario.</p>
+            </div>
+            <div class="chart-swatch" id="tableCaption">View: By Share</div>
+          </header>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Level</th>
+                  <th>Base Share</th>
+                  <th>Exemption Share</th>
+                  <th>Share Delta</th>
+                  <th>Base Count</th>
+                  <th>Exemption Count</th>
+                  <th>Count Delta</th>
+                </tr>
+              </thead>
+              <tbody id="comparisonBody"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="note-card">
+          <header>
+            <div>
+              <h2>Formula & Modeling Notes</h2>
+              <p class="subtle">Built-in formulas and assumptions for quick reference.</p>
+            </div>
+          </header>
+          <div class="notes-grid" id="formulaCardsRoot">
+            <section class="formula-card" id="levelFormulaCard"></section>
+            <section class="formula-card" id="baseFormulaCard"></section>
+            <section class="formula-card" id="exemptFormulaCard"></section>
+            <section class="formula-card" id="metricFormulaCard"></section>
+          </div>
+        </article>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const REGION_SPECS = {
+      beijing_xiamen: {
+        key: "beijing_xiamen",
+        label: "Beijing / Xiamen",
+        minLevel: -5,
+        levels: [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5],
+        coefficients: [0.4, 0.5, 0.6, 0.7, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]
+      },
+      non_beijing_xiamen: {
+        key: "non_beijing_xiamen",
+        label: "Other Regions",
+        minLevel: -4,
+        levels: [-4, -3, -2, -1, 0, 1, 2, 3, 4, 5],
+        coefficients: [0.5, 0.6, 0.7, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0]
+      }
+    };
+
+    const DEFAULT_REGION_KEY = "beijing_xiamen";
+    const EXACT_CLAIM_COUNT_MAX = 14;
+    const TAIL_CLAIM_COUNT_START = EXACT_CLAIM_COUNT_MAX + 1;
+    const PRESENTATION_MODE_STORAGE_KEY = "ncd_presentation_mode";
+    const DEFAULT_REGION_DISTRIBUTIONS = {
+      beijing_xiamen: [0, 0.03, 0.07, 0.15, 0.20, 0.30, 0.15, 0.05, 0.03, 0.01, 0.01],
+      non_beijing_xiamen: [0.03, 0.07, 0.15, 0.20, 0.30, 0.15, 0.05, 0.03, 0.01, 0.01]
+    };
+    const LEVEL_COLOR_BY_LEVEL = new Map([
+      [-5, getCssVar("--teal-neg5")],
+      [-4, getCssVar("--teal-0")],
+      [-3, getCssVar("--teal-1")],
+      [-2, getCssVar("--teal-2")],
+      [-1, getCssVar("--lime-3")],
+      [0, getCssVar("--sand-4")],
+      [1, getCssVar("--amber-5")],
+      [2, getCssVar("--gold-6")],
+      [3, getCssVar("--orange-7")],
+      [4, getCssVar("--coral-8")],
+      [5, getCssVar("--brick-9")]
+    ]);
+
+    const DEFAULT_CONFIG = {
+      region: DEFAULT_REGION_KEY,
+      rounds: 10,
+      population: 100000000,
+      claimFrequency: 0.35,
+      exemptionPerClaimProb: 0.001,
+      maxExemptions: 1,
+      regionDistributions: cloneRegionDistributions(DEFAULT_REGION_DISTRIBUTIONS),
+      animationSpeed: 900,
+      displayMode: "share",
+      highlightDiff: true
+    };
+
+    const state = {
+      config: cloneConfig(DEFAULT_CONFIG),
+      presentationMode: loadPresentationModePreference(),
+      currentRound: DEFAULT_CONFIG.rounds,
+      results: null,
+      validationResults: [],
+      timerId: null,
+      contextualCopyKey: ""
+    };
+
+    const dom = {
+      heroDescription: document.getElementById("heroDescription"),
+      regionPill: document.getElementById("regionPill"),
+      minLevelPill: document.getElementById("minLevelPill"),
+      exemptionPolicyPill: document.getElementById("exemptionPolicyPill"),
+      presentationModeToggle: document.getElementById("presentationModeToggle"),
+      regionSelect: document.getElementById("regionSelect"),
+      roundsRange: document.getElementById("roundsRange"),
+      roundsInput: document.getElementById("roundsInput"),
+      roundsLabel: document.getElementById("roundsLabel"),
+      frequencyRange: document.getElementById("frequencyRange"),
+      frequencyInput: document.getElementById("frequencyInput"),
+      frequencyLabel: document.getElementById("frequencyLabel"),
+      exemptionRange: document.getElementById("exemptionRange"),
+      exemptionInput: document.getElementById("exemptionInput"),
+      exemptionLabel: document.getElementById("exemptionLabel"),
+      maxExemptionsSelect: document.getElementById("maxExemptionsSelect"),
+      populationInput: document.getElementById("populationInput"),
+      speedRange: document.getElementById("speedRange"),
+      speedLabel: document.getElementById("speedLabel"),
+      displayMode: document.getElementById("displayMode"),
+      highlightDiff: document.getElementById("highlightDiff"),
+      distributionGrid: document.getElementById("distributionGrid"),
+      distributionTotal: document.getElementById("distributionTotal"),
+      frequencyValue: document.getElementById("frequencyValue"),
+      lambdaValue: document.getElementById("lambdaValue"),
+      poissonClampNote: document.getElementById("poissonClampNote"),
+      claimProbabilityPreview: document.getElementById("claimProbabilityPreview"),
+      checksList: document.getElementById("checksList"),
+      checksNote: document.getElementById("checksNote"),
+      selectedRoundValue: document.getElementById("selectedRoundValue"),
+      selectedRoundFoot: document.getElementById("selectedRoundFoot"),
+      baseCoeffValue: document.getElementById("baseCoeffValue"),
+      exemptCoeffValue: document.getElementById("exemptCoeffValue"),
+      exemptCoeffFoot: document.getElementById("exemptCoeffFoot"),
+      premiumImpactRatioValue: document.getElementById("premiumImpactRatioValue"),
+      coeffDeltaValue: document.getElementById("coeffDeltaValue"),
+      benefitVehicleValue: document.getElementById("benefitVehicleValue"),
+      benefitVehicleFoot: document.getElementById("benefitVehicleFoot"),
+      maxGapRoundValue: document.getElementById("maxGapRoundValue"),
+      maxGapValue: document.getElementById("maxGapValue"),
+      terminalGapValue: document.getElementById("terminalGapValue"),
+      timelineReadout: document.getElementById("timelineReadout"),
+      timeSlider: document.getElementById("timeSlider"),
+      playButton: document.getElementById("playButton"),
+      resetButton: document.getElementById("resetButton"),
+      baseChartTitle: document.getElementById("baseChartTitle"),
+      baseChartSubtitle: document.getElementById("baseChartSubtitle"),
+      baseChart: document.getElementById("baseChart"),
+      exemptChartTitle: document.getElementById("exemptChartTitle"),
+      exemptChartSubtitle: document.getElementById("exemptChartSubtitle"),
+      exemptChart: document.getElementById("exemptChart"),
+      lineChart: document.getElementById("lineChart"),
+      comparisonBody: document.getElementById("comparisonBody"),
+      tableCaption: document.getElementById("tableCaption"),
+      baseMatrixTitle: document.getElementById("baseMatrixTitle"),
+      baseMatrixSubtitle: document.getElementById("baseMatrixSubtitle"),
+      baseMatrixTable: document.getElementById("baseMatrixTable"),
+      exemptMatrixTitle: document.getElementById("exemptMatrixTitle"),
+      exemptMatrixSubtitle: document.getElementById("exemptMatrixSubtitle"),
+      exemptMatrixTable: document.getElementById("exemptMatrixTable"),
+      differenceMatrixTable: document.getElementById("differenceMatrixTable"),
+      legendBase: document.getElementById("legendBase"),
+      legendExempt: document.getElementById("legendExempt"),
+      formulaCardsRoot: document.getElementById("formulaCardsRoot"),
+      levelFormulaCard: document.getElementById("levelFormulaCard"),
+      baseFormulaCard: document.getElementById("baseFormulaCard"),
+      exemptFormulaCard: document.getElementById("exemptFormulaCard"),
+      metricFormulaCard: document.getElementById("metricFormulaCard")
+    };
+
+    init();
+
+    function init() {
+      applyPresentationMode(state.presentationMode);
+      buildDistributionInputs();
+      buildLegends();
+      bindControls();
+      syncControlsFromState();
+      recalculate();
+    }
+
+    function bindControls() {
+      dom.presentationModeToggle.addEventListener("change", () => {
+        state.presentationMode = dom.presentationModeToggle.checked;
+        persistPresentationModePreference(state.presentationMode);
+        applyPresentationMode(state.presentationMode);
+        if (state.results) {
+          renderCharts();
+        }
+      });
+
+      dom.regionSelect.addEventListener("change", () => {
+        state.config.region = getRegionSpec(dom.regionSelect.value).key;
+        stopPlayback();
+        buildDistributionInputs();
+        buildLegends();
+        recalculate();
+      });
+
+      bindSyncedRangeNumber(dom.roundsRange, dom.roundsInput, (value) => {
+        state.config.rounds = clampNumber(value, 0, 100, DEFAULT_CONFIG.rounds);
+        state.currentRound = Math.min(state.currentRound, state.config.rounds);
+        stopPlayback();
+        recalculate();
+      });
+
+      bindSyncedRangeNumber(dom.frequencyRange, dom.frequencyInput, (value) => {
+        const percentValue = clampNumber(value, 0, 100, DEFAULT_CONFIG.claimFrequency * 100);
+        state.config.claimFrequency = percentValue / 100;
+        recalculate();
+      });
+
+      bindSyncedRangeNumber(dom.exemptionRange, dom.exemptionInput, (value) => {
+        const percentValue = clampNumber(value, 0, 100, DEFAULT_CONFIG.exemptionPerClaimProb * 100);
+        state.config.exemptionPerClaimProb = percentValue / 100;
+        recalculate();
+      });
+
+      dom.maxExemptionsSelect.addEventListener("change", () => {
+        state.config.maxExemptions = Math.round(clampNumber(dom.maxExemptionsSelect.value, 0, 4, DEFAULT_CONFIG.maxExemptions));
+        recalculate();
+      });
+
+      dom.populationInput.addEventListener("input", () => {
+        state.config.population = Math.max(1, Math.round(clampNumber(dom.populationInput.value, 1, 1000000000000, DEFAULT_CONFIG.population)));
+        recalculate();
+      });
+
+      dom.speedRange.addEventListener("input", () => {
+        state.config.animationSpeed = Math.round(clampNumber(dom.speedRange.value, 240, 1800, DEFAULT_CONFIG.animationSpeed));
+        dom.speedLabel.textContent = `${state.config.animationSpeed} ms/step`;
+        if (state.timerId !== null) {
+          restartPlayback();
+        }
+      });
+
+      dom.displayMode.addEventListener("change", () => {
+        state.config.displayMode = dom.displayMode.value;
+        renderCharts();
+      });
+
+      dom.highlightDiff.addEventListener("change", () => {
+        state.config.highlightDiff = dom.highlightDiff.checked;
+        renderComparisonTable();
+      });
+
+      dom.timeSlider.addEventListener("input", () => {
+        state.currentRound = clampNumber(dom.timeSlider.value, 0, state.config.rounds, state.config.rounds);
+        renderCharts();
+      });
+
+      dom.playButton.addEventListener("click", () => {
+        if (state.timerId === null) {
+          startPlayback();
+        } else {
+          stopPlayback();
+        }
+      });
+
+      dom.resetButton.addEventListener("click", () => {
+        stopPlayback();
+        state.config = cloneConfig(DEFAULT_CONFIG);
+        state.currentRound = DEFAULT_CONFIG.rounds;
+        buildDistributionInputs();
+        buildLegends();
+        syncControlsFromState();
+        recalculate();
+      });
+    }
+
+    function buildDistributionInputs() {
+      const regionSpec = getRegionSpec(state.config.region);
+      const editableDistribution = getEditableDistribution(state.config, regionSpec.key);
+
+      dom.distributionGrid.innerHTML = regionSpec.levels.map((level, index) => `
+        <div class="dist-item">
+          <label for="dist-${index}">
+            <span>Level ${formatSignedLevel(level)}</span>
+            <input id="dist-${index}" data-level-index="${index}" type="number" min="0" step="0.1" value="${(editableDistribution[index] * 100).toFixed(1)}">
+          </label>
+        </div>
+      `).join("");
+
+      dom.distributionGrid.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", () => {
+          const next = regionSpec.levels.map((_, index) => {
+            const element = dom.distributionGrid.querySelector(`#dist-${index}`);
+            return Math.max(0, clampNumber(element.value, 0, 100000, 0)) / 100;
+          });
+          state.config.regionDistributions[state.config.region] = next;
+          recalculate();
+        });
+      });
+    }
+
+    function buildLegends() {
+      const regionSpec = getRegionSpec(state.config.region);
+      const legendMarkup = regionSpec.levels.map((level) => `
+        <span class="legend-item">
+          <span class="legend-color" style="background:${getLevelColor(level)}"></span>
+          NCD ${formatSignedLevel(level)}
+        </span>
+      `).join("");
+      dom.legendBase.innerHTML = legendMarkup;
+      dom.legendExempt.innerHTML = legendMarkup;
+    }
+
+    function recalculate() {
+      state.results = runSimulation(state.config);
+      state.validationResults = buildValidationChecks(state.config, state.results);
+      syncDerivedLabels();
+      renderContextualCopy();
+      renderPoissonAssumptions();
+      renderMatrixTables();
+      renderCharts();
+      renderValidationChecks();
+    }
+
+    function runSimulation(config) {
+      const regionSpec = getRegionSpec(config.region);
+      const normalizedClaimFrequency = clampNumber(config.claimFrequency, 0, 1, DEFAULT_CONFIG.claimFrequency);
+      const poissonLambda = derivePoissonLambda(normalizedClaimFrequency);
+      const normalizedConfig = {
+        region: regionSpec.key,
+        regionLabel: regionSpec.label,
+        minLevel: regionSpec.minLevel,
+        levels: [...regionSpec.levels],
+        coefficients: [...regionSpec.coefficients],
+        rounds: Math.round(clampNumber(config.rounds, 0, 100, DEFAULT_CONFIG.rounds)),
+        population: Math.max(1, Math.round(clampNumber(config.population, 1, 1000000000000, DEFAULT_CONFIG.population))),
+        claimFrequency: normalizedClaimFrequency,
+        poissonLambda,
+        exemptionPerClaimProb: clampNumber(config.exemptionPerClaimProb, 0, 1, DEFAULT_CONFIG.exemptionPerClaimProb),
+        maxExemptions: Math.round(clampNumber(config.maxExemptions, 0, 4, DEFAULT_CONFIG.maxExemptions)),
+        initialDistribution: normalizeDistribution(config, regionSpec),
+        animationSpeed: Math.round(clampNumber(config.animationSpeed, 240, 1800, DEFAULT_CONFIG.animationSpeed)),
+        displayMode: config.displayMode === "count" ? "count" : "share",
+        highlightDiff: Boolean(config.highlightDiff)
+      };
+
+      const claimProbabilities = buildPoissonClaimProbabilities(normalizedConfig);
+      const baseMatrix = buildTransitionMatrixBase(normalizedConfig);
+      const exemptMatrix = buildTransitionMatrixExempt(normalizedConfig);
+      const differenceMatrix = buildDifferenceMatrix(exemptMatrix, baseMatrix);
+      const baseSeries = projectDistribution(baseMatrix, normalizedConfig.initialDistribution, normalizedConfig.rounds);
+      const exemptSeries = projectDistribution(exemptMatrix, normalizedConfig.initialDistribution, normalizedConfig.rounds);
+      const baseMetrics = calculateSummaryMetrics(baseSeries, normalizedConfig.levels, normalizedConfig.coefficients, normalizedConfig.population);
+      const exemptMetrics = calculateSummaryMetrics(exemptSeries, normalizedConfig.levels, normalizedConfig.coefficients, normalizedConfig.population);
+      const gapSeries = baseMetrics.map((item, index) => item.avgCoeff - exemptMetrics[index].avgCoeff);
+      const maxCoeffGap = Math.max(...gapSeries);
+      const maxCoeffGapRound = gapSeries.indexOf(maxCoeffGap);
+      const terminalCoeffGap = gapSeries[gapSeries.length - 1];
+
+      return {
+        config: normalizedConfig,
+        poissonLambda,
+        claimProbabilities,
+        baseMatrix,
+        exemptMatrix,
+        differenceMatrix,
+        baseSeries,
+        exemptSeries,
+        baseMetrics,
+        exemptMetrics,
+        gapSeries,
+        maxCoeffGap,
+        maxCoeffGapRound,
+        terminalCoeffGap
+      };
+    }
+
+    function normalizeDistribution(config, regionSpec) {
+      const raw = getEditableDistribution(config, regionSpec.key);
+      const cleaned = regionSpec.levels.map((_, index) => {
+        const value = Number(raw[index]);
+        return Number.isFinite(value) && value >= 0 ? value : 0;
+      });
+      const total = cleaned.reduce((sum, value) => sum + value, 0);
+      if (total <= 0) {
+        return [...DEFAULT_REGION_DISTRIBUTIONS[regionSpec.key]];
+      }
+      return cleaned.map((value) => value / total);
+    }
+
+    function derivePoissonLambda(claimFrequency) {
+      return clampNumber(claimFrequency, 0, 1, DEFAULT_CONFIG.claimFrequency);
+    }
+
+    function buildPoissonClaimProbabilities(config) {
+      const lambda = derivePoissonLambda(config.claimFrequency);
+      const probabilities = [];
+      let runningTotal = 0;
+      let currentProbability = Math.exp(-lambda);
+
+      probabilities.push({ k: 0, probability: currentProbability, isTail: false });
+      runningTotal += currentProbability;
+
+      for (let k = 1; k <= EXACT_CLAIM_COUNT_MAX; k += 1) {
+        currentProbability = currentProbability * lambda / k;
+        runningTotal += currentProbability;
+        probabilities.push({ k, probability: currentProbability, isTail: false });
+      }
+
+      probabilities.push({
+        k: TAIL_CLAIM_COUNT_START,
+        probability: Math.max(0, 1 - runningTotal),
+        isTail: true
+      });
+
+      return probabilities;
+    }
+
+    function buildTransitionMatrixBase(config) {
+      const claimProbabilities = config.claimProbabilities || buildPoissonClaimProbabilities(config);
+      const maxLevelIndex = levelIndex(config.levels, 5);
+      return config.levels.map((level) => {
+        const row = createZeroVector(config.levels.length);
+        claimProbabilities.forEach(({ k, probability, isTail }) => {
+          const nextLevel = isTail ? 5 : transitionLevel(level, k, 0, config.minLevel);
+          if (isTail) {
+            row[maxLevelIndex] += probability;
+            return;
+          }
+          row[levelIndex(config.levels, nextLevel)] += probability;
+        });
+        return normalizeRow(row);
+      });
+    }
+
+    function buildTransitionMatrixExempt(config) {
+      const claimProbabilities = config.claimProbabilities || buildPoissonClaimProbabilities(config);
+      const maxLevelIndex = levelIndex(config.levels, 5);
+      return config.levels.map((level) => {
+        const row = createZeroVector(config.levels.length);
+        claimProbabilities.forEach(({ k, probability, isTail }) => {
+          if (isTail) {
+            row[maxLevelIndex] += probability;
+            return;
+          }
+          const outcomes = buildExemptionOutcomeProbabilities(k, config.exemptionPerClaimProb, config.maxExemptions);
+          outcomes.forEach((outcome) => {
+            const target = transitionLevel(level, k, outcome.exemptions, config.minLevel);
+            row[levelIndex(config.levels, target)] += probability * outcome.probability;
+          });
+        });
+        return normalizeRow(row);
+      });
+    }
+
+    function buildDifferenceMatrix(exemptMatrix, baseMatrix) {
+      return exemptMatrix.map((row, rowIndex) => row.map((value, columnIndex) => value - baseMatrix[rowIndex][columnIndex]));
+    }
+
+    function buildExemptionOutcomeProbabilities(claimCount, exemptionPerClaimProb, maxExemptions) {
+      if (claimCount === 0 || maxExemptions === 0) {
+        return [{ exemptions: 0, probability: 1 }];
+      }
+
+      const cappedExemptions = Math.min(claimCount, maxExemptions);
+      const outcomes = [];
+      let assignedProbability = 0;
+
+      for (let exemptions = 0; exemptions < cappedExemptions; exemptions += 1) {
+        const probability = binomialProbability(claimCount, exemptions, exemptionPerClaimProb);
+        assignedProbability += probability;
+        if (probability > 0) {
+          outcomes.push({ exemptions, probability });
+        }
+      }
+
+      const cappedProbability = Math.max(0, 1 - assignedProbability);
+      if (cappedProbability > 0 || outcomes.length === 0) {
+        outcomes.push({ exemptions: cappedExemptions, probability: cappedProbability });
+      }
+
+      return outcomes;
+    }
+
+    function projectDistribution(matrix, initial, rounds) {
+      const series = [normalizeRow([...initial])];
+      for (let step = 0; step < rounds; step += 1) {
+        const previous = series[series.length - 1];
+        const next = createZeroVector(previous.length);
+        for (let i = 0; i < previous.length; i += 1) {
+          for (let j = 0; j < previous.length; j += 1) {
+            next[j] += previous[i] * matrix[i][j];
+          }
+        }
+        series.push(normalizeRow(next));
+      }
+      return series;
+    }
+
+    function calculateSummaryMetrics(distributionSeries, levels, coeffs, population) {
+      return distributionSeries.map((distribution) => {
+        const avgLevel = distribution.reduce((sum, share, index) => sum + share * levels[index], 0);
+        const avgCoeff = distribution.reduce((sum, share, index) => sum + share * coeffs[index], 0);
+        const counts = distribution.map((share) => share * population);
+        return {
+          distribution,
+          avgLevel,
+          avgCoeff,
+          counts,
+          preferredBucketCount: counts.reduce((sum, value, index) => sum + (levels[index] <= 0 ? value : 0), 0)
+        };
+      });
+    }
+
+    function renderPoissonAssumptions() {
+      const { config, claimProbabilities } = state.results;
+      const probabilityByK = new Map(claimProbabilities.filter((item) => !item.isTail).map((item) => [item.k, item.probability]));
+      const midMass = claimProbabilities
+        .filter((item) => !item.isTail && item.k >= 6 && item.k <= 10)
+        .reduce((sum, item) => sum + item.probability, 0);
+      const tailMass = claimProbabilities
+        .filter((item) => item.isTail || item.k >= 11)
+        .reduce((sum, item) => sum + item.probability, 0);
+
+      dom.frequencyValue.textContent = `F = ${(config.claimFrequency * 100).toFixed(1)}%`;
+      dom.lambdaValue.textContent = `λ = ${formatLambda(config.poissonLambda)}`;
+      dom.poissonClampNote.textContent = `F is entered as a percentage but used internally in decimal form, so 35% means F = 0.35. To support the regional lower bound ${formatSignedLevel(config.minLevel)} for ${config.regionLabel} and an exemption cap of up to M = ${config.maxExemptions}, the matrix enumerates k = 0..${EXACT_CLAIM_COUNT_MAX} exactly and pools the tail mass for k >= ${TAIL_CLAIM_COUNT_START} into level 5.`;
+
+      const previewItems = [
+        { label: "P(K = 0)", probability: probabilityByK.get(0) ?? 0, note: "No at-fault claims" },
+        { label: "P(K = 1)", probability: probabilityByK.get(1) ?? 0, note: "One at-fault claim" },
+        { label: "P(K = 2)", probability: probabilityByK.get(2) ?? 0, note: "Two at-fault claims" },
+        { label: "P(K = 3)", probability: probabilityByK.get(3) ?? 0, note: "Three at-fault claims" },
+        { label: "P(K = 4)", probability: probabilityByK.get(4) ?? 0, note: "Four at-fault claims" },
+        { label: "P(K = 5)", probability: probabilityByK.get(5) ?? 0, note: "Five at-fault claims" },
+        { label: "P(6 <= K <= 10)", probability: midMass, note: "Mid-to-high claim-count range" },
+        { label: "P(K >= 11)", probability: tailMass, note: "Tail mass pooled into level 5" }
+      ];
+
+      dom.claimProbabilityPreview.innerHTML = previewItems.map((item) => `
+        <div class="poisson-item">
+          <span>${item.label}</span>
+          <strong>${formatProbabilityCell(item.probability)}</strong>
+          <span>${item.note}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderContextualCopy() {
+      const { config } = state.results;
+      const copyKey = `${config.region}|${config.maxExemptions}`;
+      if (state.contextualCopyKey === copyKey) {
+        return;
+      }
+      state.contextualCopyKey = copyKey;
+
+      const exemptionLabel = getExemptionPolicyLabel(config.maxExemptions);
+      const exemptionPlanDescription = getExemptionPlanDescription(config.maxExemptions);
+      const baseMatrixRows = config.levels.length;
+
+      dom.heroDescription.textContent = `Compare a simplified annual Markov transition model for the base NCD renewal rule with the scenario "${exemptionPlanDescription}" and observe how the level distribution evolves under different assumptions. The page assumes a closed renewing portfolio, and all parameters can be adjusted locally with immediate recalculation.`;
+      dom.regionPill.textContent = `Region: ${config.regionLabel}`;
+      dom.minLevelPill.textContent = `Lower bound ${formatSignedLevel(config.minLevel)}`;
+      dom.exemptionPolicyPill.textContent = exemptionLabel;
+      dom.exemptCoeffFoot.textContent = `Scenario setting: ${exemptionPlanDescription}`;
+      dom.benefitVehicleFoot.textContent = `Net change across levels ${formatSignedLevel(config.minLevel)} to 0`;
+      dom.baseChartTitle.textContent = `Base Scenario Distribution Migration (${config.regionLabel})`;
+      dom.baseChartSubtitle.textContent = `The selected regional lower bound is ${formatSignedLevel(config.minLevel)}. This is the reference path for comparison with the exemption scenario.`;
+      dom.exemptChartTitle.textContent = `Exemption Scenario Distribution Migration (${config.regionLabel})`;
+      dom.exemptChartSubtitle.textContent = config.maxExemptions === 0
+        ? "No autonomous-driving exemption is applied under the current settings, so this scenario should match the base scenario."
+        : `Scenario setting: up to ${config.maxExemptions} exempted at-fault claim${config.maxExemptions === 1 ? "" : "s"} per policy term, with realised exemptions capped by actual claim count.`;
+      dom.baseMatrixTitle.textContent = `Transition Matrix (Base Scenario, ${config.regionLabel})`;
+      dom.baseMatrixSubtitle.textContent = `Current matrix size: ${baseMatrixRows} × ${baseMatrixRows}. Rows are current levels and columns are next-period levels.`;
+      dom.exemptMatrixTitle.textContent = `Transition Matrix (Exemption Scenario, ${config.regionLabel})`;
+      dom.exemptMatrixSubtitle.textContent = config.maxExemptions === 0
+        ? "No exemption is applied under the current settings, so this transition matrix should match the base scenario."
+        : `Current cap M = ${config.maxExemptions}. This captures multiple eligible exemptions through a truncated-binomial realised exemption model.`;
+
+      renderFormulaCards(config);
+    }
+
+    function renderFormulaCards(config) {
+      dom.levelFormulaCard.innerHTML = `
+        <h3>Annual Level Update</h3>
+        <div class="formula latex-formula">\\[ L_{t+1} = \\mathrm{clamp}(L_t - 1 + K_t - A_t, ${config.minLevel}, 5) \\]</div>
+        <p class="subtle">The selected region is ${config.regionLabel}, so the lower bound is ${formatSignedLevel(config.minLevel)}. The term -1 represents the natural one-level improvement from one additional year of continuous renewal, and \(A_t\) is the realised exemption count.</p>
+      `;
+
+      dom.baseFormulaCard.innerHTML = `
+        <h3>Base Transition Matrix</h3>
+        <div class="formula latex-formula">\\[ K \\sim \\mathrm{Poisson}(\\lambda), \\quad \\lambda = F \\]</div>
+        <div class="formula latex-formula">\\[ F = E[K] \\]</div>
+        <div class="formula latex-formula formula-scroll">\\[ \\Pr(K=k) = e^{-F}\\frac{F^k}{k!} \\]</div>
+        <div class="formula latex-formula">\\[ P_{\\mathrm{base}}[i,j] = \\sum_k \\Pr(K=k)\\cdot \\mathbf{1}\\{T_{\\mathrm{base}}(l_i,k)=l_j\\} \\]</div>
+        <div class="formula latex-formula">\\[ T_{\\mathrm{base}}(l,k)=\\mathrm{clamp}(l - 1 + k, ${config.minLevel}, 5) \\]</div>
+        <p class="subtle">F uses the actuarial frequency definition, so 35% means F = 0.35 rather than the probability of at least one claim. The matrix enumerates k = 0..${EXACT_CLAIM_COUNT_MAX} exactly and pools the tail mass for k &ge; ${TAIL_CLAIM_COUNT_START} into level 5.</p>
+      `;
+
+      dom.exemptFormulaCard.innerHTML = `
+        <h3>Exemption Transition Matrix</h3>
+        <div class="formula latex-formula">\\[ X_t \\mid K_t=k \\sim \\mathrm{Binomial}(k, e), \\qquad A_t = \\min(X_t, ${config.maxExemptions}) \\]</div>
+        <div class="formula latex-formula formula-scroll">\\[ P_{\\mathrm{exempt}}[i,j] = \\sum_k \\Pr(K=k) \\sum_{a=0}^{\\min(k, ${config.maxExemptions})} \\Pr(A_t=a \\mid K_t=k, ${config.maxExemptions})\\cdot \\mathbf{1}\\{T_{\\mathrm{ex}}(l_i,k,a)=l_j\\} \\]</div>
+        <div class="formula latex-formula">\\[ T_{\\mathrm{ex}}(l,k,a)=\\mathrm{clamp}(l - 1 + k - a, ${config.minLevel}, 5) \\]</div>
+        <div class="formula latex-formula formula-scroll">\\[ \\Pr(A_t=a \\mid K_t=k, M)=\\begin{cases}\\Pr(X_t=a), & 0 \\le a < \\min(k, M) \\\\ \\Pr(X_t \\ge M), & a = M < k \\\\ \\Pr(X_t = k), & a = k \\le M \\end{cases} \\]</div>
+        <p class="subtle">The current exemption cap is M = ${config.maxExemptions}. When M = 0, the model collapses to the base scenario. When M = 1, it reduces to the single-exemption-per-term case.</p>
+      `;
+
+      dom.metricFormulaCard.innerHTML = `
+        <h3>Distributions & Metrics</h3>
+        <div class="formula latex-formula">\\[ \\pi_t = \\pi_0 \\cdot P^t \\]</div>
+        <div class="formula latex-formula">\\[ \\text{Average Level} = \\sum_l \\pi_t(l)\\cdot l \\]</div>
+        <div class="formula latex-formula">\\[ \\text{Average NCD Coefficient} = \\pi_t \\cdot c^{\\mathsf{T}} \\]</div>
+        <div class="formula latex-formula">\\[ \\text{Premium Impact Ratio}_t = \\frac{\\bar{C}^{\\text{With Exemption}}_t}{\\bar{C}^{\\text{Base}}_t} \\]</div>
+        <div class="formula latex-formula">\\[ \\text{Vehicle Count by Level} = N \\cdot \\pi_t \\]</div>
+        <p class="subtle">The preferred-tier definition includes all levels less than or equal to 0, that is, ${formatSignedLevel(config.minLevel)} through 0. A ratio below 100% indicates that the exemption lowers the overall premium-level proxy.</p>
+      `;
+
+      if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Queue) {
+        window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub, dom.formulaCardsRoot]);
+      }
+    }
+
+    function renderMatrixTables() {
+      renderProbabilityMatrix(dom.baseMatrixTable, state.results.baseMatrix, false);
+      renderProbabilityMatrix(dom.exemptMatrixTable, state.results.exemptMatrix, true);
+      renderDifferenceMatrix(dom.differenceMatrixTable, state.results.differenceMatrix);
+    }
+
+    function renderProbabilityMatrix(container, matrix, isExempt) {
+      const levels = state.results.config.levels;
+      const maxValue = Math.max(...matrix.flat(), 0.000001);
+      const accent = isExempt ? [15, 123, 108] : [184, 96, 46];
+      container.innerHTML = `
+        <table class="matrix-table">
+          <thead>
+              <tr>
+              <th>From \\ To</th>
+              ${levels.map((level) => `<th>${formatSignedLevel(level)}</th>`).join("")}
+            </tr>
+          </thead>
+          <tbody>
+            ${matrix.map((row, rowIndex) => `
+              <tr>
+                <th>${formatSignedLevel(levels[rowIndex])}</th>
+                ${row.map((value) => {
+                  const intensity = value / maxValue;
+                  const alpha = Math.min(0.92, 0.06 + intensity * 0.84);
+                  const textColor = intensity > 0.62 ? "#fff7ee" : "#24303a";
+                  return `<td style="background: rgba(${accent[0]}, ${accent[1]}, ${accent[2]}, ${alpha}); color:${textColor};">${formatProbabilityCell(value)}</td>`;
+                }).join("")}
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function renderDifferenceMatrix(container, matrix) {
+      const levels = state.results.config.levels;
+      const maxAbs = Math.max(...matrix.flat().map((value) => Math.abs(value)), 0.000001);
+      container.innerHTML = `
+        <table class="matrix-table">
+          <thead>
+              <tr>
+              <th>From \\ To</th>
+              ${levels.map((level) => `<th>${formatSignedLevel(level)}</th>`).join("")}
+            </tr>
+          </thead>
+          <tbody>
+            ${matrix.map((row, rowIndex) => `
+              <tr>
+                <th>${formatSignedLevel(levels[rowIndex])}</th>
+                ${row.map((value) => {
+                  const intensity = Math.abs(value) / maxAbs;
+                  const alpha = Math.min(0.86, intensity * 0.74);
+                  const rgb = value >= 0 ? "15, 123, 108" : "180, 67, 53";
+                  const textColor = intensity > 0.52 ? "#fff7ee" : (value >= 0 ? "#1f5f55" : "#8f3024");
+                  return `<td style="background: rgba(${rgb}, ${alpha}); color:${textColor};">${formatBasisPoints(value)}</td>`;
+                }).join("")}
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function renderCharts() {
+      if (!state.results) {
+        return;
+      }
+
+      const { config, baseMetrics, exemptMetrics } = state.results;
+      const currentRound = Math.min(state.currentRound, config.rounds);
+      const displayMode = state.config.displayMode;
+      state.currentRound = currentRound;
+
+      renderScenarioChart(dom.baseChart, baseMetrics, currentRound, displayMode, "#b8602e");
+      renderScenarioChart(dom.exemptChart, exemptMetrics, currentRound, displayMode, "#0f7b6c");
+      renderLineChart(dom.lineChart, baseMetrics, exemptMetrics, currentRound);
+      renderSummary(currentRound);
+      renderComparisonTable();
+      updateTimeline(currentRound, config.rounds);
+    }
+
+    function renderScenarioChart(svg, metricsSeries, currentRound, displayMode, accentColor) {
+      const presentationMode = state.presentationMode;
+      const levels = state.results.config.levels;
+      const width = 760;
+      const height = presentationMode ? 430 : 360;
+      const margin = presentationMode
+        ? { top: 34, right: 22, bottom: 60, left: 74 }
+        : { top: 30, right: 18, bottom: 44, left: 62 };
+      const innerWidth = width - margin.left - margin.right;
+      const innerHeight = height - margin.top - margin.bottom;
+      const totalSteps = metricsSeries.length;
+      const stepWidth = innerWidth / totalSteps;
+      const barWidth = Math.min(36, Math.max(14, stepWidth * 0.72));
+      const yTicks = 4;
+      const totalPopulation = state.results.config.population;
+      const axisFontSize = presentationMode ? 15 : 11;
+      const labelFontSize = presentationMode ? 16 : 11;
+      const currentRoundStroke = presentationMode ? 3.6 : 2.6;
+
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+      let markup = "";
+      for (let tick = 0; tick <= yTicks; tick += 1) {
+        const ratio = tick / yTicks;
+        const y = margin.top + innerHeight - ratio * innerHeight;
+        const label = displayMode === "count"
+          ? formatCompactNumber(totalPopulation * ratio)
+          : formatPercent(ratio, 0);
+        markup += `
+          <line x1="${margin.left}" y1="${y}" x2="${width - margin.right}" y2="${y}" stroke="${getCssVar("--chart-grid")}" stroke-width="1"/>
+          <text x="${margin.left - 12}" y="${y + 5}" text-anchor="end" font-size="${axisFontSize}" fill="${getCssVar("--muted")}">${label}</text>
+        `;
+      }
+
+      metricsSeries.forEach((metrics, step) => {
+        const x = margin.left + step * stepWidth + (stepWidth - barWidth) / 2;
+        let yCursor = margin.top + innerHeight;
+        metrics.distribution.forEach((share, levelIndexValue) => {
+          const segmentHeight = share * innerHeight;
+          yCursor -= segmentHeight;
+          markup += `
+            <rect x="${x}" y="${yCursor}" width="${barWidth}" height="${Math.max(segmentHeight, 0)}" fill="${getLevelColor(levels[levelIndexValue])}">
+              <title>Round ${step} · Level ${formatSignedLevel(levels[levelIndexValue])} · ${formatPercent(share, 2)}</title>
+            </rect>
+          `;
+        });
+
+        if (step === currentRound) {
+          markup += `
+            <rect x="${x - 4}" y="${margin.top - 6}" width="${barWidth + 8}" height="${innerHeight + 12}" fill="none" stroke="${accentColor}" stroke-width="${currentRoundStroke}" rx="10"/>
+          `;
+        }
+
+        if (totalSteps <= 11 || step === 0 || step === totalSteps - 1 || step % Math.ceil(totalSteps / 6) === 0) {
+          markup += `
+            <text x="${x + barWidth / 2}" y="${height - 16}" text-anchor="middle" font-size="${axisFontSize}" fill="${getCssVar("--muted")}">${step}</text>
+          `;
+        }
+      });
+
+      markup += `
+        <line x1="${margin.left}" y1="${margin.top + innerHeight}" x2="${width - margin.right}" y2="${margin.top + innerHeight}" stroke="${getCssVar("--ink")}" stroke-width="1.2"/>
+        <line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + innerHeight}" stroke="${getCssVar("--ink")}" stroke-width="1.2"/>
+        <text x="${margin.left}" y="${height - 4}" text-anchor="start" font-size="${labelFontSize}" fill="${getCssVar("--muted")}">Policy Renewal Round</text>
+        <text x="${margin.left}" y="${margin.top - 14}" text-anchor="start" font-size="${labelFontSize}" fill="${getCssVar("--muted")}">${displayMode === "count" ? "Vehicle Count" : "Level Share"}</text>
+      `;
+
+      svg.innerHTML = markup;
+    }
+
+    function renderLineChart(svg, baseMetrics, exemptMetrics, currentRound) {
+      const presentationMode = state.presentationMode;
+      const width = 1480;
+      const height = presentationMode ? 430 : 360;
+      const margin = presentationMode
+        ? { top: 30, right: 24, bottom: 56, left: 74 }
+        : { top: 26, right: 20, bottom: 42, left: 60 };
+      const innerWidth = width - margin.left - margin.right;
+      const innerHeight = height - margin.top - margin.bottom;
+      const rounds = baseMetrics.length - 1;
+      const allValues = [...baseMetrics.map((item) => item.avgCoeff), ...exemptMetrics.map((item) => item.avgCoeff)];
+      const minValue = Math.min(...allValues);
+      const maxValue = Math.max(...allValues);
+      const padding = Math.max(0.03, (maxValue - minValue) * 0.14);
+      const domainMin = Math.max(0.45, minValue - padding);
+      const domainMax = maxValue + padding;
+      const xForRound = (round) => margin.left + (round / Math.max(rounds, 1)) * innerWidth;
+      const yForValue = (value) => margin.top + innerHeight - ((value - domainMin) / (domainMax - domainMin || 1)) * innerHeight;
+      const buildPath = (series) => series.map((item, index) => `${index === 0 ? "M" : "L"} ${xForRound(index)} ${yForValue(item.avgCoeff)}`).join(" ");
+      const gapRound = state.results.maxCoeffGapRound;
+      const gapValue = state.results.maxCoeffGap;
+      const gapX = xForRound(gapRound);
+      const gapBaseY = yForValue(baseMetrics[gapRound].avgCoeff);
+      const gapExemptY = yForValue(exemptMetrics[gapRound].avgCoeff);
+      const currentX = xForRound(currentRound);
+      const currentIsGapRound = currentRound === gapRound;
+      const gapAnchor = gapRound >= rounds * 0.72 ? "end" : "start";
+      const gapLabelX = gapAnchor === "end" ? gapX - 12 : gapX + 12;
+      const gapLabelY = Math.max(margin.top + 20, Math.min(gapExemptY - 18, margin.top + 64));
+      const axisFontSize = presentationMode ? 17 : 14;
+      const labelFontSize = presentationMode ? 18 : 14;
+      const legendFontSize = presentationMode ? 16 : 13;
+      const annotationFontSize = presentationMode ? 16 : 13;
+      const annotationSubFontSize = presentationMode ? 15 : 12;
+      const pointRadius = presentationMode ? 7.2 : 5.5;
+      const focusPointRadius = presentationMode ? 7.6 : 6;
+      const currentStrokeWidth = presentationMode ? 2.1 : 1.5;
+      const gapStrokeWidth = presentationMode ? 1.8 : 1.4;
+      const pathStrokeWidth = presentationMode ? 3.8 : 3.2;
+      const secondLegendOffset = presentationMode ? 40 : 34;
+      const annotationSubOffset = presentationMode ? 22 : 18;
+
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+      let markup = "";
+      for (let tick = 0; tick <= 4; tick += 1) {
+        const value = domainMin + ((domainMax - domainMin) * tick) / 4;
+        const y = yForValue(value);
+        markup += `
+          <line x1="${margin.left}" y1="${y}" x2="${width - margin.right}" y2="${y}" stroke="${getCssVar("--chart-grid")}" stroke-width="1"/>
+          <text x="${margin.left - 10}" y="${y + 5}" text-anchor="end" font-size="${axisFontSize}" fill="${getCssVar("--muted")}">${value.toFixed(3)}</text>
+        `;
+      }
+
+      for (let round = 0; round <= rounds; round += 1) {
+        if (rounds <= 10 || round === 0 || round === rounds || round % Math.ceil(rounds / 6) === 0) {
+          markup += `
+            <text x="${xForRound(round)}" y="${height - 14}" text-anchor="middle" font-size="${axisFontSize}" fill="${getCssVar("--muted")}">${round}</text>
+          `;
+        }
+      }
+
+      markup += `
+        <path d="${buildPath(baseMetrics)}" fill="none" stroke="#b8602e" stroke-width="${pathStrokeWidth}" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="${buildPath(exemptMetrics)}" fill="none" stroke="#0f7b6c" stroke-width="${pathStrokeWidth}" stroke-linecap="round" stroke-linejoin="round"/>
+        ${currentIsGapRound
+          ? `<line x1="${currentX}" y1="${margin.top}" x2="${currentX}" y2="${margin.top + innerHeight}" stroke="#0f7b6c" stroke-dasharray="8 6" stroke-width="${currentStrokeWidth + 0.3}" opacity="0.88"/>`
+          : `<line x1="${currentX}" y1="${margin.top}" x2="${currentX}" y2="${margin.top + innerHeight}" stroke="${getCssVar("--muted")}" stroke-dasharray="8 6" stroke-width="${currentStrokeWidth}"/>`}
+        ${currentIsGapRound ? "" : `<line x1="${gapX}" y1="${margin.top}" x2="${gapX}" y2="${margin.top + innerHeight}" stroke="#0f7b6c" stroke-dasharray="5 5" stroke-width="${gapStrokeWidth}" opacity="0.85"/>`}
+        <line x1="${gapX}" y1="${gapBaseY}" x2="${gapX}" y2="${gapExemptY}" stroke="#0f7b6c" stroke-width="${presentationMode ? 2.8 : 2.2}" opacity="0.5"/>
+        <line x1="${margin.left}" y1="${margin.top + innerHeight}" x2="${width - margin.right}" y2="${margin.top + innerHeight}" stroke="${getCssVar("--ink")}" stroke-width="1.2"/>
+        <line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + innerHeight}" stroke="${getCssVar("--ink")}" stroke-width="1.2"/>
+        <text x="${margin.left}" y="${margin.top - 10}" text-anchor="start" font-size="${labelFontSize}" fill="${getCssVar("--muted")}">Average NCD Coefficient</text>
+        <text x="${width - margin.right}" y="${margin.top + 14}" text-anchor="end" font-size="${legendFontSize}" fill="#b8602e">Base: ${baseMetrics[currentRound].avgCoeff.toFixed(4)}</text>
+        <text x="${width - margin.right}" y="${margin.top + secondLegendOffset}" text-anchor="end" font-size="${legendFontSize}" fill="#0f7b6c">Exemption: ${exemptMetrics[currentRound].avgCoeff.toFixed(4)}</text>
+        <text x="${gapLabelX}" y="${gapLabelY}" text-anchor="${gapAnchor}" font-size="${annotationFontSize}" font-weight="700" fill="#0f7b6c">${currentIsGapRound ? "Current round is the peak improvement point" : "Peak improvement point"}</text>
+        <text x="${gapLabelX}" y="${gapLabelY + annotationSubOffset}" text-anchor="${gapAnchor}" font-size="${annotationSubFontSize}" fill="${getCssVar("--muted")}">Round ${gapRound} · Gap ${gapValue.toFixed(4)}</text>
+      `;
+
+      [baseMetrics, exemptMetrics].forEach((series, seriesIndex) => {
+        const color = seriesIndex === 0 ? "#b8602e" : "#0f7b6c";
+        const metric = series[currentRound];
+        markup += `
+            <circle cx="${currentX}" cy="${yForValue(metric.avgCoeff)}" r="${pointRadius}" fill="${color}" stroke="#fff" stroke-width="${presentationMode ? 2.6 : 2}"/>
+        `;
+      });
+
+      if (!currentIsGapRound) {
+        [baseMetrics, exemptMetrics].forEach((series, seriesIndex) => {
+          const color = seriesIndex === 0 ? "#b8602e" : "#0f7b6c";
+          const metric = series[gapRound];
+          markup += `
+            <circle cx="${gapX}" cy="${yForValue(metric.avgCoeff)}" r="${focusPointRadius}" fill="${color}" stroke="#fff" stroke-width="${presentationMode ? 3 : 2.4}"/>
+          `;
+        });
+      }
+
+      svg.innerHTML = markup;
+    }
+
+    function renderSummary(currentRound) {
+      const { config, baseMetrics, exemptMetrics } = state.results;
+      const baseMetric = baseMetrics[currentRound];
+      const exemptMetric = exemptMetrics[currentRound];
+      const coeffDelta = exemptMetric.avgCoeff - baseMetric.avgCoeff;
+      const levelDelta = exemptMetric.avgLevel - baseMetric.avgLevel;
+      const benefitVehicleDelta = exemptMetric.preferredBucketCount - baseMetric.preferredBucketCount;
+      const premiumImpactRatio = baseMetric.avgCoeff > 0 ? exemptMetric.avgCoeff / baseMetric.avgCoeff : null;
+
+      dom.selectedRoundValue.textContent = `Round ${currentRound}`;
+      dom.selectedRoundFoot.textContent = `T = ${state.results.config.rounds}`;
+      dom.baseCoeffValue.textContent = baseMetric.avgCoeff.toFixed(4);
+      dom.exemptCoeffValue.textContent = exemptMetric.avgCoeff.toFixed(4);
+      dom.premiumImpactRatioValue.textContent = premiumImpactRatio === null ? "--" : `${(premiumImpactRatio * 100).toFixed(2)}%`;
+      dom.premiumImpactRatioValue.className = premiumImpactRatio === null
+        ? "metric-value"
+        : `metric-value ${premiumImpactRatio < 1 ? "good" : premiumImpactRatio > 1 ? "bad" : ""}`.trim();
+      dom.coeffDeltaValue.textContent = formatSignedNumber(coeffDelta, 4);
+      dom.coeffDeltaValue.className = `metric-value ${coeffDelta <= 0 ? "good" : "bad"}`;
+      dom.benefitVehicleValue.textContent = formatSignedCompactNumber(benefitVehicleDelta);
+      dom.benefitVehicleValue.className = `metric-value ${benefitVehicleDelta >= 0 ? "good" : "bad"}`;
+      dom.maxGapRoundValue.textContent = `Round ${state.results.maxCoeffGapRound}`;
+      dom.maxGapValue.textContent = formatSignedNumber(state.results.maxCoeffGap, 4);
+      dom.terminalGapValue.textContent = formatSignedNumber(state.results.terminalCoeffGap, 4);
+
+      dom.timelineReadout.textContent = `Viewing round ${currentRound} / ${config.rounds}`;
+
+      const summaryExtra = `${levelDelta <= 0 ? "Average level improved by" : "Average level worsened by"} ${Math.abs(levelDelta).toFixed(3)} levels`;
+      dom.selectedRoundFoot.textContent = `T = ${config.rounds} · ${summaryExtra}`;
+    }
+
+    function renderComparisonTable() {
+      const currentRound = state.currentRound;
+      const levels = state.results.config.levels;
+      const baseMetric = state.results.baseMetrics[currentRound];
+      const exemptMetric = state.results.exemptMetrics[currentRound];
+      const shareDeltas = levels.map((_, index) => exemptMetric.distribution[index] - baseMetric.distribution[index]);
+      const maxAbsShareDelta = Math.max(...shareDeltas.map((value) => Math.abs(value)), 0.000001);
+
+      dom.tableCaption.textContent = state.config.displayMode === "count" ? "View: By Count" : "View: By Share";
+      dom.comparisonBody.innerHTML = levels.map((level, index) => {
+        const shareDelta = shareDeltas[index];
+        const countDelta = exemptMetric.counts[index] - baseMetric.counts[index];
+        const deltaWidth = `${Math.abs(shareDelta) / maxAbsShareDelta * 100}%`;
+        const deltaColor = shareDelta >= 0 ? "rgba(15, 123, 108, 0.18)" : "rgba(180, 67, 53, 0.18)";
+        const deltaOpacity = state.config.highlightDiff ? 1 : 0.35;
+        return `
+          <tr>
+            <td>Level ${formatSignedLevel(level)}</td>
+            <td>${formatPercent(baseMetric.distribution[index], 2)}</td>
+            <td>${formatPercent(exemptMetric.distribution[index], 2)}</td>
+            <td class="delta-cell" style="--delta-width:${deltaWidth};--delta-color:${deltaColor};--delta-opacity:${deltaOpacity}">
+              <span class="${shareDelta >= 0 ? "good" : "bad"}">${formatSignedPercent(shareDelta, 3)}</span>
+            </td>
+            <td>${formatCompactNumber(baseMetric.counts[index])}</td>
+            <td>${formatCompactNumber(exemptMetric.counts[index])}</td>
+            <td class="${countDelta >= 0 ? "good" : "bad"}">${formatSignedCompactNumber(countDelta)}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function renderValidationChecks() {
+      dom.checksList.innerHTML = state.validationResults.map((item) => `
+        <div class="check-item">
+          <span>${item.label}</span>
+          <span class="tag ${item.pass ? "tag-pass" : "tag-fail"}">${item.pass ? "Pass" : "Fail"}</span>
+        </div>
+      `).join("");
+      const failedCount = state.validationResults.filter((item) => !item.pass).length;
+      dom.checksNote.textContent = failedCount === 0
+        ? "All validation checks pass under the current settings. Even at extreme inputs, the simulator constrains parameters to valid ranges automatically."
+        : `${failedCount} validation check${failedCount === 1 ? "" : "s"} failed. Please review the active assumptions and inputs.`;
+    }
+
+    function updateTimeline(currentRound, totalRounds) {
+      dom.timeSlider.max = String(totalRounds);
+      dom.timeSlider.value = String(currentRound);
+      dom.playButton.textContent = state.timerId === null ? "Play Evolution" : "Pause";
+    }
+
+    function buildValidationChecks(config, results) {
+      const tolerance = 1e-9;
+      const claimProbabilitySum = results.claimProbabilities.reduce((sum, item) => sum + item.probability, 0);
+      const probabilityZero = results.claimProbabilities.find((item) => item.k === 0)?.probability ?? 0;
+      const zeroCapConfig = {
+        ...results.config,
+        maxExemptions: 0
+      };
+      const eZeroConfig = {
+        ...results.config,
+        exemptionPerClaimProb: 0
+      };
+      const baseWithZeroCap = projectDistribution(
+        buildTransitionMatrixBase(zeroCapConfig),
+        zeroCapConfig.initialDistribution,
+        zeroCapConfig.rounds
+      );
+      const exemptWithZeroCap = projectDistribution(
+        buildTransitionMatrixExempt(zeroCapConfig),
+        zeroCapConfig.initialDistribution,
+        zeroCapConfig.rounds
+      );
+      const baseWithZero = projectDistribution(
+        buildTransitionMatrixBase(eZeroConfig),
+        eZeroConfig.initialDistribution,
+        eZeroConfig.rounds
+      );
+      const exemptWithZero = projectDistribution(
+        buildTransitionMatrixExempt(eZeroConfig),
+        eZeroConfig.initialDistribution,
+        eZeroConfig.rounds
+      );
+
+      const zeroFrequencyConfig = {
+        ...results.config,
+        claimFrequency: 0
+      };
+      const zeroFrequencySeries = projectDistribution(
+        buildTransitionMatrixBase(zeroFrequencyConfig),
+        zeroFrequencyConfig.initialDistribution,
+        12
+      );
+      const zeroFrequencyFinal = zeroFrequencySeries[zeroFrequencySeries.length - 1];
+
+      const strongerExemptionConfig = {
+        ...results.config,
+        exemptionPerClaimProb: Math.min(1, results.config.exemptionPerClaimProb + 0.01)
+      };
+      const strongerSeries = projectDistribution(
+        buildTransitionMatrixExempt(strongerExemptionConfig),
+        strongerExemptionConfig.initialDistribution,
+        strongerExemptionConfig.rounds
+      );
+      const strongerMetrics = calculateSummaryMetrics(
+        strongerSeries,
+        strongerExemptionConfig.levels,
+        strongerExemptionConfig.coefficients,
+        strongerExemptionConfig.population
+      );
+      const strongerFinalCoeff = strongerMetrics[strongerMetrics.length - 1].avgCoeff;
+      const currentExemptFinalCoeff = results.exemptMetrics[results.exemptMetrics.length - 1].avgCoeff;
+      const singleCapOutcomes = buildExemptionOutcomeProbabilities(2, results.config.exemptionPerClaimProb, 1);
+      const singleCapProbabilityZero = singleCapOutcomes.find((item) => item.exemptions === 0)?.probability ?? 0;
+      const singleCapProbabilityOne = singleCapOutcomes.find((item) => item.exemptions === 1)?.probability ?? 0;
+      const cappedByClaimCountOutcomes = buildExemptionOutcomeProbabilities(2, 0.4, 4);
+      const cappedByClaimCountMax = Math.max(...cappedByClaimCountOutcomes.map((item) => item.exemptions));
+      const fullExemptionOutcomes = buildExemptionOutcomeProbabilities(2, 1, 1);
+      const exampleTransitionPass = fullExemptionOutcomes.length === 1
+        && fullExemptionOutcomes[0].exemptions === 1
+        && transitionLevel(-1, 2, 1, results.config.minLevel) === -1;
+      const allConditionalSumsPass = Array.from({ length: EXACT_CLAIM_COUNT_MAX + 1 }, (_, claimCount) => {
+        const outcomes = buildExemptionOutcomeProbabilities(claimCount, results.config.exemptionPerClaimProb, results.config.maxExemptions);
+        const sum = outcomes.reduce((total, item) => total + item.probability, 0);
+        return Math.abs(sum - 1) < 1e-10;
+      }).every(Boolean);
+      const referenceFrequency = 0.35;
+      const referenceProbabilities = buildPoissonClaimProbabilities({
+        ...results.config,
+        claimFrequency: referenceFrequency
+      });
+      const referenceByK = new Map(referenceProbabilities.filter((item) => !item.isTail).map((item) => [item.k, item.probability]));
+      const referenceExamplePass = [
+        Math.abs((referenceByK.get(0) ?? 0) - 0.7046880897187134) < 1e-10,
+        Math.abs((referenceByK.get(1) ?? 0) - 0.2466408314015497) < 1e-10,
+        Math.abs((referenceByK.get(2) ?? 0) - 0.04316214549527119) < 1e-10,
+        Math.abs((referenceByK.get(3) ?? 0) - 0.005035583641114972) < 1e-10
+      ].every(Boolean);
+
+      return [
+        {
+          label: "Poisson claim probabilities sum to 1",
+          pass: Math.abs(claimProbabilitySum - 1) < tolerance
+        },
+        {
+          label: "λ = F",
+          pass: Math.abs(results.poissonLambda - results.config.claimFrequency) < tolerance
+        },
+        {
+          label: "P(K=0) = e^{-F}",
+          pass: Math.abs(probabilityZero - Math.exp(-results.config.claimFrequency)) < 1e-12
+        },
+        {
+          label: "Default F = 35% example probabilities match the documentation",
+          pass: referenceExamplePass
+        },
+        {
+          label: "Conditional exemption distribution A | K = k sums to 1",
+          pass: allConditionalSumsPass
+        },
+        {
+          label: "Each row of the base transition matrix sums to 1",
+          pass: results.baseMatrix.every((row) => Math.abs(row.reduce((sum, value) => sum + value, 0) - 1) < tolerance)
+        },
+        {
+          label: "Each row of the exemption transition matrix sums to 1",
+          pass: results.exemptMatrix.every((row) => Math.abs(row.reduce((sum, value) => sum + value, 0) - 1) < tolerance)
+        },
+        {
+          label: "Each row of the difference matrix is approximately 0",
+          pass: results.differenceMatrix.every((row) => Math.abs(row.reduce((sum, value) => sum + value, 0)) < 1e-9)
+        },
+        {
+          label: "Distribution shares remain at 100% in every round",
+          pass: [...results.baseSeries, ...results.exemptSeries].every((distribution) => Math.abs(distribution.reduce((sum, value) => sum + value, 0) - 1) < tolerance)
+        },
+        {
+          label: "When M = 0, the exemption scenario collapses to the base scenario",
+          pass: seriesEqual(baseWithZeroCap, exemptWithZeroCap, tolerance)
+        },
+        {
+          label: "When e = 0, the exemption scenario collapses to the base scenario",
+          pass: seriesEqual(baseWithZero, exemptWithZero, tolerance)
+        },
+        {
+          label: `When F = 0, the distribution converges to level ${formatSignedLevel(results.config.minLevel)}`,
+          pass: zeroFrequencyFinal[levelIndex(results.config.levels, results.config.minLevel)] > 1 - 1e-6
+            && zeroFrequencyFinal.every((value, index) => index === levelIndex(results.config.levels, results.config.minLevel) || value < 1e-6)
+        },
+        {
+          label: "Worked rule example: starting at -1, 2 claims, and 1 exemption still ends at -1",
+          pass: exampleTransitionPass
+        },
+        {
+          label: "When M = 1, the model collapses to the single-exemption probability case",
+          pass: Math.abs(singleCapProbabilityZero - Math.pow(1 - results.config.exemptionPerClaimProb, 2)) < 1e-10
+            && Math.abs(singleCapProbabilityOne - (1 - Math.pow(1 - results.config.exemptionPerClaimProb, 2))) < 1e-10
+        },
+        {
+          label: "When K < M, realised exemptions do not exceed claim count",
+          pass: cappedByClaimCountMax === 2
+        },
+        {
+          label: "Increasing e does not worsen the average NCD coefficient",
+          pass: strongerFinalCoeff <= currentExemptFinalCoeff + 1e-8
+        }
+      ];
+    }
+
+    function startPlayback() {
+      if (state.currentRound >= state.results.config.rounds) {
+        state.currentRound = 0;
+      }
+      updateTimeline(state.currentRound, state.results.config.rounds);
+      state.timerId = window.setInterval(() => {
+        if (state.currentRound >= state.results.config.rounds) {
+          stopPlayback();
+          return;
+        }
+        state.currentRound += 1;
+        renderCharts();
+      }, state.results.config.animationSpeed);
+      updateTimeline(state.currentRound, state.results.config.rounds);
+    }
+
+    function stopPlayback() {
+      if (state.timerId !== null) {
+        window.clearInterval(state.timerId);
+        state.timerId = null;
+      }
+      updateTimeline(state.currentRound, state.results ? state.results.config.rounds : state.config.rounds);
+    }
+
+    function restartPlayback() {
+      stopPlayback();
+      startPlayback();
+    }
+
+    function bindSyncedRangeNumber(rangeElement, numberElement, onChange) {
+      const sync = (sourceValue) => {
+        const min = Number(rangeElement.min || numberElement.min || 0);
+        const max = Number(rangeElement.max || numberElement.max || 0);
+        const fallback = Number(rangeElement.value || numberElement.value || 0);
+        const nextValue = clampNumber(sourceValue, min, max, fallback);
+        const normalizedValue = Number.isInteger(nextValue) ? String(nextValue) : String(nextValue);
+        rangeElement.value = normalizedValue;
+        numberElement.value = normalizedValue;
+        onChange(normalizedValue);
+      };
+      rangeElement.addEventListener("input", () => sync(rangeElement.value));
+      numberElement.addEventListener("input", () => sync(numberElement.value));
+    }
+
+    function syncControlsFromState() {
+      dom.presentationModeToggle.checked = state.presentationMode;
+      dom.regionSelect.value = state.config.region;
+      dom.roundsRange.value = String(state.config.rounds);
+      dom.roundsInput.value = String(state.config.rounds);
+      dom.frequencyRange.value = String(state.config.claimFrequency * 100);
+      dom.frequencyInput.value = String(state.config.claimFrequency * 100);
+      dom.exemptionRange.value = String(state.config.exemptionPerClaimProb * 100);
+      dom.exemptionInput.value = String(state.config.exemptionPerClaimProb * 100);
+      dom.maxExemptionsSelect.value = String(state.config.maxExemptions);
+      dom.populationInput.value = String(state.config.population);
+      dom.speedRange.value = String(state.config.animationSpeed);
+      dom.displayMode.value = state.config.displayMode;
+      dom.highlightDiff.checked = state.config.highlightDiff;
+      const editableDistribution = getEditableDistribution(state.config, state.config.region);
+      getRegionSpec(state.config.region).levels.forEach((_, index) => {
+        const input = document.getElementById(`dist-${index}`);
+        if (input) {
+          input.value = (editableDistribution[index] * 100).toFixed(1);
+        }
+      });
+      syncDerivedLabels();
+      dom.timeSlider.value = String(state.currentRound);
+    }
+
+    function applyPresentationMode(enabled) {
+      document.body.dataset.presentationMode = enabled ? "on" : "off";
+      dom.presentationModeToggle.checked = enabled;
+    }
+
+    function loadPresentationModePreference() {
+      try {
+        return window.localStorage.getItem(PRESENTATION_MODE_STORAGE_KEY) === "1";
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function persistPresentationModePreference(enabled) {
+      try {
+        window.localStorage.setItem(PRESENTATION_MODE_STORAGE_KEY, enabled ? "1" : "0");
+      } catch (error) {
+        // Ignore persistence failures and fall back to session-only behavior.
+      }
+    }
+
+    function syncDerivedLabels() {
+      const resultConfig = state.results ? state.results.config : state.config;
+      const distributionTotal = getEditableDistribution(state.config, state.config.region).reduce((sum, value) => sum + sanitizeNonNegative(value, 0), 0);
+
+      dom.roundsLabel.textContent = `${resultConfig.rounds} rounds`;
+      dom.frequencyLabel.textContent = `${(resultConfig.claimFrequency * 100).toFixed(1)}%`;
+      dom.exemptionLabel.textContent = `${(resultConfig.exemptionPerClaimProb * 100).toFixed(3)}%`;
+      dom.speedLabel.textContent = `${resultConfig.animationSpeed} ms/step`;
+      dom.distributionTotal.textContent = `${(distributionTotal * 100).toFixed(1)}%`;
+    }
+
+    function transitionLevel(level, effectiveClaimCount, exemptionCount, minLevel) {
+      return clampNumber(level - 1 + effectiveClaimCount - exemptionCount, minLevel, 5, 0);
+    }
+
+    function levelIndex(levels, level) {
+      return levels.indexOf(level);
+    }
+
+    function normalizeRow(row) {
+      const total = row.reduce((sum, value) => sum + value, 0);
+      if (total <= 0) {
+        return row.map(() => 1 / row.length);
+      }
+      return row.map((value) => value / total);
+    }
+
+    function createZeroVector(length) {
+      return new Array(length).fill(0);
+    }
+
+    function seriesEqual(seriesA, seriesB, tolerance) {
+      if (seriesA.length !== seriesB.length) {
+        return false;
+      }
+      return seriesA.every((distribution, index) => distribution.every((value, levelIndexValue) => Math.abs(value - seriesB[index][levelIndexValue]) < tolerance));
+    }
+
+    function sanitizeNonNegative(value, fallback) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric) || numeric < 0) {
+        return fallback;
+      }
+      return numeric;
+    }
+
+    function cloneConfig(config) {
+      return {
+        ...config,
+        regionDistributions: cloneRegionDistributions(config.regionDistributions)
+      };
+    }
+
+    function cloneRegionDistributions(distributions) {
+      return Object.fromEntries(Object.entries(distributions).map(([region, distribution]) => [region, [...distribution]]));
+    }
+
+    function getRegionSpec(regionKey) {
+      return REGION_SPECS[regionKey] || REGION_SPECS[DEFAULT_REGION_KEY];
+    }
+
+    function getEditableDistribution(config, regionKey) {
+      const normalizedRegionKey = getRegionSpec(regionKey).key;
+      const fallback = DEFAULT_REGION_DISTRIBUTIONS[normalizedRegionKey];
+      const raw = config.regionDistributions?.[normalizedRegionKey];
+      if (!Array.isArray(raw) || raw.length !== fallback.length) {
+        return [...fallback];
+      }
+      return [...raw];
+    }
+
+    function getLevelColor(level) {
+      return LEVEL_COLOR_BY_LEVEL.get(level) || getCssVar("--brick-9");
+    }
+
+    function getExemptionPolicyLabel(maxExemptions) {
+      return maxExemptions === 0 ? "No autonomous-driving exemption" : `Up to ${maxExemptions} exemption${maxExemptions === 1 ? "" : "s"} per policy term`;
+    }
+
+    function getExemptionPlanDescription(maxExemptions) {
+      return maxExemptions === 0 ? "no exemption for autonomous-driving at-fault claims" : `up to ${maxExemptions} exempted at-fault claim${maxExemptions === 1 ? "" : "s"} per policy term`;
+    }
+
+    function binomialProbability(n, k, p) {
+      if (k < 0 || k > n) {
+        return 0;
+      }
+      if (p === 0) {
+        return k === 0 ? 1 : 0;
+      }
+      if (p === 1) {
+        return k === n ? 1 : 0;
+      }
+      let combination = 1;
+      for (let i = 1; i <= k; i += 1) {
+        combination *= (n - k + i) / i;
+      }
+      return combination * Math.pow(p, k) * Math.pow(1 - p, n - k);
+    }
+
+    function clampNumber(value, min, max, fallback) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) {
+        return fallback;
+      }
+      return Math.min(max, Math.max(min, numeric));
+    }
+
+    function formatPercent(value, digits) {
+      return `${(value * 100).toFixed(digits)}%`;
+    }
+
+    function formatProbabilityCell(value) {
+      if (value < 0.00005) {
+        return "≈0";
+      }
+      if (value < 0.001) {
+        return `${(value * 100).toFixed(2)}%`;
+      }
+      if (value < 0.01) {
+        return `${(value * 100).toFixed(2)}%`;
+      }
+      return `${(value * 100).toFixed(1)}%`;
+    }
+
+    function formatBasisPoints(value) {
+      const bp = value * 10000;
+      if (Math.abs(bp) < 0.005) {
+        return "≈0";
+      }
+      const symbol = bp >= 0 ? "+" : "";
+      return `${symbol}${bp.toFixed(2)}bp`;
+    }
+
+    function formatLambda(value) {
+      if (!Number.isFinite(value)) {
+        return "∞";
+      }
+      if (value >= 10) {
+        return value.toFixed(3);
+      }
+      return value.toFixed(4);
+    }
+
+    function formatSignedPercent(value, digits) {
+      const symbol = value >= 0 ? "+" : "";
+      return `${symbol}${(value * 100).toFixed(digits)}%`;
+    }
+
+    function formatSignedNumber(value, digits) {
+      const symbol = value >= 0 ? "+" : "";
+      return `${symbol}${value.toFixed(digits)}`;
+    }
+
+    function formatSignedLevel(level) {
+      return level > 0 ? `+${level}` : `${level}`;
+    }
+
+    function formatCompactNumber(value) {
+      if (Math.abs(value) < 10000) {
+        return new Intl.NumberFormat("zh-CN", {
+          maximumFractionDigits: 0
+        }).format(value);
+      }
+      return new Intl.NumberFormat("zh-CN", {
+        notation: "compact",
+        maximumFractionDigits: Math.abs(value) >= 10000000 ? 1 : 2
+      }).format(value);
+    }
+
+    function formatSignedCompactNumber(value) {
+      const symbol = value >= 0 ? "+" : "";
+      return `${symbol}${formatCompactNumber(value)}`;
+    }
+
+    function getCssVar(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+  </script>
+</body>
+</html>

@@ -71,6 +71,10 @@
       .cards { grid-template-columns: 1fr 1fr; }
       .card-wide { grid-column: span 2; }
     }
+    @media (min-width: 1020px) {
+      .cards { grid-template-columns: repeat(3, 1fr); }
+      .card-wide { grid-column: span 3; }
+    }
     .card {
       background: white;
       border: 1px solid #e5e7eb;
@@ -139,7 +143,7 @@
       </div>
       <h1>Interactive product demos</h1>
       <p class="subtitle">
-        AI-native tools for motor insurance — A+BI for underwriting and actuarial teams, ZhiYu for sales intelligence and call-centre operations. Click any card to open the live demo.
+        A family of AI-native tools for motor insurance — A+BI for underwriting and actuarial teams, ZhiYu for sales intelligence, and an actuarial scenario simulator for autonomous-vehicle NCD design. Click any card to open the live demo.
       </p>
     </header>
 
@@ -172,6 +176,16 @@
           Real-time call-centre AI. 100% call coverage, in-call coaching, and proprietary customer / competitor / market data capture routed to Claims, Underwriting, Product.
         </p>
         <div class="card-arrow">Launch demo →</div>
+      </a>
+
+      <a class="card" href="./ncd-simulator/index.html">
+        <span class="card-tag">Demo · Actuarial Simulator</span>
+        <div class="card-title">LingJi · ZhiLue — AV NCD Simulator</div>
+        <div class="card-subtitle">灵玑 · 智略 — AV NCD Exemption Scenario Simulator</div>
+        <p class="card-desc">
+          Offline scenario tool for discussing how an NCD exemption in intelligent-driving contexts shifts portfolio mix and premium level. Transition matrices, average NCD coefficient path, Premium Impact Ratio.
+        </p>
+        <div class="card-arrow">Launch simulator →</div>
       </a>
     </main>
 

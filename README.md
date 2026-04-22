@@ -4,12 +4,13 @@ Interactive, browser-based demos of the **LingJi** platform — AI-native tools 
 
 > **Live URL:** https://xiang-shan.github.io/lingji-demos/
 
-Two products, one AI layer:
+A family of AI-native tools on one data layer:
 
 - **LingJi · ZhiLue (灵玑 · 智略)** — Auto Insurance **A+BI Assistant**. Conversational analytics for underwriting and actuarial teams.
 - **LingJi · ZhiYu (灵玑 · 智语)** — **Sales Intelligence** / call-centre AI. Real-time scoring, coaching, and proprietary data capture.
+- **LingJi · ZhiLue — AV NCD Simulator** — Actuarial scenario simulator for how an NCD exemption in autonomous-vehicle / intelligent-driving contexts shifts portfolio mix and premium level.
 
-A bilingual wrapper slide deck frames both products with problem statement, value thesis, and launch links.
+A bilingual wrapper slide deck frames the AI products with problem statement, value thesis, and launch links.
 
 ---
 
@@ -17,10 +18,11 @@ A bilingual wrapper slide deck frames both products with problem statement, valu
 
 | File | Demo | Description |
 |---|---|---|
-| [`index.html`](./index.html) | Landing | Clean English landing page linking to all three demos |
+| [`index.html`](./index.html) | Landing | Clean English landing page linking to every demo |
 | [`车险全流程智能管理 — 律商联讯风险.html`](./车险全流程智能管理%20—%20律商联讯风险.html) | Wrapper deck | Bilingual slide deck — "Auto Insurance End-to-End Intelligence Management". Arrow-key navigation. |
 | [`LingJi-ZhiLue-Auto-Insurance-A+BI-Assistant.html`](./LingJi-ZhiLue-Auto-Insurance-A+BI-Assistant.html) | A+BI | Full A+BI product demo — core KPIs, AI diagnosis, anomaly alerts, findings & actions, **What-If Simulator**, and conversational Q&A. |
 | [`LingJi-ZhiYu-Sales-Intelligence.html`](./LingJi-ZhiYu-Sales-Intelligence.html) | ZhiYu | Full ZhiYu product demo — management dashboard, agent capability heatmap, loss analysis, call insights, and **real-time AI assist**. |
+| [`ncd-simulator/index.html`](./ncd-simulator/index.html) | AV NCD Simulator | Offline actuarial scenario simulator — regional NCD migration, one-step transition matrices, average NCD coefficient path, **Premium Impact Ratio**. Accompanied by [`math_model.md`](./ncd-simulator/math_model.md). |
 
 ---
 
@@ -66,9 +68,35 @@ A bilingual wrapper slide deck frames both products with problem statement, valu
 
 ---
 
+## LingJi · ZhiLue — AV NCD Exemption Scenario Simulator
+
+**For:** actuaries, product managers, regulatory-affairs teams working on autonomous-vehicle / intelligent-driving insurance design.
+
+**The problem:** intelligent-connected new-energy vehicles (ICV NEVs) introduce risk patterns — software/hardware defects, ADAS-related losses, recoverable product-liability claims — that don't sit cleanly inside a conventional motor NCD structure. Designing an NCD exemption for these cases sounds surgical on paper, but the portfolio consequences are hard to reason about without a transparent model: does the exemption preserve better discount states, how fast does the effect appear, does the gap later narrow?
+
+**The idea:** a simplified first-order Markov model of annual NCD transitions, comparing a base scenario against one or more exemption scenarios. Every assumption is on the page — claim frequency, per-claim exemption trigger probability, exemption cap, region-specific lower bound (Beijing / Xiamen vs. other regions). The output is directional scenario intelligence, not a pricing engine.
+
+**Hero moment:** the **Premium Impact Ratio** chart combined with the transition-matrix difference view — see exactly where the exemption changes the probability of staying in, or returning to, better NCD states, and the round at which the effect is strongest.
+
+**Key features shown in the simulator:**
+- Regional NCD state space and coefficient selection (Beijing/Xiamen 11-level vs. other-regions 10-level)
+- Base vs. exemption one-step transition matrices plus difference matrix
+- Poisson claim-count model with configurable frequency
+- Binomial exemption-eligibility model with configurable cap *M*
+- Average NCD coefficient path across renewal rounds
+- Premium Impact Ratio (exemption ÷ base coefficient)
+- Preferred-tier net-vehicle gain and peak-impact round
+- Offline MathJax rendering — no CDN required
+
+**Technical companion:** [`ncd-simulator/math_model.md`](./ncd-simulator/math_model.md) explains the state space, transition logic, claim-count and exemption-realisation models, and the metrics shown on the page.
+
+**Context:** designed for UK / international management discussion of how a China-market regulatory move around ICV NEV insurance could be tested and communicated. Read as scenario framework, not a rule-exact regulatory engine.
+
+---
+
 ## Running locally
 
-All three HTMLs are fully self-contained. Clone the repo and open any file in Chrome / Safari / Edge:
+All demos are fully self-contained. Clone the repo and open any file in Chrome / Safari / Edge:
 
 ```bash
 git clone https://github.com/Xiang-Shan/lingji-demos.git
