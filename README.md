@@ -2,6 +2,8 @@
 
 Interactive, browser-based demos of the **LingJi** platform — AI-native tools for the motor insurance industry.
 
+> **LingJi · Auto Insurance AI is a product of LexisNexis® Risk Solutions — Insurance (律商联讯风险信息).**
+
 > **Live URL:** https://xiang-shan.github.io/lingji-demos/
 
 A family of AI-native tools on one data layer:
