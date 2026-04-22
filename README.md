@@ -74,6 +74,8 @@ A bilingual wrapper slide deck frames the AI products with problem statement, va
 
 **For:** actuaries, product managers, regulatory-affairs teams working on autonomous-vehicle / intelligent-driving insurance design.
 
+![AV NCD Exemption Scenario Simulator](./ncd-simulator/screenshot.png)
+
 **The problem:** intelligent-connected new-energy vehicles (ICV NEVs) introduce risk patterns — software/hardware defects, ADAS-related losses, recoverable product-liability claims — that don't sit cleanly inside a conventional motor NCD structure. Designing an NCD exemption for these cases sounds surgical on paper, but the portfolio consequences are hard to reason about without a transparent model: does the exemption preserve better discount states, how fast does the effect appear, does the gap later narrow?
 
 **The idea:** a simplified first-order Markov model of annual NCD transitions, comparing a base scenario against one or more exemption scenarios. Every assumption is on the page — claim frequency, per-claim exemption trigger probability, exemption cap, region-specific lower bound (Beijing / Xiamen vs. other regions). The output is directional scenario intelligence, not a pricing engine.
