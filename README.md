@@ -6,9 +6,9 @@ Interactive, browser-based demos of the **LingJi** platform — AI-native tools 
 
 A family of AI-native tools on one data layer:
 
-- **LingJi · ZhiLue (灵玑 · 智略)** — Auto Insurance **A+BI Assistant**. Conversational analytics for underwriting and actuarial teams.
-- **LingJi · ZhiYu (灵玑 · 智语)** — **Sales Intelligence** / call-centre AI. Real-time scoring, coaching, and proprietary data capture.
-- **LingJi · ZhiLue — AV NCD Simulator** — Actuarial scenario simulator for how an NCD exemption in autonomous-vehicle / intelligent-driving contexts shifts portfolio mix and premium level.
+- **LingJi · ZhiLue (灵玑 · 智略) - A+BI** — Auto Insurance **A+BI Assistant**. Conversational analytics for underwriting and actuarial teams.
+- **LingJi · ZhiYu (灵玑 · 智语) Call Center** — **Sales Intelligence** / call-centre AI. Real-time scoring, coaching, and proprietary data capture.
+- **LingJi · ZhiLue (灵玑 · 智语) — AV NCD Simulator** — Actuarial scenario simulator for how an NCD exemption in autonomous-vehicle / intelligent-driving contexts shifts portfolio mix and premium level.
 
 A bilingual wrapper slide deck frames the AI products with problem statement, value thesis, and launch links.
 
