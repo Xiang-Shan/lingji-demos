@@ -36,7 +36,7 @@ A bilingual wrapper slide deck frames the AI products with problem statement, va
 
 **The idea:** put a large language model *behind* the dashboard — not in front of it. The dashboard still shows numbers (all computed by SQL, not the LLM). The LLM interprets them, surfaces anomalies, generates findings with owners and expected impact, and powers a live What-If Simulator that lets you drag pricing and mix sliders to watch combined ratio recalculate in real time.
 
-**Hero moment:** drag three sliders — taxi uplift, regional expense ratio, scale quality — and watch the book swing from a ¥23.5M underwriting loss to a profit, combined ratio from 107.5% to ~98%.
+**Hero moment:** drag three sliders — taxi uplift, regional expense ratio, scale quality — and watch the book swing from a ¥23.5M underwriting loss to a profit, combined ratio from ~98% to 107.5%.
 
 **Key features shown in the demo:**
 - Core KPIs with AI diagnosis (revealing hidden combined ratio, expense ratio, claim frequency)
