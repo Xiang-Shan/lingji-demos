@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)https://space-5a373547a9797cb3cf9935e38102ea4d.canglan.site/lingji/presentation-v2.html -->
+<html lang="en-GB"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Insurance End-to-End Intelligence 车险全流程智能管理 — LexisNexis Risk Solutions</title>
+    <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 32 32&#39;&gt;&lt;rect width=&#39;32&#39; height=&#39;32&#39; rx=&#39;6&#39; fill=&#39;%232563EB&#39;/&gt;&lt;text x=&#39;16&#39; y=&#39;22&#39; font-size=&#39;18&#39; text-anchor=&#39;middle&#39; fill=&#39;white&#39; font-family=&#39;sans-serif&#39; font-weight=&#39;bold&#39;&gt;L&lt;/text&gt;&lt;/svg&gt;">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link href="./车险全流程智能管理 — 律商联讯风险_files/css2" rel="stylesheet">
+    <style>
+        /* ===========================================
+           CSS CUSTOM PROPERTIES — SWISS MODERN THEME
+           浅色底 + 深蓝主色 + 橙色强调
+           =========================================== */
+        :root {
+            /* Colors */
+            --bg-primary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --bg-dark: #0F172A;
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+            --text-light: #94A3B8;
+            --accent: #2563EB;
+            --accent-light: #DBEAFE;
+            --accent-hover: #1D4ED8;
+            --highlight: #E02A27;
+            --highlight-light: #FEF2F2;
+            --border: #E2E8F0;
+            --border-light: #F1F5F9;
+            --success: #10B981;
+            --warning: #F59E0B;
+
+            /* Typography — Exo for headings, Roboto Mono for data */
+            --font-display: 'Exo', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Roboto Mono', monospace;
+            --font-body: 'Exo', system-ui, -apple-system, sans-serif;
+
+            /* Responsive sizes using clamp() */
+            --title-size: clamp(1.8rem, 5vw, 3.8rem);
+            --h2-size: clamp(1.4rem, 3.5vw, 2.6rem);
+            --h3-size: clamp(1rem, 2.2vw, 1.5rem);
+            --body-size: clamp(1rem, 1.6vw, 1.25rem);
+            --small-size: clamp(0.88rem, 1.35vw, 1.1rem);
+            --label-size: clamp(0.75rem, 1.1vw, 0.92rem);
+
+            /* Spacing */
+            --slide-padding: clamp(1.5rem, 5vw, 5rem);
+            --content-gap: clamp(0.75rem, 2vw, 2rem);
+            --element-gap: clamp(0.4rem, 1vw, 1rem);
+
+            /* Animation */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration: 0.5s;
+        }
+
+        /* ===========================================
+           RESET & BASE
+           =========================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100%;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===========================================
+           SLIDE CONTAINER
+           每页 = 精确一个视口高度，禁止滚动溢出
+           =========================================== */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            padding: var(--slide-padding);
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-height: 100%;
+            overflow: hidden;
+        }
+
+        /* Background decoration on every slide */
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            background: url('bg-1.png') right top no-repeat;
+            background-size: auto 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .slide > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Accent line at top of every slide */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--highlight));
+            z-index: 10;
+        }
+
+        /* Slide footer */
+        .slide-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: clamp(60px, 8vh, 80px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: clamp(12px, 2vh, 24px) var(--slide-padding);
+            z-index: 5;
+            border-top: 1px solid var(--border-light);
+            background: #FFFFFF;
+            backdrop-filter: blur(4px);
+        }
+
+        .footer-left {
+            flex: 0 0 auto;
+        }
+
+        .footer-logo {
+            height: clamp(36px, 5vh, 56px);
+            width: auto;
+            object-fit: contain;
+        }
+
+        .footer-center {
+            flex: 0 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .footer-confidential {
+            height: clamp(14px, 2vh, 22px);
+            width: auto;
+            object-fit: contain;
+            opacity: 0.6;
+        }
+
+        .footer-right {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            gap: clamp(0.6rem, 1.5vw, 1.5rem);
+            font-family: var(--font-mono);
+            font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+            color: var(--text-light);
+        }
+
+        .footer-copyright {
+            font-family: var(--font-body);
+        }
+
+        .footer-page {
+            font-weight: 500;
+        }
+
+        /* Dark slide footer overrides */
+        .slide-ending .slide-footer {
+            border-top-color: rgba(255,255,255,0.1);
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .slide-ending .footer-copyright,
+        .slide-ending .footer-page {
+            color: #475569;
+        }
+
+        .slide-ending .footer-confidential {
+            opacity: 0.4;
+            filter: invert(1);
+        }
+
+        /* ===========================================
+           ANIMATIONS — Intersection Observer triggered
+           =========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity var(--duration) var(--ease-out-expo),
+                        transform var(--duration) var(--ease-out-expo);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity var(--duration) var(--ease-out-expo),
+                        transform var(--duration) var(--ease-out-expo);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity var(--duration) var(--ease-out-expo),
+                        transform var(--duration) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal,
+        .slide.visible .reveal-left,
+        .slide.visible .reveal-scale {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        /* Stagger delays */
+        .slide.visible .reveal:nth-child(1),
+        .slide.visible .reveal-left:nth-child(1) { transition-delay: 0.05s; }
+        .slide.visible .reveal:nth-child(2),
+        .slide.visible .reveal-left:nth-child(2) { transition-delay: 0.12s; }
+        .slide.visible .reveal:nth-child(3),
+        .slide.visible .reveal-left:nth-child(3) { transition-delay: 0.19s; }
+        .slide.visible .reveal:nth-child(4),
+        .slide.visible .reveal-left:nth-child(4) { transition-delay: 0.26s; }
+        .slide.visible .reveal:nth-child(5) { transition-delay: 0.33s; }
+        .slide.visible .reveal:nth-child(6) { transition-delay: 0.40s; }
+
+        .d1 { transition-delay: 0.05s !important; }
+        .d2 { transition-delay: 0.15s !important; }
+        .d3 { transition-delay: 0.25s !important; }
+        .d4 { transition-delay: 0.35s !important; }
+        .d5 { transition-delay: 0.45s !important; }
+
+        /* ===========================================
+           PROGRESS BAR
+           =========================================== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--highlight));
+            z-index: 1000;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* ===========================================
+           NAVIGATION DOTS
+           =========================================== */
+        .nav-dots {
+            position: fixed;
+            right: clamp(0.5rem, 1.5vw, 1.5rem);
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            padding: 0;
+        }
+
+        .nav-dot:hover {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        .nav-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+            box-shadow: 0 0 0 3px var(--accent-light);
+        }
+
+        /* ===========================================
+           COMMON COMPONENTS
+           =========================================== */
+
+        /* Section label */
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: var(--label-size);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--highlight);
+            margin-bottom: clamp(0.5rem, 1.5vh, 1.2rem);
+        }
+
+        .section-label .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--highlight);
+            border-radius: 50%;
+        }
+
+        /* Divider line */
+        .divider {
+            width: 48px;
+            height: 3px;
+            background: var(--highlight);
+            margin: clamp(0.5rem, 1.5vh, 1rem) 0;
+            border-radius: 2px;
+        }
+
+        /* Section heading */
+        .section-title {
+            font-family: var(--font-display);
+            font-size: var(--h2-size);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        .section-title .accent { color: var(--highlight); }
+        .section-title .highlight { color: var(--highlight); }
+
+        /* Body text */
+        .body-text {
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+            line-height: 1.65;
+            max-width: 560px;
+        }
+
+        /* Card grid */
+        .card-grid {
+            display: grid;
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+        }
+
+        .card-grid.cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .card-grid.cols-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: clamp(0.8rem, 2vw, 1.6rem);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            width: clamp(32px, 4vw, 44px);
+            height: clamp(32px, 4vw, 44px);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: clamp(0.4rem, 1vh, 0.8rem);
+            flex-shrink: 0;
+        }
+
+        .card-icon.blue { background: var(--accent-light); color: var(--accent); }
+        .card-icon.orange { background: var(--highlight-light); color: var(--highlight); }
+        .card-icon.green { background: #D1FAE5; color: #059669; }
+        .card-icon.purple { background: #EDE9FE; color: #7C3AED; }
+        .card-icon.red { background: #FEE2E2; color: #DC2626; }
+        .card-icon.amber { background: #FEF3C7; color: #D97706; }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: var(--h3-size);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: clamp(0.2rem, 0.5vh, 0.4rem);
+        }
+
+        .card-desc {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Tag/pill */
+        .tag {
+            display: inline-block;
+            font-size: var(--label-size);
+            font-weight: 600;
+            padding: 0.2em 0.8em;
+            border-radius: 4px;
+            margin-bottom: 0.3rem;
+        }
+
+        .tag.blue { background: var(--accent-light); color: var(--accent); }
+        .tag.orange { background: var(--highlight-light); color: var(--highlight); }
+
+        /* ===========================================
+           SLIDE 0: TITLE CARD (bg-2 left + text right)
+           =========================================== */
+        .slide-title-card {
+            padding: 0;
+            flex-direction: row;
+        }
+
+        .slide-title-card::after {
+            display: none;
+        }
+
+        .slide-title-card::before {
+            display: none;
+        }
+
+        .title-card-img {
+            flex: 0 0 auto;
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .title-card-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--slide-padding);
+            gap: clamp(0.6rem, 1.5vh, 1.2rem);
+        }
+
+        .title-card-main {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 800;
+            color: var(--highlight);
+            letter-spacing: 0.08em;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .title-card-sub {
+            font-family: var(--font-display);
+            font-size: clamp(1.3rem, 3vw, 2.2rem);
+            font-weight: 600;
+            color: var(--highlight);
+            letter-spacing: 0.06em;
+            text-align: center;
+            opacity: 0.75;
+        }
+
+        .title-card-divider {
+            width: 48px;
+            height: 3px;
+            background: var(--highlight);
+            border-radius: 2px;
+        }
+
+        /* ===========================================
+           SLIDE 1: COVER
+           =========================================== */
+        .slide-cover {
+            background: var(--bg-primary);
+        }
+
+        .cover-content {
+            max-width: min(90vw, 780px);
+        }
+
+        .brand-line {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: clamp(0.8rem, 2.5vh, 2rem);
+        }
+
+        .brand-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--highlight);
+            border-radius: 50%;
+        }
+
+        .brand-name {
+            font-size: var(--body-size);
+            font-weight: 600;
+            color: var(--highlight);
+            letter-spacing: 0.06em;
+        }
+
+        .cover-title {
+            font-family: var(--font-display);
+            font-size: var(--title-size);
+            font-weight: 800;
+            line-height: 1.12;
+            color: var(--text-primary);
+            margin-bottom: clamp(0.4rem, 1.5vh, 1rem);
+        }
+
+        .cover-title .accent { color: var(--highlight); }
+
+        .cover-divider {
+            width: 56px;
+            height: 3px;
+            background: var(--highlight);
+            margin: clamp(0.6rem, 1.5vh, 1.2rem) 0;
+            border-radius: 2px;
+        }
+
+        .cover-subtitle {
+            font-size: clamp(0.85rem, 1.6vw, 1.2rem);
+            color: var(--text-secondary);
+            line-height: 1.65;
+            max-width: 500px;
+        }
+
+        .cover-pills {
+            display: flex;
+            gap: clamp(0.4rem, 1vw, 0.7rem);
+            margin-top: clamp(1.2rem, 3vh, 2.5rem);
+            flex-wrap: wrap;
+        }
+
+        .cover-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: clamp(0.4rem, 0.8vw, 0.6rem) clamp(0.6rem, 1.2vw, 1rem);
+            font-size: var(--small-size);
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .cover-pill:hover {
+            border-color: var(--accent);
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.06);
+        }
+
+        .cover-pill svg { color: var(--accent); flex-shrink: 0; }
+
+        /* Cover logo */
+        .cover-logo {
+            position: absolute;
+            top: clamp(1.5rem, 4vh, 3rem);
+            right: var(--slide-padding);
+            width: clamp(140px, 22vw, 320px);
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Global slide logo (top-right on all non-cover/non-ending slides) */
+        .slide-logo {
+            position: absolute;
+            top: clamp(0.8rem, 2vh, 1.5rem);
+            right: var(--slide-padding);
+            width: clamp(80px, 12vw, 160px);
+            height: auto;
+            object-fit: contain;
+            z-index: 5;
+            opacity: 0.85;
+        }
+
+        /* ===========================================
+           SLIDE 2: BUSINESS OVERVIEW
+           =========================================== */
+        .overview-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(1rem, 3vw, 2.5rem);
+            margin-top: clamp(0.8rem, 2vh, 1.5rem);
+        }
+
+        .overview-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: clamp(1rem, 2.5vw, 2rem);
+            position: relative;
+            transition: all 0.25s ease;
+        }
+
+        .overview-block:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .overview-block.primary {
+            border-color: var(--highlight);
+            border-width: 2px;
+            border-left-width: 4px;
+            background: #FDF8F8;
+            color: var(--text-primary);
+        }
+
+        .overview-block.primary .block-title,
+        .overview-block.primary .block-desc,
+        .overview-block.primary .block-feature {
+            color: var(--text-secondary);
+        }
+
+        .overview-block.primary .block-title {
+            color: var(--text-primary);
+        }
+
+        .overview-block.secondary {
+            border-style: dashed;
+            opacity: 0.85;
+        }
+
+        .block-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: var(--label-size);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 0.25em 0.7em;
+            border-radius: 4px;
+            margin-bottom: clamp(0.4rem, 1vh, 0.8rem);
+        }
+
+        .block-badge.blue { background: var(--accent-light); color: var(--accent); }
+        .block-badge.gray { background: #F1F5F9; color: #475569; }
+
+        .block-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
+        }
+
+        .block-desc {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .block-features {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.2rem, 0.5vh, 0.4rem);
+            margin-top: clamp(0.5rem, 1.5vh, 1rem);
+        }
+
+        .block-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+        }
+
+        .block-feature svg { color: var(--accent); flex-shrink: 0; }
+        .block-feature.orange svg { color: var(--highlight); }
+
+        .focus-note {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: var(--small-size);
+            font-weight: 600;
+            color: var(--highlight);
+            margin-top: clamp(0.6rem, 1.5vh, 1rem);
+            padding: 0.3em 0.8em;
+            background: var(--highlight-light);
+            border-radius: 4px;
+        }
+
+        /* ===========================================
+           SLIDE 3: PAIN POINTS
+           =========================================== */
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(0.5rem, 1.5vw, 1.2rem);
+            margin-top: clamp(0.8rem, 2vh, 1.5rem);
+        }
+
+        .pain-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: clamp(0.8rem, 2vw, 1.5rem);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .pain-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 10px 10px 0 0;
+            background: var(--highlight);
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .pain-card:hover::before { opacity: 1; }
+
+        .pain-card:hover {
+            border-color: var(--highlight);
+            box-shadow: 0 4px 16px rgba(249, 115, 22, 0.06);
+        }
+
+        .pain-number {
+            font-family: var(--font-mono);
+            font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+            font-weight: 500;
+            color: var(--highlight);
+            margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
+        }
+
+        .pain-title {
+            font-family: var(--font-display);
+            font-size: var(--h3-size);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: clamp(0.2rem, 0.5vh, 0.5rem);
+        }
+
+        .pain-desc {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .pain-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+            margin-top: clamp(0.4rem, 1vh, 0.8rem);
+            padding-top: clamp(0.4rem, 1vh, 0.8rem);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .pain-stat-icon {
+            color: var(--highlight);
+            flex-shrink: 0;
+        }
+
+        .pain-stat-text {
+            font-size: var(--label-size);
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* ===========================================
+           SLIDE 4: SOLUTION
+           =========================================== */
+        .solution-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(1rem, 3vw, 2.5rem);
+            align-items: center;
+            margin-top: clamp(0.5rem, 1.5vh, 1rem);
+        }
+
+        .solution-desc {
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+            line-height: 1.55;
+            margin-bottom: clamp(0.4rem, 1vh, 0.8rem);
+        }
+
+        .capability-list {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.1rem, 0.4vh, 0.35rem);
+        }
+
+        .capability-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: var(--small-size);
+            font-weight: 600;
+            color: var(--text-primary);
+            padding: clamp(0.15rem, 0.4vw, 0.35rem) 0;
+        }
+
+        .capability-item svg { color: var(--accent); flex-shrink: 0; }
+
+        /* Flow diagram */
+        .flow-diagram {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: clamp(0.6rem, 1.5vw, 1.4rem);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.15rem, 0.5vh, 0.4rem);
+            align-items: center;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: clamp(0.4rem, 0.8vw, 0.7rem);
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: clamp(0.35rem, 0.8vw, 0.6rem) clamp(0.8rem, 1.5vw, 1.2rem);
+            width: 100%;
+            font-size: var(--small-size);
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .flow-step:hover {
+            border-color: var(--accent);
+        }
+
+        .flow-step .step-icon {
+            width: clamp(22px, 2.5vw, 28px);
+            height: clamp(22px, 2.5vw, 28px);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .flow-arrow {
+            color: var(--text-light);
+        }
+
+        /* ===========================================
+           SLIDE 5: DIRECT VALUE
+           =========================================== */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(0.5rem, 1.5vw, 1.2rem);
+            margin-top: clamp(0.8rem, 2vh, 1.5rem);
+        }
+
+        .value-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: clamp(0.8rem, 2vw, 1.5rem);
+            transition: all 0.25s ease;
+        }
+
+        .value-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .value-header {
+            display: flex;
+            align-items: flex-start;
+            gap: clamp(0.4rem, 0.8vw, 0.7rem);
+            margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
+        }
+
+        .value-title {
+            font-family: var(--font-display);
+            font-size: var(--h3-size);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .value-desc {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.55;
+            margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
+        }
+
+        .value-points {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.15rem, 0.4vh, 0.3rem);
+        }
+
+        .value-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.35rem;
+            font-size: var(--label-size);
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .value-point svg { color: var(--success); flex-shrink: 0; margin-top: 2px; }
+
+        /* ===========================================
+           SLIDE 6: EXTENDED VALUE
+           =========================================== */
+        .extend-layout {
+            margin-top: clamp(0.8rem, 2vh, 1.5rem);
+        }
+
+        .extend-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(0.5rem, 1.5vw, 1.2rem);
+        }
+
+        .extend-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: clamp(0.8rem, 2vw, 1.5rem);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .extend-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
+        }
+
+        .extend-tag {
+            font-family: var(--font-mono);
+            font-size: var(--label-size);
+            font-weight: 500;
+            color: var(--highlight);
+            margin-bottom: clamp(0.3rem, 0.6vh, 0.5rem);
+        }
+
+        .extend-title {
+            font-family: var(--font-display);
+            font-size: var(--h3-size);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: clamp(0.2rem, 0.5vh, 0.4rem);
+        }
+
+        .extend-desc {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .extend-example {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: clamp(0.4rem, 1vh, 0.7rem);
+            padding-top: clamp(0.4rem, 0.8vh, 0.6rem);
+            border-top: 1px solid var(--border-light);
+            font-size: var(--label-size);
+            color: var(--highlight);
+            font-weight: 600;
+        }
+
+        .extend-example svg { flex-shrink: 0; }
+
+        /* Data flow chain — enhanced visual */
+        .data-flow-chain {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(0.4rem, 0.8vw, 0.7rem);
+            margin-top: clamp(0.8rem, 2vh, 1.5rem);
+            padding: clamp(0.8rem, 1.5vw, 1.2rem) clamp(1rem, 2vw, 1.5rem);
+            background: var(--highlight-light);
+            border: 1px solid rgba(224, 42, 39, 0.2);
+            border-radius: 12px;
+        }
+
+        /* ===========================================
+           SLIDE 7-8: A+BI
+           =========================================== */
+        .pain-grid.cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* ===========================================
+           SLIDE: DEMO
+           =========================================== */
+        .slide-demo .slide-content {
+            align-items: center;
+        }
+
+        .slide-demo::after {
+            display: none;
+        }
+
+        .demo-text {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            color: var(--text-light);
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 20;
+            pointer-events: auto;
+        }
+
+        .demo-text:hover {
+            color: var(--accent);
+        }
+
+        /* ===========================================
+           SLIDE 12: ENDING
+           =========================================== */
+        .slide-ending {
+            background: var(--bg-dark);
+            color: #F1F5F9;
+        }
+
+        .slide-ending::before {
+            background: linear-gradient(90deg, var(--accent), var(--highlight));
+        }
+
+        .ending-content {
+            text-align: center;
+            max-width: min(90vw, 600px);
+            margin: 0 auto;
+        }
+
+        .ending-logo {
+            width: clamp(140px, 20vw, 280px);
+            height: auto;
+            object-fit: contain;
+            margin: 0 auto clamp(0.8rem, 2vh, 1.5rem);
+            background: white;
+            border-radius: 12px;
+            padding: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2vw, 1.5rem);
+        }
+
+        .ending-brand {
+            font-family: var(--font-display);
+            font-size: var(--h2-size);
+            font-weight: 800;
+            color: #F1F5F9;
+            margin-bottom: clamp(0.3rem, 1vh, 0.6rem);
+        }
+
+        .ending-tagline {
+            font-size: var(--body-size);
+            color: #94A3B8;
+            line-height: 1.6;
+            margin-bottom: clamp(1rem, 3vh, 2rem);
+        }
+
+        .ending-divider {
+            width: 40px;
+            height: 2px;
+            background: rgba(255,255,255,0.15);
+            margin: 0 auto clamp(0.8rem, 2vh, 1.5rem);
+        }
+
+        .ending-thanks {
+            font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+            font-weight: 600;
+            color: #CBD5E1;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===========================================
+           RESPONSIVE BREAKPOINTS
+           =========================================== */
+
+        /* Short viewports */
+        @media (max-height: 700px) {
+            :root {
+                --slide-padding: clamp(1rem, 4vw, 3rem);
+                --content-gap: clamp(0.5rem, 1.5vw, 1rem);
+                --title-size: clamp(1.5rem, 4.5vw, 2.8rem);
+                --h2-size: clamp(1.2rem, 3vw, 2rem);
+            }
+        }
+
+        @media (max-height: 600px) {
+            :root {
+                --slide-padding: clamp(0.8rem, 3vw, 2rem);
+                --content-gap: clamp(0.4rem, 1vw, 0.8rem);
+                --title-size: clamp(1.3rem, 4vw, 2.2rem);
+                --h2-size: clamp(1rem, 2.5vw, 1.6rem);
+                --body-size: clamp(0.7rem, 1.1vw, 0.9rem);
+            }
+
+            .nav-dots { display: none; }
+            .cover-logo, .slide-logo { display: none; }
+        }
+
+        @media (max-height: 500px) {
+            :root {
+                --slide-padding: clamp(0.5rem, 2vw, 1.2rem);
+                --title-size: clamp(1.1rem, 3.5vw, 1.8rem);
+                --h2-size: clamp(0.9rem, 2.2vw, 1.3rem);
+                --body-size: clamp(0.65rem, 1vw, 0.8rem);
+            }
+        }
+
+        /* Narrow viewports */
+        @media (max-width: 768px) {
+            .overview-layout,
+            .pain-grid,
+            .value-grid,
+            .extend-grid,
+            .solution-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .card-grid.cols-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .cover-logo, .slide-logo { display: none; }
+            .nav-dots { display: none; }
+
+            .pain-grid,
+            .value-grid,
+            .extend-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pain-grid,
+            .value-grid,
+            .extend-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cover-pills { flex-direction: column; }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.15s !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ===========================================
+           PRINT STYLES
+           每页 slide 精确对应一张打印纸（横向 A4）
+           =========================================== */
+        @media print {
+            /* Force color printing */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Page setup: landscape A4 */
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+
+            /* Reset scroll behavior */
+            html {
+                scroll-snap-type: none !important;
+                scroll-behavior: auto !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+
+            body {
+                height: auto !important;
+                overflow: visible !important;
+                background: white !important;
+            }
+
+            /* Hide navigation elements */
+            .progress-bar,
+            .nav-dots {
+                display: none !important;
+            }
+
+            /* Each slide = one printed page */
+            .slide {
+                width: 100vw !important;
+                height: 100vh !important;
+                overflow: hidden !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                scroll-snap-align: unset !important;
+                position: relative !important;
+            }
+
+            /* Last slide: no trailing blank page */
+            .slide:last-child {
+                page-break-after: auto !important;
+                break-after: auto !important;
+            }
+
+            /* Force all reveal animations to visible */
+            .reveal,
+            .reveal-left,
+            .reveal-scale {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+
+            /* Disable hover effects */
+            .card:hover,
+            .pain-card:hover,
+            .value-card:hover,
+            .extend-card:hover,
+            .flow-step:hover,
+            .cover-pill:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            /* Ensure slide top accent line prints */
+            .slide::before {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Ending slide dark background */
+            .slide-ending {
+                background: var(--bg-dark) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Ensure logos print */
+            .cover-logo,
+            .slide-logo,
+            .ending-logo {
+                display: block !important;
+                opacity: 1 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progressBar" style="width: 83.3333%;"></div>
+
+    <!-- Navigation dots -->
+    <nav class="nav-dots" id="navDots"><button class="nav-dot" aria-label="Go to slide 1"></button><button class="nav-dot" aria-label="Go to slide 2"></button><button class="nav-dot" aria-label="Go to slide 3"></button><button class="nav-dot" aria-label="Go to slide 4"></button><button class="nav-dot" aria-label="Go to slide 5"></button><button class="nav-dot" aria-label="Go to slide 6"></button><button class="nav-dot" aria-label="Go to slide 7"></button><button class="nav-dot" aria-label="Go to slide 8"></button><button class="nav-dot" aria-label="Go to slide 9"></button><button class="nav-dot active" aria-label="Go to slide 10"></button><button class="nav-dot" aria-label="Go to slide 11"></button><button class="nav-dot" aria-label="Go to slide 12"></button></nav>
+
+
+
+    <!-- ===========================================
+         SLIDE 0: TITLE CARD — 灵玑 · 智略
+         =========================================== -->
+    <section class="slide slide-title-card visible" data-slide="0">
+        <img src="./车险全流程智能管理 — 律商联讯风险_files/bg-2.png" alt="" class="title-card-img">
+        <div class="title-card-text">
+            <div class="title-card-main reveal d1">LingJi · ZhiLue<br><span style="font-size:0.55em;opacity:0.85;">灵玑 · 智略</span></div>
+            <div class="title-card-divider reveal d2"></div>
+            <div class="title-card-sub reveal d3">Auto Insurance A+BI Intelligent Assistant</div>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">01 / 12</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 5: A+BI — 传统 BI 的四大短板
+         =========================================== -->
+    <section class="slide visible" data-slide="1">
+        <div class="slide-content">
+            <div class="section-label reveal d1">
+                <span class="dot"></span>
+                A+BI CHALLENGES
+            </div>
+            <h2 class="section-title reveal d2">Four <span class="highlight">Blind Spots</span> of Traditional BI</h2>
+            <div class="divider reveal d2"></div>
+            <p class="body-text reveal d3">When the business moves fast, the limits of traditional BI become painfully obvious.</p>
+
+            <div class="pain-grid cols-2 reveal d4">
+                <!-- Pain 1 -->
+                <div class="pain-card">
+                    <div class="pain-number">01</div>
+                    <div class="card-icon amber">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div class="pain-title">Rigid by design</div>
+                    <div class="pain-desc">Every KPI and workflow must be defined up-front. The reporting layer cannot keep pace with a business that changes week-on-week.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text">The business responds to change slower than the market</span>
+                    </div>
+                </div>
+
+                <!-- Pain 2 -->
+                <div class="pain-card">
+                    <div class="pain-number">02</div>
+                    <div class="card-icon red">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
+                    </div>
+                    <div class="pain-title">Locked to pre-defined views</div>
+                    <div class="pain-desc">Pre-built dashboards answer only the questions they were designed for. Exploratory analysis means a new report request and a long wait.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text">Cannot answer the questions you didn't know to ask</span>
+                    </div>
+                </div>
+
+                <!-- Pain 3 -->
+                <div class="pain-card">
+                    <div class="pain-number">03</div>
+                    <div class="card-icon orange">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><line x1="2" y1="2" x2="22" y2="22"></line></svg>
+                    </div>
+                    <div class="pain-title">Passive, backward-looking</div>
+                    <div class="pain-desc">A dashboard shows yesterday's numbers. It does not raise a hand when a risk signal or a growth opportunity appears in the data.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text">Opportunities and risks stay buried</span>
+                    </div>
+                </div>
+
+                <!-- Pain 4 -->
+                <div class="pain-card">
+                    <div class="pain-number">04</div>
+                    <div class="card-icon purple">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    </div>
+                    <div class="pain-title">Unstructured data wasted</div>
+                    <div class="pain-desc">Call recordings, claims photos, policy documents — the unstructured 80% often carries the most valuable signal, but traditional BI cannot read it.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text">The richest data is the data you're ignoring</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">02 / 12</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 6: A+BI — 如何解决
+         =========================================== -->
+    <section class="slide visible" data-slide="2">
+        <div class="slide-content">
+            <div class="section-label reveal d1">
+                <span class="dot"></span>
+                A+BI SOLUTION
+            </div>
+            <h2 class="section-title reveal d2">How A+BI <span class="accent">Fixes Each One</span></h2>
+            <div class="divider reveal d2"></div>
+            <p class="body-text reveal d3">A direct answer to every blind spot above.</p>
+
+            <div class="pain-grid cols-2 reveal d4">
+                <!-- Solution 1 -->
+                <div class="pain-card">
+                    <div class="pain-number" style="color: var(--text-secondary);">Fix ① For "Rigid by design"</div>
+                    <div class="card-icon blue">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <div class="pain-title" style="color: var(--highlight);">Standard dashboards + natural-language Q&amp;A</div>
+                    <div class="pain-desc">High-frequency metrics live on ready-made dashboards. One-off questions are asked in plain English; the AI returns the analysis in seconds.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon" style="color: var(--success);">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text" style="color: var(--text-primary); font-style: normal; font-weight: 600;">Turnaround time: from weeks to seconds</span>
+                    </div>
+                </div>
+
+                <!-- Solution 2 -->
+                <div class="pain-card">
+                    <div class="pain-number" style="color: var(--text-secondary);">Fix ② For "Locked to pre-defined views"</div>
+                    <div class="card-icon purple">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    </div>
+                    <div class="pain-title" style="color: var(--highlight);">Self-serve analysis for every role</div>
+                    <div class="pain-desc">Underwriting, claims and executives each ask from their own angle. The AI generates the view on the fly — no one waits for the report team.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon" style="color: var(--success);">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text" style="color: var(--text-primary); font-style: normal; font-weight: 600;">From known questions → unknown questions</span>
+                    </div>
+                </div>
+
+                <!-- Solution 3 -->
+                <div class="pain-card">
+                    <div class="pain-number" style="color: var(--text-secondary);">Fix ③ For "Passive, backward-looking"</div>
+                    <div class="card-icon green">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                    </div>
+                    <div class="pain-title" style="color: var(--highlight);">Active monitoring + forecast &amp; alerts</div>
+                    <div class="pain-desc">The AI watches every KPI 24/7, pushes alerts the moment something breaks trend, and uses ML to forecast where risk is heading.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon" style="color: var(--success);">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text" style="color: var(--text-primary); font-style: normal; font-weight: 600;">From reading data → receiving insight</span>
+                    </div>
+                </div>
+
+                <!-- Solution 4 -->
+                <div class="pain-card">
+                    <div class="pain-number" style="color: var(--text-secondary);">Fix ④ For "Unstructured data wasted"</div>
+                    <div class="card-icon orange">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
+                    <div class="pain-title" style="color: var(--highlight);">Cross-domain fusion + unstructured parsing</div>
+                    <div class="pain-desc">LLMs read call audio, claims photos and policy documents, extract the key facts, and join them to your structured data.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon" style="color: var(--success);">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text" style="color: var(--text-primary); font-style: normal; font-weight: 600;">Dormant data → live decision evidence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">03 / 12</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         DEMO: A+BI 演示
+         =========================================== -->
+    <section class="slide slide-demo visible" data-slide="3">
+        <div class="slide-content">
+            <a href="./LingJi-ZhiLue-Auto-Insurance-A%2BBI-Assistant.html" target="_blank" class="demo-text reveal d1">Launch A+BI Demo →</a>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">04 / 12</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 7: A+BI — 闭环决策
+         =========================================== -->
+    <section class="slide visible" data-slide="4">
+        <div class="slide-content">
+            <div class="section-label reveal d1">
+                <span class="dot"></span>
+                A+BI WORKFLOW
+            </div>
+            <h2 class="section-title reveal d2">Closed loop: from <span class="accent">insight</span> to <span class="accent">action</span></h2>
+            <div class="divider reveal d2"></div>
+
+            <div class="solution-hero reveal d3">
+                <div>
+                    <p class="solution-desc">More than "looking at dashboards" — a full loop from detecting a problem to measuring the fix. The AI tracks every decision through execution and feedback, turning management into a self-improving system.</p>
+                    <div class="capability-list">
+                        <div class="capability-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Insight — the AI spots anomalies and growth opportunities unaided
+                        </div>
+                        <div class="capability-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Advice — concrete, data-grounded improvement plans
+                        </div>
+                        <div class="capability-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Action — routed to the right owner, progress tracked
+                        </div>
+                        <div class="capability-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Effect — before/after comparison proves whether it worked
+                        </div>
+                        <div class="capability-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Learn — lessons feed back into the decision model
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-diagram">
+                    <div class="flow-step">
+                        <span class="step-icon card-icon green" style="margin-bottom:0">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        </span>
+                        Find insight
+                    </div>
+                    <div class="flow-arrow">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="flow-step">
+                        <span class="step-icon card-icon blue" style="margin-bottom:0">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                        </span>
+                        Generate advice
+                    </div>
+                    <div class="flow-arrow">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="flow-step">
+                        <span class="step-icon card-icon orange" style="margin-bottom:0">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        </span>
+                        Drive action
+                    </div>
+                    <div class="flow-arrow">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="flow-step">
+                        <span class="step-icon card-icon purple" style="margin-bottom:0">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        </span>
+                        Verify effect &amp; keep learning
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">05 / 12</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE: A+BI — 应用场景
+         =========================================== -->
+    <section class="slide visible" data-slide="5">
+        <div class="slide-content">
+            <div class="section-label reveal d1">
+                <span class="dot"></span>
+                A+BI SCENARIOS
+            </div>
+            <h2 class="section-title reveal d2">Example scenarios: <span class="accent">conversational</span> data analysis</h2>
+            <div class="divider reveal d2"></div>
+
+            <div class="extend-layout">
+                <div class="extend-grid reveal d3">
+                    <!-- Scenario 1 -->
+                    <div class="extend-card">
+                        <div class="card-icon blue">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <div class="extend-tag">Underwriting</div>
+                        <div class="extend-title">Risk analysis &amp; underwriting optimisation</div>
+                        <div class="extend-desc">"Why did our decline rate spike last quarter?" The AI links channel, region and vehicle type data on the fly and pinpoints the root cause.</div>
+                        <div class="extend-example">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                            Sharper pricing &amp; underwriting strategy
+                        </div>
+                    </div>
+
+                    <!-- Scenario 2 -->
+                    <div class="extend-card">
+                        <div class="card-icon orange">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                        </div>
+                        <div class="extend-tag">Claims</div>
+                        <div class="extend-title">Claims forecast &amp; fraud detection</div>
+                        <div class="extend-desc">"Forecast next month's claims volume by region and flag the high-risk files." The AI blends internal history with external factors to produce both the forecast and the alerts.</div>
+                        <div class="extend-example">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                            Pre-deploy resources &amp; lower loss ratio
+                        </div>
+                    </div>
+
+                    <!-- Scenario 3 -->
+                    <div class="extend-card">
+                        <div class="card-icon purple">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        </div>
+                        <div class="extend-tag">Executive</div>
+                        <div class="extend-title">Performance view &amp; decision support</div>
+                        <div class="extend-desc">"Compare combined operating ratio across channels — and show me the trend." A visual report is generated in real time, and the MD can keep drilling in with follow-up questions.</div>
+                        <div class="extend-example">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                            Insight → advice → action, closed-loop
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-flow-chain reveal d4">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <div style="display: flex; flex-wrap: wrap; gap: clamp(0.8rem, 2vw, 1.5rem); align-items: center; justify-content: center; font-size: var(--small-size); font-weight: 700; color: var(--highlight);">
+                        <span>Ask</span>
+                        <span style="color: var(--text-light);">→</span>
+                        <span>Understand</span>
+                        <span style="color: var(--text-light);">→</span>
+                        <span>Analyse</span>
+                        <span style="color: var(--text-light);">→</span>
+                        <span>Insight</span>
+                        <span style="color: var(--text-light);">→</span>
+                        <span>Advice</span>
+                        <span style="color: var(--text-light);">→</span>
+                        <span>Action</span>
+                        <span style="color: var(--text-light);">→</span>
+                        <span>Measure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">06 / 12</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 5.5: TITLE CARD — 灵玑 · 智语
+         =========================================== -->
+    <section class="slide slide-title-card visible" data-slide="6">
+        <img src="./车险全流程智能管理 — 律商联讯风险_files/bg-2.png" alt="" class="title-card-img">
+        <div class="title-card-text">
+            <div class="title-card-main reveal d1">LingJi · ZhiYu<br><span style="font-size:0.55em;opacity:0.85;">灵玑 · 智语</span></div>
+            <div class="title-card-divider reveal d2"></div>
+            <div class="title-card-sub reveal d3">Sales Intelligence — Call Centre AI</div>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">07 / 12</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===========================================
+         SLIDE 1: PAIN POINTS — 三大挑战
+         =========================================== -->
+    <section class="slide visible" data-slide="7">
+        <div class="slide-content">
+            <div class="section-label reveal d1">
+                <span class="dot"></span>
+                CHALLENGES
+            </div>
+            <h2 class="section-title reveal d2">Three <span class="highlight">hard challenges</span> of motor-insurance outbound sales</h2>
+            <div class="divider reveal d2"></div>
+
+            <div class="pain-grid reveal d3">
+                <!-- Pain 1 -->
+                <div class="pain-card">
+                    <div class="pain-number">01</div>
+                    <div class="card-icon red">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="pain-title">Huge skill gap between agents</div>
+                    <div class="pain-desc">Conversion rates between your best and weakest agents differ by a factor of 3–5×. The team's ceiling is set by the top quartile, but the floor drags the average down.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text">Average conversion is held back by the bottom performers</span>
+                    </div>
+                </div>
+
+                <!-- Pain 2 -->
+                <div class="pain-card">
+                    <div class="pain-number">02</div>
+                    <div class="card-icon amber">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    </div>
+                    <div class="pain-title">Heavy staff turnover</div>
+                    <div class="pain-desc">Outbound teams churn at industry-leading rates. Every leaver takes tacit skill and customer knowledge with them; the team never compounds.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text">Know-how walks out the door with every leaver</span>
+                    </div>
+                </div>
+
+                <!-- Pain 3 -->
+                <div class="pain-card">
+                    <div class="pain-number">03</div>
+                    <div class="card-icon orange">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    </div>
+                    <div class="pain-title">High cost of training &amp; QA</div>
+                    <div class="pain-desc">New hires ramp slowly, compliance monitoring relies on spot-checks, and leadership has no real-time view of call quality across the floor.</div>
+                    <div class="pain-stat">
+                        <span class="pain-stat-icon">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+                        </span>
+                        <span class="pain-stat-text">Management time is eaten by low-value oversight</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">08 / 12</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 2: SOLUTION — 展业智能洞察
+         =========================================== -->
+    <section class="slide visible" data-slide="8">
+        <div class="slide-content">
+            <div class="section-label reveal d1">
+                <span class="dot"></span>
+                SOLUTION
+            </div>
+            <h2 class="section-title reveal d2">Sales Intelligence: <span class="accent">AI-driven</span> outbound quality &amp; performance</h2>
+            <div class="divider reveal d2"></div>
+
+            <div class="solution-hero reveal d3">
+                <div>
+                    <p class="solution-desc">Using LLMs and speech analytics, every outbound call is scored on multiple dimensions — live or after the fact — and the system auto-generates coaching advice and on-call prompts. Agent management moves from "gut feel" to data-driven.</p>
+                    <div class="capability-list">
+                        <div class="capability-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Automatic multi-dimensional scoring of every call
+                        </div>
+                        <div class="capability-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Personalised coaching (for the agent / for the manager)
+                        </div>
+                        <div class="capability-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Real-time on-call prompts (for live voice calls)
+                        </div>
+                        <div class="capability-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Team capability heatmap &amp; trend analysis
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-diagram">
+                    <div class="flow-step">
+                        <span class="step-icon card-icon blue" style="margin-bottom:0">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </span>
+                        Outbound call captured
+                    </div>
+                    <div class="flow-arrow">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="flow-step">
+                        <span class="step-icon card-icon purple" style="margin-bottom:0">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </span>
+                        AI analyses &amp; scores
+                    </div>
+                    <div class="flow-arrow">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="flow-step">
+                        <span class="step-icon card-icon green" style="margin-bottom:0">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                        </span>
+                        Scores &amp; coaching delivered
+                    </div>
+                    <div class="flow-arrow">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="flow-step">
+                        <span class="step-icon card-icon orange" style="margin-bottom:0">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                        </span>
+                        Agent capability compounds
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">09 / 12</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         DEMO: 展业智能洞察演示
+         =========================================== -->
+    <section class="slide slide-demo visible" data-slide="9">
+        <div class="slide-content">
+            <a href="./LingJi-ZhiYu-Sales-Intelligence.html" target="_blank" class="demo-text reveal d1">Launch Call-Centre Demo →</a>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">10 / 12</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+         SLIDE 3: DIRECT VALUE — 已移至 P11
+         =========================================== -->
+
+    <!-- ===========================================
+         SLIDE 4: EXTENDED VALUE — 数据驱动全业务链
+         =========================================== -->
+    <section class="slide" data-slide="10">
+        <div class="slide-content">
+            <div class="section-label reveal d1">
+                <span class="dot"></span>
+                EXTENDED VALUE
+            </div>
+            <h2 class="section-title reveal d2">Extended value: <span class="accent">data-driven</span> across the business</h2>
+            <div class="divider reveal d2"></div>
+
+            <div class="extend-layout">
+                <div class="extend-grid reveal d3">
+                    <!-- Value 1 from P10 -->
+                    <div class="extend-card">
+                        <div class="card-icon blue">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                        </div>
+                        <div class="extend-tag">DIRECT VALUE 1</div>
+                        <div class="extend-title">Live, full-coverage agent assessment</div>
+                        <div class="extend-desc">Every single call is auto-scored on multiple dimensions — replacing slow, partial manual QA.</div>
+                        <div class="extend-example">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                            100% call coverage, capability trends visible
+                        </div>
+                    </div>
+
+                    <!-- Value 2 from P10 -->
+                    <div class="extend-card">
+                        <div class="card-icon green">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <div class="extend-tag">DIRECT VALUE 2</div>
+                        <div class="extend-title">Immediate coaching on every call</div>
+                        <div class="extend-desc">For each call, the AI pinpoints the specific issue and writes the coaching message.</div>
+                        <div class="extend-example">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                            From post-mortem to on-the-spot coaching
+                        </div>
+                    </div>
+
+                    <!-- Value 3 from P10 -->
+                    <div class="extend-card">
+                        <div class="card-icon orange">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        </div>
+                        <div class="extend-tag">DIRECT VALUE 3</div>
+                        <div class="extend-title">Real-time on-call prompts</div>
+                        <div class="extend-desc">In live voice mode, the AI whispers script suggestions to the agent during the call, lifting conversion in the moment.</div>
+                        <div class="extend-example">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                            New hires hit par dramatically faster
+                        </div>
+                    </div>
+
+                    <!-- Extend 1 -->
+                    <div class="extend-card">
+                        <div class="card-icon purple">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <div class="extend-tag">DATA LAYER 1</div>
+                        <div class="extend-title">Richer customer profiling</div>
+                        <div class="extend-desc">Preferences, risk appetite and decision style are extracted from the conversation itself — a far richer profile than channel data alone.</div>
+                        <div class="extend-example">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                            Targeted marketing &amp; personalised pricing
+                        </div>
+                    </div>
+
+                    <!-- Extend 2 -->
+                    <div class="extend-card">
+                        <div class="card-icon blue">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        </div>
+                        <div class="extend-tag">DATA LAYER 2</div>
+                        <div class="extend-title">Product-level data extraction</div>
+                        <div class="extend-desc">Vehicle model, coverage needs, competitor quotes — all auto-extracted and stored as structured evidence for product &amp; pricing.</div>
+                        <div class="extend-example">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                            Product strategy &amp; pricing optimisation
+                        </div>
+                    </div>
+
+                    <!-- Extend 3 -->
+                    <div class="extend-card">
+                        <div class="card-icon green">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.59 13.51 15.42 17.49"></path><path d="M15.41 6.51 8.59 10.49"></path></svg>
+                        </div>
+                        <div class="extend-tag">DATA LAYER 3</div>
+                        <div class="extend-title">Cross-departmental data sharing</div>
+                        <div class="extend-desc">Sales insights feed claims, underwriting and customer service — breaking down silos and driving whole-business coordination.</div>
+                        <div class="extend-example">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                            Stronger risk control &amp; better service
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-flow-chain reveal d4">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="M8.59 13.51 15.42 17.49"></path><path d="M15.41 6.51 8.59 10.49"></path></svg>
+                    <div style="display: flex; flex-wrap: wrap; gap: clamp(0.8rem, 2vw, 1.5rem); align-items: center; justify-content: center; font-size: var(--small-size); font-weight: 700; color: var(--highlight);">
+                        <span>Call data</span>
+                        <span style="color: var(--text-light);">→</span>
+                        <span>Customer profile</span>
+                        <span style="color: var(--text-light);">→</span>
+                        <span>Product optimisation</span>
+                        <span style="color: var(--text-light);">→</span>
+                        <span>Cross-dept sync</span>
+                        <span style="color: var(--text-light);">→</span>
+                        <span>Closed-loop growth</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">11 / 12</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===========================================
+         SLIDE: ENDING — 收尾
+         =========================================== -->
+    <section class="slide" data-slide="11">
+        <div class="slide-content">
+            <div class="ending-content">
+                <div class="ending-brand reveal d1" style="font-size: clamp(2rem, 5.5vw, 4rem); color: var(--highlight);">AI returns the enterprise to first principles</div>
+                <p class="ending-tagline reveal d3" style="color: var(--text-secondary);">Strip away the complexity — anchor every decision on the business logic that actually matters.</p>
+                <div class="ending-divider reveal d4" style="background: var(--border);"></div>
+                <div class="ending-thanks reveal d5" style="color: var(--text-light);">THANK YOU</div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <div class="footer-left"><img src="./车险全流程智能管理 — 律商联讯风险_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="footer-logo"></div>
+            <div class="footer-center"><img src="./车险全流程智能管理 — 律商联讯风险_files/footer-confidential.png" alt="CONFIDENTIAL" class="footer-confidential"></div>
+            <div class="footer-right">
+                <span class="footer-copyright">© 2026 LexisNexis Risk Solutions (Beijing) Information Technology Co., Ltd. 律商联讯（北京）信息技术有限公司</span>
+                <span class="footer-page">12 / 12</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===========================================
+       JAVASCRIPT: 导航、动画、交互控制
+       =========================================== -->
+    <script>
+        /* ===========================================
+           SLIDE PRESENTATION CONTROLLER
+           处理键盘/滚轮/触摸导航、进度条、动画触发
+           =========================================== */
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.totalSlides = this.slides.length;
+                this.currentSlide = 0;
+                this.isScrolling = false;
+                this.touchStartY = 0;
+                this.touchStartX = 0;
+
+                this.injectSlideLogos();
+                this.initNavDots();
+                this.initIntersectionObserver();
+                this.initKeyboardNav();
+                this.initWheelNav();
+                this.initTouchNav();
+                this.updateProgress();
+
+                /* Mark first slide visible immediately */
+                this.slides[0].classList.add('visible');
+            }
+
+            /* Slide logos disabled */
+            injectSlideLogos() {}
+
+            /* Create navigation dots */
+            initNavDots() {
+                const nav = document.getElementById('navDots');
+                for (let i = 0; i < this.totalSlides; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+                    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                    dot.addEventListener('click', () => this.goToSlide(i));
+                    nav.appendChild(dot);
+                }
+                this.dots = nav.querySelectorAll('.nav-dot');
+            }
+
+            /* Intersection Observer for scroll-based animation triggers */
+            initIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            const index = parseInt(entry.target.dataset.slide);
+                            if (!isNaN(index)) {
+                                this.currentSlide = index;
+                                this.updateDots();
+                                this.updateProgress();
+                            }
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                this.slides.forEach(slide => observer.observe(slide));
+            }
+
+            /* Keyboard navigation: arrows, space, page up/down */
+            initKeyboardNav() {
+                document.addEventListener('keydown', (e) => {
+                    switch(e.key) {
+                        case 'ArrowDown':
+                        case 'ArrowRight':
+                        case ' ':
+                        case 'PageDown':
+                            e.preventDefault();
+                            this.nextSlide();
+                            break;
+                        case 'ArrowUp':
+                        case 'ArrowLeft':
+                        case 'PageUp':
+                            e.preventDefault();
+                            this.prevSlide();
+                            break;
+                        case 'Home':
+                            e.preventDefault();
+                            this.goToSlide(0);
+                            break;
+                        case 'End':
+                            e.preventDefault();
+                            this.goToSlide(this.totalSlides - 1);
+                            break;
+                    }
+                });
+            }
+
+            /* Mouse wheel navigation with debounce */
+            initWheelNav() {
+                document.addEventListener('wheel', (e) => {
+                    if (this.isScrolling) return;
+                    this.isScrolling = true;
+
+                    if (e.deltaY > 30) {
+                        this.nextSlide();
+                    } else if (e.deltaY < -30) {
+                        this.prevSlide();
+                    }
+
+                    setTimeout(() => { this.isScrolling = false; }, 800);
+                }, { passive: true });
+            }
+
+            /* Touch/swipe navigation */
+            initTouchNav() {
+                document.addEventListener('touchstart', (e) => {
+                    this.touchStartY = e.changedTouches[0].screenY;
+                    this.touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+
+                document.addEventListener('touchend', (e) => {
+                    const deltaY = this.touchStartY - e.changedTouches[0].screenY;
+                    const deltaX = this.touchStartX - e.changedTouches[0].screenX;
+
+                    /* Only respond to vertical swipes */
+                    if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
+                        if (deltaY > 0) {
+                            this.nextSlide();
+                        } else {
+                            this.prevSlide();
+                        }
+                    }
+                }, { passive: true });
+            }
+
+            goToSlide(index) {
+                if (index < 0 || index >= this.totalSlides) return;
+                this.currentSlide = index;
+                this.slides[index].scrollIntoView({ behavior: 'smooth' });
+                this.updateDots();
+                this.updateProgress();
+            }
+
+            nextSlide() {
+                if (this.currentSlide < this.totalSlides - 1) {
+                    this.goToSlide(this.currentSlide + 1);
+                }
+            }
+
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.goToSlide(this.currentSlide - 1);
+                }
+            }
+
+            updateDots() {
+                this.dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === this.currentSlide);
+                });
+            }
+
+            updateProgress() {
+                const progress = ((this.currentSlide + 1) / this.totalSlides) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+            }
+        }
+
+        /* Initialize when DOM is ready */
+        document.addEventListener('DOMContentLoaded', () => {
+            new SlidePresentation();
+        });
+    </script>
+
+
+</body></html>

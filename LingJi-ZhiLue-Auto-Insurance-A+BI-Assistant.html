@@ -1,0 +1,3799 @@
+<!DOCTYPE html>
+<!-- saved from url=(0083)https://space-5a373547a9797cb3cf9935e38102ea4d.canglan.site/abi/demo-report-v3.html -->
+<html lang="en-GB"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LingJi · ZhiLue — Auto Insurance A+BI Assistant</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 32 32&#39;%3E%3Crect width=&#39;32&#39; height=&#39;32&#39; rx=&#39;6&#39; fill=&#39;%230369A1&#39;/%3E%3Ctext x=&#39;16&#39; y=&#39;23&#39; text-anchor=&#39;middle&#39; font-family=&#39;system-ui&#39; font-size=&#39;18&#39; font-weight=&#39;800&#39; fill=&#39;white&#39;%3EAI%3C/text%3E%3C/svg%3E">
+<script src="./灵玑 · 智略：车险 A+BI 智能助理_files/echarts.min.js"></script>
+<style>
+:root {
+  --primary: #0369A1;
+  --secondary: #0EA5E9;
+  --accent: #16A34A;
+  --bg: #F7F7F8;
+  --card-bg: #FFFFFF;
+  --text: #1E293B;
+  --muted: #64748B;
+  --border: #E2E5E9;
+  --error: #DC2626;
+  --warning: #F59E0B;
+  --purple: #8B5CF6;
+  --pink: #EC4899;
+  --cyan: #06B6D4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 64px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Main Content */
+.main {
+  margin-left: 0;
+  margin-right: 420px;
+  min-height: 100vh;
+}
+
+/* Header */
+.header-logo {
+  height: 40px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.report-header {
+  background: #ffffff;
+  color: #333;
+  padding: 48px 48px 40px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid #ed1b24;
+}
+
+.report-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: rgba(237, 27, 36, 0.03);
+}
+
+.report-header::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: 20%;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: rgba(237, 27, 36, 0.02);
+}
+
+.report-header h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 1px;
+  color: #ed1b24;
+}
+
+.report-header .subtitle {
+  font-size: 18px;
+  color: #666;
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
+}
+
+.report-header .meta {
+  margin-top: 20px;
+  display: flex;
+  gap: 24px;
+  font-size: 15px;
+  color: #888;
+  position: relative;
+  z-index: 1;
+}
+
+.report-header .meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Top Tab Navigation */
+.top-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s;
+}
+
+.top-tabs.scrolled {
+  box-shadow: 0 2px 8px rgba(3, 105, 161, 0.1);
+}
+
+.tabs-container {
+  display: flex;
+  gap: 0;
+  padding: 0 48px;
+  overflow-x: auto;
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tab-item:hover {
+  color: var(--primary);
+  background: var(--bg);
+}
+
+.tab-item.active {
+  color: var(--primary);
+  border-bottom-color: #ed1b24;
+  font-weight: 600;
+}
+
+.tab-icon {
+  font-size: 16px;
+  color: #ed1b24;
+}
+
+/* Sections */
+.section {
+  padding: 40px 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ed1b24;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title .icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #ed1b24, #ff4d54);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.section-desc {
+  color: var(--muted);
+  font-size: 16px;
+  margin-bottom: 28px;
+}
+
+/* KPI Cards */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.kpi-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(3, 105, 161, 0.12);
+}
+
+.kpi-card .kpi-label {
+  font-size: 15px;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.kpi-card .kpi-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.kpi-card .kpi-unit {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.kpi-card .kpi-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.kpi-card .kpi-status.good {
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.kpi-card .kpi-status.bad {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.kpi-card .kpi-status.warn {
+  background: #FEF3C7;
+  color: #B45309;
+}
+
+.kpi-card .kpi-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.kpi-card .kpi-bar.good { background: var(--accent); }
+.kpi-card .kpi-bar.bad { background: var(--error); }
+.kpi-card .kpi-bar.warn { background: var(--warning); }
+
+.kpi-card .kpi-judge {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* Chart Container */
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.chart-row.triple {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.chart-row.single {
+  grid-template-columns: 1fr;
+}
+
+.chart-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  padding: 24px;
+}
+
+.chart-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.chart-card .chart-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.chart-box {
+  width: 100%;
+  height: 420px;
+}
+
+.chart-box.tall {
+  height: 500px;
+}
+
+.chart-box.short {
+  height: 360px;
+}
+
+/* Anomaly Cards */
+.anomaly-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.anomaly-card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  padding: 20px 20px 20px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.anomaly-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.anomaly-card.high::before { background: var(--error); }
+.anomaly-card.medium::before { background: var(--warning); }
+
+.anomaly-card .anomaly-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.anomaly-card .severity-badge {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.anomaly-card .severity-badge.high {
+  background: #FEE2E2;
+  color: var(--error);
+}
+
+.anomaly-card .severity-badge.medium {
+  background: #FEF3C7;
+  color: #B45309;
+}
+
+.anomaly-card .anomaly-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.anomaly-card .anomaly-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.anomaly-card .anomaly-impact {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--error);
+  font-weight: 600;
+}
+
+.anomaly-card.medium .anomaly-impact {
+  color: #B45309;
+}
+
+/* Findings Cards */
+.finding-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.finding-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  padding: 24px;
+}
+
+.finding-card .finding-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.finding-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.finding-detail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.finding-detail .fd-item {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.finding-detail .fd-item .fd-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.finding-detail .fd-item .fd-text {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Q&A Chat */
+.qa-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.qa-item {
+  margin-bottom: 32px;
+}
+
+.qa-question {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.qa-question .bubble {
+  background: var(--primary);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 18px 18px 4px 18px;
+  max-width: 70%;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  box-shadow: 0 2px 8px rgba(3, 105, 161, 0.2);
+}
+
+.qa-answer {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.qa-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.qa-answer .answer-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px 18px 18px 18px;
+  padding: 20px 24px;
+  max-width: 80%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.qa-answer .answer-card p {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.qa-answer .answer-card p:last-child {
+  margin-bottom: 0;
+}
+
+.qa-answer .answer-card .highlight {
+  color: var(--error);
+  font-weight: 700;
+}
+
+.qa-answer .answer-card .good-hl {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.qa-answer .answer-card .key-metric {
+  display: inline-block;
+  background: var(--bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--primary);
+  margin: 0 2px;
+}
+
+.qa-answer .answer-card ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.qa-answer .answer-card li {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.qa-chart-box {
+  width: 100%;
+  height: 300px;
+  margin: 12px 0;
+}
+
+/* Cross Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.data-table th {
+  background: var(--bg);
+  color: var(--primary);
+  font-weight: 700;
+  padding: 10px 12px;
+  text-align: center;
+  border-bottom: 2px solid var(--border);
+  font-size: 14px;
+}
+
+.data-table td {
+  padding: 10px 12px;
+  text-align: center;
+  border-bottom: 1px solid #E0F2FE;
+}
+
+.data-table tr:hover td {
+  background: #F0F9FF;
+}
+
+.cell-good { background: #DCFCE7 !important; color: #15803D; font-weight: 600; }
+.cell-warn { background: #FEF3C7 !important; color: #B45309; font-weight: 600; }
+.cell-bad { background: #FEE2E2 !important; color: #DC2626; font-weight: 600; }
+
+
+/* Footer */
+.report-footer {
+  padding: 32px 48px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  border-top: 1px solid var(--border);
+}
+
+/* Responsive Scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* ==================== Simulator ==================== */
+.sim-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.sim-left, .sim-right {
+  min-width: 0;
+}
+.sim-panel {
+  background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  backdrop-filter: blur(6px);
+}
+.sim-panel-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+.sim-panel-desc {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.sim-controls-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.sim-ctrl-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  position: relative;
+}
+.sim-ctrl-num {
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  width: 22px;
+  height: 22px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sim-ctrl-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  padding-left: 14px;
+}
+.sim-ctrl-hint {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.sim-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sim-slider-row input[type="range"] {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: #BAE6FD;
+  border-radius: 3px;
+  outline: none;
+}
+.sim-slider-row input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(3,105,161,0.3);
+}
+.sim-slider-row input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 1px 4px rgba(3,105,161,0.3);
+}
+.sim-slider-row input[type="number"] {
+  width: 80px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 6px;
+  font-size: 13px;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+}
+.sim-slider-row input[type="number"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(3,105,161,0.15);
+}
+.sim-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 4px;
+  padding: 0 2px;
+}
+.sim-formula-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.sim-formula-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  user-select: none;
+}
+.sim-formula-toggle:hover {
+  background: #F0F9FF;
+}
+.sim-formula-toggle .arrow {
+  transition: transform 0.2s;
+  font-size: 12px;
+}
+.sim-formula-toggle .arrow.open {
+  transform: rotate(90deg);
+}
+.sim-formula-body {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.sim-formula-body.open {
+  display: block;
+}
+.sim-formula-body code {
+  background: #F0F9FF;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 11px;
+  color: var(--primary);
+}
+.sim-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.sim-metric-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+.sim-metric-bar {
+  height: 4px;
+  background: #94A3B8;
+}
+.sim-metric-bar.green { background: var(--accent); }
+.sim-metric-bar.red { background: var(--error); }
+.sim-metric-bar.gradient { background: linear-gradient(90deg, var(--error), var(--accent)); }
+.sim-metric-body {
+  padding: 16px 12px;
+}
+.sim-metric-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.sim-metric-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+.sim-metric-value.green { color: var(--accent); }
+.sim-metric-value.red { color: var(--error); }
+.sim-metric-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.sim-charts-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.sim-chart-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.sim-chart-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.sim-reset-row {
+  text-align: right;
+  margin-bottom: 16px;
+}
+.sim-reset-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-size: 15px;
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 500;
+}
+.sim-reset-btn:hover {
+  background: #F0F9FF;
+  border-color: var(--primary);
+}
+
+@media (max-width: 960px) {
+  .sim-layout { grid-template-columns: 1fr; }
+  .sim-metric-grid { grid-template-columns: repeat(3, 1fr); }
+  .sim-charts-row { grid-template-columns: 1fr; }
+  .finding-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .sim-metric-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ==================== AI Demo Interaction Styles ==================== */
+
+/* Typing cursor animation */
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.ai-cursor::after {
+  content: '|';
+  animation: blink-cursor 0.8s infinite;
+  color: var(--primary);
+  font-weight: 300;
+  margin-left: 2px;
+}
+
+/* Thinking dots animation */
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+}
+.thinking-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 20px;
+}
+.thinking-dots .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: bounce-dot 1.2s infinite;
+}
+.thinking-dots .dot:nth-child(2) { animation-delay: 0.15s; }
+.thinking-dots .dot:nth-child(3) { animation-delay: 0.3s; }
+.thinking-dots-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-left: 8px;
+}
+
+/* Fade slide up animation */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.ai-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.ai-reveal {
+  animation: fadeSlideUp 0.5s ease forwards;
+}
+
+/* Scan progress bar */
+@keyframes scanProgress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+.scan-progress-bar {
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--cyan));
+  border-radius: 2px;
+  animation: scanProgress 2s ease-in-out forwards;
+}
+.scan-progress-container {
+  background: #E0F2FE;
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 12px 0;
+  display: none;
+}
+.scan-status-text {
+  font-size: 12px;
+  color: var(--primary);
+  margin-top: 8px;
+  font-weight: 500;
+  display: none;
+}
+
+/* AI Action Button */
+.ai-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(3, 105, 161, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+.ai-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(3, 105, 161, 0.4);
+}
+.ai-action-btn:active {
+  transform: translateY(0);
+}
+.ai-action-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(3, 105, 161, 0.15);
+}
+.ai-action-btn .btn-icon {
+  font-size: 16px;
+}
+.ai-action-btn-container {
+  text-align: center;
+  margin: 24px 0 16px;
+}
+
+/* Small expand button on finding cards */
+.ai-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  background: #E0F2FE;
+  color: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.ai-expand-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+.ai-expand-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Anomaly Summary Card */
+.anomaly-summary {
+  background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.anomaly-summary .summary-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+.anomaly-summary .summary-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.anomaly-summary .summary-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 16px 0;
+}
+.anomaly-summary .summary-stat {
+  text-align: center;
+}
+.anomaly-summary .summary-stat .stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+}
+.anomaly-summary .summary-stat .stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.anomaly-summary .summary-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* KPI Diagnosis */
+.kpi-diagnosis {
+  background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.8;
+  display: none;
+}
+.kpi-diagnosis .diagnosis-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+/* Risk Placeholder Card */
+.risk-placeholder {
+  background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 48px 32px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.risk-placeholder .placeholder-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+.risk-placeholder .placeholder-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.risk-placeholder .placeholder-desc {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 20px;
+  line-height: 1.7;
+}
+
+/* Finding Card Collapsed State */
+.finding-card.collapsed .finding-detail {
+  display: none;
+}
+.finding-card .finding-detail {
+  animation: fadeSlideUp 0.4s ease forwards;
+}
+.finding-card .finding-summary {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+.finding-card.collapsed .finding-summary {
+  display: block;
+}
+.finding-card:not(.collapsed) .finding-summary {
+  display: none;
+}
+
+/* Chat Interface */
+.chat-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.chat-messages {
+  min-height: 200px;
+  margin-bottom: 20px;
+}
+.chat-empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--muted);
+}
+.chat-empty-state .empty-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+.chat-empty-state .empty-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.chat-empty-state .empty-desc {
+  font-size: 13px;
+  color: var(--muted);
+}
+.chat-quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 24px 0;
+}
+.chat-chip {
+  padding: 10px 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+  max-width: 280px;
+  text-align: left;
+}
+.chat-chip:hover {
+  background: #E0F2FE;
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(3, 105, 161, 0.12);
+}
+.chat-chip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.chat-input-area {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.chat-input-area input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--text);
+  background: transparent;
+  font-family: inherit;
+}
+.chat-input-area input::placeholder {
+  color: #94A3B8;
+}
+.chat-send-btn {
+  padding: 8px 20px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.chat-send-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.chat-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Right AI Sidebar */
+.ai-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 420px;
+  height: 100vh;
+  background: var(--card-bg);
+  border-left: 1px solid var(--border);
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -2px 0 8px rgba(3, 105, 161, 0.06);
+}
+
+.ai-sidebar-header {
+  background: #f8f9fa;
+  color: #333;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 2px solid #ed1b24;
+}
+
+.ai-avatar {
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.ai-header-text h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #ed1b24;
+}
+
+.ai-header-text p {
+  font-size: 14px;
+  color: #888;
+}
+
+.ai-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  background: var(--bg);
+}
+
+.ai-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.ai-empty-state p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.empty-hint {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.ai-message {
+  margin-bottom: 16px;
+  animation: fadeSlideUp 0.3s ease;
+}
+
+.ai-message.user {
+  text-align: right;
+}
+
+.ai-message-bubble {
+  display: inline-block;
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.ai-message.user .ai-message-bubble {
+  background: var(--primary);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.ai-message.assistant .ai-message-bubble {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+}
+
+.ai-message.assistant .ai-message-bubble p {
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+.ai-message.assistant .ai-message-bubble p:last-child {
+  margin-bottom: 0;
+}
+.ai-message.assistant .ai-message-bubble strong {
+  color: var(--text);
+}
+.ai-message.assistant .ai-message-bubble ul {
+  margin: 6px 0;
+  padding-left: 18px;
+}
+.ai-message.assistant .ai-message-bubble li {
+  margin-bottom: 4px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.ai-message.assistant .ai-message-bubble .highlight {
+  color: var(--error);
+  font-weight: 700;
+}
+.ai-message.assistant .ai-message-bubble .good-hl {
+  color: var(--accent);
+  font-weight: 700;
+}
+.ai-message.assistant .ai-message-bubble .key-metric {
+  display: inline-block;
+  background: var(--bg);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--primary);
+}
+.sidebar-chart-box {
+  width: 100%;
+  height: 200px;
+  margin: 8px 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.ai-thinking {
+  display: inline-flex;
+  gap: 4px;
+  padding: 12px 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  border-bottom-left-radius: 4px;
+}
+
+.ai-thinking span {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: thinking 1.4s infinite;
+}
+
+.ai-thinking span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.ai-thinking span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes thinking {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-8px); opacity: 1; }
+}
+
+.ai-quick-actions {
+  padding: 12px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  background: var(--card-bg);
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.ai-quick-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.ai-quick-btn:hover {
+  background: var(--card-bg);
+  border-color: #ed1b24;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(237, 27, 36, 0.15);
+}
+
+.quick-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.quick-text {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ai-input-area {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--card-bg);
+  display: flex;
+  gap: 12px;
+}
+
+.ai-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.ai-input:focus {
+  border-color: var(--primary);
+}
+
+.ai-send-btn {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #ed1b24, #ff4d54);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.ai-send-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(237, 27, 36, 0.3);
+}
+
+.ai-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* AI Insight Card - Static Display */
+.chart-card {
+  position: relative;
+}
+
+.ai-insight-card {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  border: 1px solid #FCD34D;
+  border-radius: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.ai-insight-card .insight-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ai-insight-card .insight-content {
+  flex: 1;
+}
+
+.ai-insight-card .insight-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #92400E;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.ai-insight-card .insight-text {
+  font-size: 15px;
+  color: #78350F;
+  line-height: 1.6;
+}
+
+/* Print */
+@media print {
+  .top-tabs { display: none; }
+  .ai-sidebar { display: none; }
+  .main { margin-left: 0; margin-right: 0; }
+  .back-to-top { display: none; }
+  .section { page-break-inside: avoid; }
+  .sim-panel { break-inside: avoid; }
+  .ai-hidden { opacity: 1 !important; transform: none !important; display: block !important; }
+  .risk-placeholder { display: none; }
+  .anomaly-summary { display: none; }
+  .anomaly-grid { display: grid !important; }
+  .finding-card.collapsed .finding-detail { display: grid !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Main Content -->
+<div class="main">
+
+  <!-- Section 1: Header -->
+  <header class="report-header" id="header">
+    <img src="./灵玑 · 智略：车险 A+BI 智能助理_files/logo-cn.png" alt="LexisNexis Risk Solutions" class="header-logo">
+    <h1>LingJi · ZhiLue — Auto Insurance A+BI Assistant</h1>
+    <p class="subtitle">Based on 113,816 policy records · 4 regions · 175 brands</p>
+    <div class="meta">
+      <span>📅 Report date: 2026-03-31</span>
+      <span>📊 Source: core policy system</span>
+      <span>🔒 Engine: A+BI v2.0</span>
+    </div>
+  </header>
+
+  <!-- Top Tab Navigation -->
+  <nav class="top-tabs" id="topTabs">
+    <div class="tabs-container">
+      <a href="#kpi" class="tab-item active"><span class="tab-icon">■</span>Core KPIs</a>
+      <a href="#overview" class="tab-item"><span class="tab-icon">▲</span>Performance Overview</a>
+      <a href="#risk" class="tab-item" id="tab-risk" style="display:none" onclick="if(document.getElementById(&#39;risk&#39;).style.display===&#39;none&#39;){AIDemo.scanRisk();}"><span class="tab-icon">★</span>Risk Analysis</a>
+      <a href="#channel" class="tab-item"><span class="tab-icon">●</span>Channel Analysis</a>
+      <a href="#anomaly" class="tab-item" id="tab-anomaly" style="display:none" onclick="if(document.getElementById(&#39;anomaly&#39;).style.display===&#39;none&#39;){AIDemo.analyzeAnomalies();}"><span class="tab-icon">⚠</span>Anomaly Alerts</a>
+      <a href="#findings" class="tab-item"><span class="tab-icon">✓</span>Findings &amp; Actions</a>
+      <a href="#simulator" class="tab-item"><span class="tab-icon">⚙</span>What-If Simulator</a>
+    </div>
+  </nav>
+
+  <!-- Section 2: KPI Cards -->
+  <section class="section" id="kpi">
+    <div class="section-title"><span class="icon">■</span>Core Performance KPIs</div>
+    <p class="section-desc">Rolled up from all 113,816 motor-insurance policies — a one-glance view of the book's health.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-bar good"></div>
+        <div class="kpi-label">Gross written premium</div>
+        <div class="kpi-value">¥313.54 <span class="kpi-unit">M</span></div>
+        <div class="kpi-status good">▲ Scale is stable</div>
+        <div class="kpi-judge">Across 4 regions, 296,721 policies — a meaningful market-share footprint.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-bar good"></div>
+        <div class="kpi-label">Policy count</div>
+        <div class="kpi-value">296,721 <span class="kpi-unit">policies</span></div>
+        <div class="kpi-status good">▲ Volume is healthy</div>
+        <div class="kpi-judge">Average premium ¥1,057 per policy — pulled down by transfer business (¥779 avg).</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-bar bad"></div>
+        <div class="kpi-label">Earned loss ratio</div>
+        <div class="kpi-value">76.09<span class="kpi-unit">%</span></div>
+        <div class="kpi-status bad">▼ Above target</div>
+        <div class="kpi-judge">Industry best-in-class is under 65%. Loss ratio is running hot — watch taxi-fleet business and Hangdong Province.</div>
+      </div>
+      <div class="kpi-card ai-hidden" id="kpiCard4" style="display:none">
+        <div class="kpi-bar warn"></div>
+        <div class="kpi-label">Expense ratio</div>
+        <div class="kpi-value">25.42<span class="kpi-unit">%</span></div>
+        <div class="kpi-status warn">● Elevated</div>
+        <div class="kpi-judge">Zhongjiang City's 43.28% is the worst of four regions and drags the total up sharply.</div>
+      </div>
+      <div class="kpi-card ai-hidden" id="kpiCard5" style="display:none">
+        <div class="kpi-bar bad"></div>
+        <div class="kpi-label">Combined operating ratio</div>
+        <div class="kpi-value">107.51<span class="kpi-unit">%</span></div>
+        <div class="kpi-status bad">▼ Underwriting loss</div>
+        <div class="kpi-judge">7.51 points above the 100% break-even line. No region is profitable.</div>
+      </div>
+      <div class="kpi-card ai-hidden" id="kpiCard6" style="display:none">
+        <div class="kpi-bar warn"></div>
+        <div class="kpi-label">Claim frequency</div>
+        <div class="kpi-value">14.33<span class="kpi-unit">%</span></div>
+        <div class="kpi-status warn">● Needs attention</div>
+        <div class="kpi-judge">Corporate-owned policies claim at 41.96%; NCD grade 0 and above claim at 28.97%.</div>
+      </div>
+    </div>
+
+    <div class="kpi-diagnosis" id="kpiDiagnosis">
+      <div class="diagnosis-label">🤖 AI diagnosis</div>
+      <div id="kpiDiagnosisText"></div>
+    </div>
+  </section>
+
+  <!-- Section 3: Management View -->
+  <section class="section" id="overview">
+    <div class="section-title"><span class="icon">▲</span>Performance Overview</div>
+    <p class="section-desc">A regional view of the business — what drives cost, and where profit breaks.</p>
+
+    <div class="chart-row">
+      <div class="chart-card">
+        <h3>Regional loss &amp; expense ratio</h3>
+        <p class="chart-subtitle">Stacked bar: loss ratio + expense ratio, with average reference lines.</p>
+        <div class="chart-box" id="chart1" _echarts_instance_="ec_1776753759189" style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;"><div style="position: relative; width: 546px; height: 420px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="1092" height="840" style="position: absolute; left: 0px; top: 0px; width: 546px; height: 420px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+        <div class="ai-insight-card">
+          <div class="insight-icon">🤖</div>
+          <div class="insight-content">
+            <div class="insight-label">AI insight</div>
+            <div class="insight-text">Two very different loss patterns. Hangdong Province is <b>loss-driven</b> (loss 94.02% + expense 17.23%) — fix underwriting. Zhongjiang City is <b>expense-driven</b> (loss 62.15% + expense 43.28%) — fix acquisition cost. Same bottom line, opposite treatment.</div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3>Cost decomposition</h3>
+        <p class="chart-subtitle">Combined operating ratio broken out: losses + expenses + overhead = 107.51%.</p>
+        <div class="chart-box" id="chart2" _echarts_instance_="ec_1776753759190" style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;"><div style="position: relative; width: 546px; height: 420px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="1092" height="840" style="position: absolute; left: 0px; top: 0px; width: 546px; height: 420px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+        <div class="ai-insight-card">
+          <div class="insight-icon">🤖</div>
+          <div class="insight-content">
+            <div class="insight-label">AI insight</div>
+            <div class="insight-text">Losses are 71% of total cost — the biggest lever. Expenses are 24%, overhead just 5.6%. Headroom lies in better underwriting and tighter channel costs; overhead is already lean.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chart-row single">
+      <div class="chart-card">
+        <h3>Combined operating ratio by region</h3>
+        <p class="chart-subtitle">100% is break-even. Anything above it is an underwriting loss.</p>
+        <div class="chart-box short" id="chart3" _echarts_instance_="ec_1776753759191" style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;"><div style="position: relative; width: 1162px; height: 360px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="2324" height="720" style="position: absolute; left: 0px; top: 0px; width: 1162px; height: 360px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+        <div class="ai-insight-card">
+          <div class="insight-icon">🤖</div>
+          <div class="insight-content">
+            <div class="insight-label">AI insight</div>
+            <div class="insight-text">All four regions are above 100%. Hangdong Province at 117.25% is the worst; Zhongjiang City at 111.43% next. Jingzhou City and Lingjiang Province are barely loss-making (~101%) — those two should return to profit first.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Underwriting View -->
+  <section class="section" id="risk" style="display:none">
+    <div class="section-title"><span class="icon">★</span>AI Risk Analysis &amp; Underwriting Optimisation</div>
+    <p class="section-desc">Four lenses on underwriting accuracy: expected-vs-actual deviation, NCD effectiveness, vehicle profile, and brand risk.</p>
+
+    <div class="risk-placeholder" id="riskPlaceholder">
+      <div class="placeholder-icon">🔬</div>
+      <div class="placeholder-title">AI is awaiting instruction</div>
+      <div class="placeholder-desc">Type "Risk analysis" in the assistant (right panel) or tap the quick-action button. The AI will run four deep scans: pricing deviation, NCD effectiveness, vehicle-type risk, and brand risk.</div>
+      <div class="scan-progress-container" id="riskScanProgress">
+        <div class="scan-progress-bar"></div>
+      </div>
+      <div class="scan-status-text" id="riskScanStatus">Scanning pricing-model deviation…</div>
+    </div>
+
+    <div class="chart-row" id="riskChartRow1" style="display:none">
+      <div class="chart-card">
+        <h3>Expected vs actual loss ratio</h3>
+        <p class="chart-subtitle">Paired bars with a 45° reference line — the further off the line, the less accurate the price.</p>
+        <div class="chart-box" id="chart4"></div>
+      </div>
+      <div class="chart-card">
+        <h3>NCD effectiveness</h3>
+        <p class="chart-subtitle">How loss ratio and claim frequency move as the NCD grade changes.</p>
+        <div class="chart-box" id="chart5"></div>
+      </div>
+    </div>
+    <div class="chart-row" id="riskChartRow2" style="display:none">
+      <div class="chart-card">
+        <h3>Usage type × vehicle age — loss ratio heatmap</h3>
+        <p class="chart-subtitle">The darker the cell, the higher the loss ratio. Spot the high-risk combinations at a glance.</p>
+        <div class="chart-box tall" id="chart6"></div>
+      </div>
+      <div class="chart-card">
+        <h3>Top-10 worst-loss brands</h3>
+        <p class="chart-subtitle">Brands with at least ¥5M premium, ranked by loss ratio (worst first).</p>
+        <div class="chart-box tall" id="chart7"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Channel & Renewal -->
+  <section class="section" id="channel">
+    <div class="section-title"><span class="icon">●</span>Channel &amp; Renewal Analysis</div>
+    <p class="section-desc">Channel economics, renewal strategy, and cross-cut analysis at depth.</p>
+
+    <div class="chart-row">
+      <div class="chart-card">
+        <h3>Channel efficiency — bubble chart</h3>
+        <p class="chart-subtitle">X = expense ratio · Y = loss ratio · Bubble size = premium volume.</p>
+        <div class="chart-box" id="chart8" _echarts_instance_="ec_1776753759192" style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;"><div style="position: relative; width: 546px; height: 420px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="1092" height="840" style="position: absolute; left: 0px; top: 0px; width: 546px; height: 420px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+        <div class="ai-insight-card">
+          <div class="insight-icon">🤖</div>
+          <div class="insight-content">
+            <div class="insight-label">AI insight</div>
+            <div class="insight-text">Non-dealer channels sit in the "double-high" quadrant — loss ratio 78.79% <i>plus</i> expense ratio 27.84%. This is the single largest driver of underwriting loss. Dealer channels are almost at break-even (COR 99.49%) — closest to turning profitable.</div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3>New vs renewal vs transfer business</h3>
+        <p class="chart-subtitle">Three-way comparison on loss ratio, expense ratio, and average premium.</p>
+        <div class="chart-box" id="chart9" _echarts_instance_="ec_1776753759193" style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;"><div style="position: relative; width: 546px; height: 420px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="1092" height="840" style="position: absolute; left: 0px; top: 0px; width: 546px; height: 420px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+        <div class="ai-insight-card">
+          <div class="insight-icon">🤖</div>
+          <div class="insight-content">
+            <div class="insight-label">AI insight</div>
+            <div class="insight-text">Renewal loss ratio (87.11%) runs well above new business (75.18%) — classic adverse selection. Transfer business has the lowest loss ratio (70.19%) but the highest expense ratio (31.85%); the trade-off is acquisition cost vs. quality.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chart-row single">
+      <div class="chart-card">
+        <h3>Channel × region — cross-analysis</h3>
+        <p class="chart-subtitle">Conditional colouring: red = loss ratio &gt;90%, amber = 80–90%, green = &lt;70%.</p>
+        <div style="overflow-x:auto;">
+          <table class="data-table" id="crossTable">
+            <thead>
+              <tr>
+                <th>Channel × Region</th>
+                <th>Loss ratio</th>
+                <th>Expense ratio</th>
+                <th>Premium (¥M)</th>
+                <th>Combined ratio (est.)</th>
+              </tr>
+            </thead>
+            <tbody><tr><td style="font-weight:600;text-align:left;padding-left:16px;">Dealer × Hangdong</td><td class="">76.2%</td><td class="">20.54%</td><td>26.54</td><td class="cell-warn">102.74%</td></tr><tr><td style="font-weight:600;text-align:left;padding-left:16px;">Dealer × Jingzhou</td><td class="">79.99%</td><td class="cell-good">14.49%</td><td>46.79</td><td class="cell-warn">100.48%</td></tr><tr><td style="font-weight:600;text-align:left;padding-left:16px;">Dealer × Lingjiang</td><td class="cell-good">61.22%</td><td class="">23.52%</td><td>30.40</td><td class="cell-good">90.74%</td></tr><tr><td style="font-weight:600;text-align:left;padding-left:16px;">Dealer × Zhongjiang</td><td class="cell-good">65.82%</td><td class="cell-warn">35.91%</td><td>16.14</td><td class="cell-warn">107.73%</td></tr><tr><td style="font-weight:600;text-align:left;padding-left:16px;">Non-dealer × Hangdong</td><td class="cell-bad">104.26%</td><td class="">15.32%</td><td>46.12</td><td class="cell-bad">125.58%</td></tr><tr><td style="font-weight:600;text-align:left;padding-left:16px;">Non-dealer × Jingzhou</td><td class="cell-bad">90.93%</td><td class="cell-good">5.81%</td><td>26.93</td><td class="cell-warn">102.74%</td></tr><tr><td style="font-weight:600;text-align:left;padding-left:16px;">Non-dealer × Lingjiang</td><td class="">70.71%</td><td class="">29.71%</td><td>55.29</td><td class="cell-warn">106.42%</td></tr><tr><td style="font-weight:600;text-align:left;padding-left:16px;">Non-dealer × Zhongjiang</td><td class="cell-good">61.29%</td><td class="cell-bad">45.54%</td><td>60.26</td><td class="cell-bad">112.83%</td></tr><tr><td style="font-weight:600;text-align:left;padding-left:16px;">New channel × Zhongjiang</td><td class="cell-good">60.72%</td><td class="cell-warn">39.92%</td><td>5.06</td><td class="cell-warn">106.64%</td></tr></tbody>
+          </table>
+        </div>
+        <div class="ai-insight-card">
+          <div class="insight-icon">🤖</div>
+          <div class="insight-content">
+            <div class="insight-label">AI insight</div>
+            <div class="insight-text">Best cell: Dealer × Lingjiang (loss 61.22% + expense 23.52% = COR 90.74% — already profitable). Worst cell: Non-dealer × Hangdong (loss 104.26% — premium paid out as claims). Non-dealer × Zhongjiang's 45.54% expense ratio is the highest in the table.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Anomaly Panel -->
+  <section class="section" id="anomaly" style="display:none">
+    <div class="section-title"><span class="icon">⚠</span>AI Anomaly Alerts</div>
+    <p class="section-desc">Risk points and anomalous metrics surfaced automatically, ranked by severity.</p>
+
+    <div class="anomaly-summary" id="anomalySummary">
+      <div class="summary-icon">📡</div>
+      <div class="summary-title">AI scan complete</div>
+      <div class="summary-stats">
+        <div class="summary-stat">
+          <div class="stat-value">10</div>
+          <div class="stat-label">Anomalies</div>
+        </div>
+        <div class="summary-stat">
+          <div class="stat-value" style="color:#DC2626;">8</div>
+          <div class="stat-label">High</div>
+        </div>
+        <div class="summary-stat">
+          <div class="stat-value" style="color:#F59E0B;">2</div>
+          <div class="stat-label">Medium</div>
+        </div>
+      </div>
+      <div class="summary-desc">Scanned 113,816 policies — 10 anomalies need attention.</div>
+      <div class="scan-progress-container" id="anomalyScanProgress">
+        <div class="scan-progress-bar"></div>
+      </div>
+      <div class="scan-status-text" id="anomalyScanStatus">Analysing anomaly patterns…</div>
+    </div>
+
+    <div class="anomaly-grid" id="anomalyGrid" style="display:none">
+      <div class="anomaly-card high">
+        <div class="anomaly-header">
+          <span class="severity-badge high">High</span>
+          <span class="anomaly-title">Book-wide loss: COR 107.51%</span>
+        </div>
+        <div class="anomaly-desc">7.51 points above break-even. All four regions loss-making to varying degrees — the business model is under real pressure.</div>
+        <div class="anomaly-impact">Impact: ~¥23.55M underwriting loss across the book</div>
+      </div>
+      <div class="anomaly-card high">
+        <div class="anomaly-header">
+          <span class="severity-badge high">High</span>
+          <span class="anomaly-title">Hangdong Province — highest loss ratio at 94.02%</span>
+        </div>
+        <div class="anomaly-desc">Hangdong's COR of 117.25% is the worst of the four regions. The non-dealer channel's 104.26% loss ratio is the principal culprit.</div>
+        <div class="anomaly-impact">Impact: ~¥12.54M regional underwriting loss</div>
+      </div>
+      <div class="anomaly-card high">
+        <div class="anomaly-header">
+          <span class="severity-badge high">High</span>
+          <span class="anomaly-title">Zhongjiang City — highest expense ratio at 43.28%</span>
+        </div>
+        <div class="anomaly-desc">Acquisition costs are out of control. The non-dealer channel is running at 45.54% — nearly double the industry-sensible benchmark of &lt;25%.</div>
+        <div class="anomaly-impact">Impact: ~¥14.9M in overspend vs. benchmark</div>
+      </div>
+      <div class="anomaly-card high">
+        <div class="anomaly-header">
+          <span class="severity-badge high">High</span>
+          <span class="anomaly-title">Non-dealer business — serious losses</span>
+        </div>
+        <div class="anomaly-desc">Non-dealer business runs at COR 112.63% and represents 60.15% of gross premium. A 78.79% loss ratio stacked on a 27.84% expense ratio — both high, both a drag.</div>
+        <div class="anomaly-impact">Impact: 60% of the book, and the single biggest source of losses</div>
+      </div>
+      <div class="anomaly-card high">
+        <div class="anomaly-header">
+          <span class="severity-badge high">High</span>
+          <span class="anomaly-title">Taxi / rental fleet loss ratio exceeds 100% at 103.53%</span>
+        </div>
+        <div class="anomaly-desc">Taxi and rental-fleet premium totals ¥62.71M, loss ratio 103.53%. On 0–1-year-old vehicles it climbs to 107.92% — the price is nowhere near covering the risk.</div>
+        <div class="anomaly-impact">Impact: every premium £ goes straight out as claims — pure loss</div>
+      </div>
+      <div class="anomaly-card high">
+        <div class="anomaly-header">
+          <span class="severity-badge high">High</span>
+          <span class="anomaly-title">Corporate-owned policies — loss ratio 102.36%</span>
+        </div>
+        <div class="anomaly-desc">Corporate / rental-company insureds are above 100% loss ratio with 41.96% claim frequency — roughly 3× the rate for individual consumers.</div>
+        <div class="anomaly-impact">Impact: ¥64.41M premium fully eaten by claims</div>
+      </div>
+      <div class="anomaly-card high">
+        <div class="anomaly-header">
+          <span class="severity-badge high">High</span>
+          <span class="anomaly-title">BYD — loss ratio 118.29%</span>
+        </div>
+        <div class="anomaly-desc">BYD premium totals ¥14.18M, loss ratio 118.29%. High-voltage-battery repair costs and parts-to-whole ratios are the likely drivers — a pattern seen across many NEV brands.</div>
+        <div class="anomaly-impact">Impact: ~¥2.6M loss on a single brand</div>
+      </div>
+      <div class="anomaly-card high">
+        <div class="anomaly-header">
+          <span class="severity-badge high">High</span>
+          <span class="anomaly-title">Renewal loss ratio 87.11% — above new business</span>
+        </div>
+        <div class="anomaly-desc">Renewals at 87.11% run above new business at 75.18%. Classic adverse selection: high-risk customers stay; low-risk ones shop around and leave.</div>
+        <div class="anomaly-impact">Impact: renewal quality degrading; customer mix deteriorating</div>
+      </div>
+      <div class="anomaly-card medium">
+        <div class="anomaly-header">
+          <span class="severity-badge medium">Medium</span>
+          <span class="anomaly-title">Expected 70–80% band — actual 80.35%</span>
+        </div>
+        <div class="anomaly-desc">Policies the model priced at an expected 70–80% loss ratio are actually running at 80.35%. The pricing model is systematically under-reserving in this band.</div>
+        <div class="anomaly-impact">Impact: ¥74.77M of premium is earning less underwriting profit than planned</div>
+      </div>
+      <div class="anomaly-card medium">
+        <div class="anomaly-header">
+          <span class="severity-badge medium">Medium</span>
+          <span class="anomaly-title">NCD grade 0+ — claim frequency 28.97%</span>
+        </div>
+        <div class="anomaly-desc">The "bad" end of the NCD curve (grade 0 and above) has a 28.97% claim frequency, but the rate factor can't flex enough to price it properly. The NCD structure itself needs revisiting.</div>
+        <div class="anomaly-impact">Impact: ¥94.58M of high-NCD premium is under-priced for risk</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Findings -->
+  <section class="section" id="findings">
+    <div class="section-title"><span class="icon">✔</span>AI Findings &amp; Recommended Actions</div>
+    <p class="section-desc">Executable recommendations — each one comes with an owner, an expected outcome, and the metric used to verify success.</p>
+
+    <div class="finding-grid" id="findingGrid">
+      <!-- Finding 1 -->
+      <div class="finding-card collapsed">
+        <div class="finding-number">1</div>
+        <h4>Raise taxi / rental-fleet rates or cap acceptance</h4>
+        <p class="finding-summary">Loss ratio 103.53%, premium ¥62.71M — priced well below the risk. Recommend a 15–20% rate uplift.</p>
+        <div class="finding-detail">
+          <div class="fd-item">
+            <div class="fd-label">Finding</div>
+            <div class="fd-text">Taxi / rental-fleet business runs at 103.53% loss ratio (107.92% on 0–1-year-old vehicles). ¥62.71M of premium is systematically under-priced.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Recommendation</div>
+            <div class="fd-text">Apply a 15–20% rate uplift across the segment; layer an additional loading on 0–1-year-old taxi vehicles; cap quarterly new-business volume in parallel.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Owner</div>
+            <div class="fd-text">Actuarial + Underwriting</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Expected impact</div>
+            <div class="fd-text">Loss ratio down ~10–15pp, ~¥7M p.a. in reduced losses</div>
+          </div>
+          <div class="fd-item" style="grid-column: 1 / -1;">
+            <div class="fd-label">Verification metric</div>
+            <div class="fd-text">Taxi / fleet earned loss ratio ≤ 90%; 0–1-year-old vehicles ≤ 95%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finding 2 -->
+      <div class="finding-card collapsed">
+        <div class="finding-number">2</div>
+        <h4>Deep remediation of Hangdong non-dealer channel</h4>
+        <p class="finding-summary">Non-dealer loss ratio 104.26% — the worst cell in the book. Tighten acceptance, shift mix back to dealer channel.</p>
+        <div class="finding-detail">
+          <div class="fd-item">
+            <div class="fd-label">Finding</div>
+            <div class="fd-text">Hangdong non-dealer channel is at 104.26% loss ratio — the single worst cell in the book. ¥46.12M of premium is dragging the entire Hangdong region to a 117.25% COR.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Recommendation</div>
+            <div class="fd-text">Profile-analyse the customer base on that channel, identify high-loss patterns and refuse further acceptance; introduce stricter underwriting rules; rebalance mix towards the dealer channel.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Owner</div>
+            <div class="fd-text">Hangdong Branch + Channel Management</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Expected impact</div>
+            <div class="fd-text">Hangdong COR down to &lt; 105%, ~¥9M reduction in losses</div>
+          </div>
+          <div class="fd-item" style="grid-column: 1 / -1;">
+            <div class="fd-label">Verification metric</div>
+            <div class="fd-text">Hangdong non-dealer loss ratio ≤ 85%; dealer premium share ≥ 45%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finding 3 -->
+      <div class="finding-card collapsed">
+        <div class="finding-number">3</div>
+        <h4>Zhongjiang channel-cost remediation</h4>
+        <p class="finding-summary">Expense ratio 43.28% (worst of four regions); non-dealer 45.54%. Target: &lt; 30%.</p>
+        <div class="finding-detail">
+          <div class="fd-item">
+            <div class="fd-label">Finding</div>
+            <div class="fd-text">Zhongjiang's 43.28% expense ratio is the worst of the four regions; non-dealer at 45.54%. Loss ratio is actually modest (62.15%) — the loss is entirely an acquisition-cost problem.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Recommendation</div>
+            <div class="fd-text">Cap non-dealer commissions at &lt; 30%; invest in direct-dealer capability to reduce dependence on high-cost intermediaries; the new-channel expense ratio of 39.92% also needs optimisation.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Owner</div>
+            <div class="fd-text">Zhongjiang Branch + Finance</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Expected impact</div>
+            <div class="fd-text">Zhongjiang expense ratio down to &lt; 30%, ~¥10.8M saved</div>
+          </div>
+          <div class="fd-item" style="grid-column: 1 / -1;">
+            <div class="fd-label">Verification metric</div>
+            <div class="fd-text">Zhongjiang total expense ratio ≤ 30%; non-dealer channel ≤ 35%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finding 4 -->
+      <div class="finding-card collapsed">
+        <div class="finding-number">4</div>
+        <h4>Upgrade underwriting for corporate-owned policies</h4>
+        <p class="finding-summary">Loss ratio 102.36%, claim frequency 41.96% vs. ~12% for individuals. Differentiate the underwriting approach.</p>
+        <div class="finding-detail">
+          <div class="fd-item">
+            <div class="fd-label">Finding</div>
+            <div class="fd-text">Corporate-owned policies run at 102.36% loss ratio and 41.96% claim frequency — about 3× the rate for individual customers. ¥64.41M of premium, mostly companies and rental firms.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Recommendation</div>
+            <div class="fd-text">Differentiate underwriting: require telematics on corporate fleets; apply a higher rating factor to rental-company business; decline renewal for firms with &gt; 30% claim frequency.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Owner</div>
+            <div class="fd-text">Underwriting + Risk Control</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Expected impact</div>
+            <div class="fd-text">Corporate loss ratio down to &lt; 85%, ~¥11.2M reduction in losses</div>
+          </div>
+          <div class="fd-item" style="grid-column: 1 / -1;">
+            <div class="fd-label">Verification metric</div>
+            <div class="fd-text">Corporate loss ratio ≤ 85%; claim frequency ≤ 30%; telematics install rate ≥ 60%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finding 5 -->
+      <div class="finding-card collapsed">
+        <div class="finding-number">5</div>
+        <h4>Fix adverse selection in renewals</h4>
+        <p class="finding-summary">Renewal loss ratio 87.11% vs. new business 75.18%. High-risk customers stay, low-risk ones leave.</p>
+        <div class="finding-detail">
+          <div class="fd-item">
+            <div class="fd-label">Finding</div>
+            <div class="fd-text">Renewal loss ratio 87.11% is above new business at 75.18% — indicating an unhealthy concentration of high-risk customers in the renewal book. Low-risk customers are probably being picked off by competitors.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Recommendation</div>
+            <div class="fd-text">Differentiated renewal strategy: offer rate discounts and value-added service to retain the best customers; load or decline the worst; build a risk-scoring model for the renewal population.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Owner</div>
+            <div class="fd-text">Customer Management + Actuarial</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Expected impact</div>
+            <div class="fd-text">Renewal loss ratio ≤ 80%; best-customer retention up 5pp</div>
+          </div>
+          <div class="fd-item" style="grid-column: 1 / -1;">
+            <div class="fd-label">Verification metric</div>
+            <div class="fd-text">Renewal loss ratio ≤ 80%; best customers (loss ratio &lt; 60%) retention ≥ 85%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finding 6 -->
+      <div class="finding-card collapsed">
+        <div class="finding-number">6</div>
+        <h4>Dedicated NEV pricing model</h4>
+        <p class="finding-summary">BYD at 118.29%; NEV brands consistently run hot. Build a bespoke rating model for new-energy vehicles.</p>
+        <div class="finding-detail">
+          <div class="fd-item">
+            <div class="fd-label">Finding</div>
+            <div class="fd-text">BYD loss ratio 118.29% (¥14.18M premium); Roewe 96.52% (¥12.26M) — NEV brands consistently run hot. Nissan at 116.52% also warrants attention.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Recommendation</div>
+            <div class="fd-text">Build a dedicated rating model for NEVs that accounts for parts-to-whole ratio, battery cost, and the oligopoly on authorised repair centres. BYD and Roewe need an immediate 20%+ loading.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Owner</div>
+            <div class="fd-text">Actuarial + Product</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Expected impact</div>
+            <div class="fd-text">NEV loss ratio down to &lt; 90%, ~¥4M reduction in losses</div>
+          </div>
+          <div class="fd-item" style="grid-column: 1 / -1;">
+            <div class="fd-label">Verification metric</div>
+            <div class="fd-text">BYD loss ratio ≤ 90%; Roewe ≤ 85%; NEV portfolio ≤ 90%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finding 7 -->
+      <div class="finding-card collapsed">
+        <div class="finding-number">7</div>
+        <h4>Scale up the profitable segments</h4>
+        <p class="finding-summary">Private-car × 9+ years 57.58%; age 30–44 at 64.43%; Great Wall 51.55%. Multiple sweet spots to expand.</p>
+        <div class="finding-detail">
+          <div class="fd-item">
+            <div class="fd-label">Finding</div>
+            <div class="fd-text">Several sub-segments stand out: private-use × 9+ year-old vehicles at 57.58% loss ratio; age 30–44 at 64.43%; Great Wall brand at 51.55%; age 60+ at 60.69%.</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Recommendation</div>
+            <div class="fd-text">Increase acquisition spend on these segments; build bespoke product offers to win on features rather than price; scale up aggressively in Lingjiang Province (67.35% loss ratio) and the dealer channel (COR 99.49%).</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Owner</div>
+            <div class="fd-text">Marketing + Product</div>
+          </div>
+          <div class="fd-item">
+            <div class="fd-label">Expected impact</div>
+            <div class="fd-text">Quality-segment share up 10pp; overall loss ratio down 3–5pp</div>
+          </div>
+          <div class="fd-item" style="grid-column: 1 / -1;">
+            <div class="fd-label">Verification metric</div>
+            <div class="fd-text">Private-car share ≥ 80%; premium growth in age 30–44 ≥ 15%; dealer-channel premium growth ≥ 20%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: What-If 模拟器 -->
+  <section class="section" id="simulator">
+    <div class="section-title"><span class="icon">⚙</span>What-If Strategy Simulator</div>
+    <p class="section-desc">Drag the sliders to simulate the financial impact of each strategy in real time.</p>
+
+    <div class="sim-layout">
+      <!-- Left column: strategy levers -->
+      <div class="sim-left">
+        <div class="sim-panel">
+          <div class="sim-panel-title">Strategy levers</div>
+          <div class="sim-panel-desc">Seven levers mapped directly to the loss drivers surfaced earlier in the report.</div>
+
+          <div class="sim-controls-grid">
+            <!-- 策略1: 出租车费率调整 -->
+            <div class="sim-ctrl-card">
+              <div class="sim-ctrl-num">1</div>
+              <div class="sim-ctrl-title">Taxi / rental rate uplift</div>
+              <div class="sim-ctrl-hint">Loss ratio 103.53%, earned premium ¥62.71M — deeply unprofitable.</div>
+              <div class="sim-slider-row">
+                <input type="range" id="sim-s1-range" min="-10" max="30" step="0.5" value="0">
+                <input type="number" id="sim-s1-num" min="-10" max="30" step="0.5" value="0">
+                <span>%</span>
+              </div>
+              <div class="sim-ticks"><span>-10%</span><span>0%</span><span>+15%</span><span>+30%</span></div>
+            </div>
+
+            <!-- 策略2: 汉东省非车商渠道赔付率目标 -->
+            <div class="sim-ctrl-card">
+              <div class="sim-ctrl-num">2</div>
+              <div class="sim-ctrl-title">Hangdong non-dealer — target loss ratio</div>
+              <div class="sim-ctrl-hint">Loss ratio 104.26%, premium ¥46.12M — severely over-claiming.</div>
+              <div class="sim-slider-row">
+                <input type="range" id="sim-s2-range" min="80" max="104.26" step="0.5" value="104.26">
+                <input type="number" id="sim-s2-num" min="80" max="104.26" step="0.5" value="104.26">
+                <span>%</span>
+              </div>
+              <div class="sim-ticks"><span>80%</span><span>90%</span><span>104.26%</span></div>
+            </div>
+
+            <!-- 策略3: 中江市费用率压降 -->
+            <div class="sim-ctrl-card">
+              <div class="sim-ctrl-num">3</div>
+              <div class="sim-ctrl-title">Zhongjiang expense-ratio target</div>
+              <div class="sim-ctrl-hint">Current 43.28% vs. industry 25%; written premium ¥81.46M.</div>
+              <div class="sim-slider-row">
+                <input type="range" id="sim-s3-range" min="25" max="43.28" step="0.5" value="43.28">
+                <input type="number" id="sim-s3-num" min="25" max="43.28" step="0.5" value="43.28">
+                <span>%</span>
+              </div>
+              <div class="sim-ticks"><span>25%</span><span>34%</span><span>43.28%</span></div>
+            </div>
+
+            <!-- 策略4: 非自然人核保加费 -->
+            <div class="sim-ctrl-card">
+              <div class="sim-ctrl-num">4</div>
+              <div class="sim-ctrl-title">Corporate loading</div>
+              <div class="sim-ctrl-hint">Loss ratio 102.36%, earned premium ¥64.41M — serious losses.</div>
+              <div class="sim-slider-row">
+                <input type="range" id="sim-s4-range" min="0" max="25" step="0.5" value="0">
+                <input type="number" id="sim-s4-num" min="0" max="25" step="0.5" value="0">
+                <span>%</span>
+              </div>
+              <div class="sim-ticks"><span>0%</span><span>+10%</span><span>+25%</span></div>
+            </div>
+
+            <!-- 策略5: 续保赔付率治理 -->
+            <div class="sim-ctrl-card">
+              <div class="sim-ctrl-num">5</div>
+              <div class="sim-ctrl-title">Renewal — target loss ratio</div>
+              <div class="sim-ctrl-hint">Current 87.11%, premium ~¥125.42M (40% of the book).</div>
+              <div class="sim-slider-row">
+                <input type="range" id="sim-s5-range" min="75" max="87.11" step="0.5" value="87.11">
+                <input type="number" id="sim-s5-num" min="75" max="87.11" step="0.5" value="87.11">
+                <span>%</span>
+              </div>
+              <div class="sim-ticks"><span>75%</span><span>80%</span><span>87.11%</span></div>
+            </div>
+
+            <!-- 策略6: 新能源车专项加费 -->
+            <div class="sim-ctrl-card">
+              <div class="sim-ctrl-num">6</div>
+              <div class="sim-ctrl-title">NEV loading</div>
+              <div class="sim-ctrl-hint">BYD 118.29%, Roewe 96.52%; combined premium ¥26.44M.</div>
+              <div class="sim-slider-row">
+                <input type="range" id="sim-s6-range" min="0" max="30" step="0.5" value="0">
+                <input type="number" id="sim-s6-num" min="0" max="30" step="0.5" value="0">
+                <span>%</span>
+              </div>
+              <div class="sim-ticks"><span>0%</span><span>+15%</span><span>+30%</span></div>
+            </div>
+
+            <!-- 策略7: 优质业务扩量 -->
+            <div class="sim-ctrl-card">
+              <div class="sim-ctrl-num">7</div>
+              <div class="sim-ctrl-title">Scale up profitable segments</div>
+              <div class="sim-ctrl-hint">Private-use / age 30–44 / dealer channel — ¥137.5M premium at 64% loss ratio.</div>
+              <div class="sim-slider-row">
+                <input type="range" id="sim-s7-range" min="0" max="30" step="1" value="0">
+                <input type="number" id="sim-s7-num" min="0" max="30" step="1" value="0">
+                <span>%</span>
+              </div>
+              <div class="sim-ticks"><span>0%</span><span>+15%</span><span>+30%</span></div>
+            </div>
+          </div>
+
+          <div class="sim-reset-row">
+            <button class="sim-reset-btn" id="sim-reset">↺ Reset all levers</button>
+          </div>
+        </div>
+
+        <!-- 公式透明度 -->
+        <div class="sim-formula-card" style="margin-top:24px;">
+          <div class="sim-formula-toggle" id="sim-formula-toggle">
+            <span>🔎 How the numbers are calculated</span>
+            <span class="arrow" id="sim-formula-arrow">▶</span>
+          </div>
+          <div class="sim-formula-body" id="sim-formula-body">
+            <p><b>Levers 1 / 4 / 6 (rate uplifts):</b> loss reduction = earned premium × uplift</p>
+            <p><b>Levers 2 / 5 (loss-ratio improvement):</b> loss reduction = earned premium × (current LR − target LR)</p>
+            <p><b>Lever 3 (expense-ratio reduction):</b> saving = written premium × (current ER − target ER)</p>
+            <p><b>Lever 7 (scaling profitable business):</b> new premium = quality-segment premium × growth rate; new claims = new premium × <code>64%</code> (quality-segment loss ratio)</p>
+            <p style="margin-top:8px;"><b>Total loss reduction</b> = sum of individual levers × <code>0.85</code> (cross-lever overlap factor)</p>
+            <p><b>New loss ratio</b> = (original claims − claim-side savings + new claims from scaling) / (new total earned premium + new scaling premium)</p>
+            <p><b>New expense ratio</b> = (original expense − expense-side savings + new expense from scaling) / (new total written premium + new scaling premium)</p>
+            <p><b>New COR</b> = new loss ratio + new expense ratio + <code>6%</code> (management expense)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: simulation output -->
+      <div class="sim-right">
+        <div class="sim-panel">
+          <div class="sim-panel-title">Simulation output</div>
+          <div class="sim-panel-desc">Computed in real time from the levers on the left — the post-adjustment KPIs and the P&amp;L delta.</div>
+
+        <!-- 结果指标卡片 -->
+        <div class="sim-metric-grid">
+          <div class="sim-metric-card">
+            <div class="sim-metric-bar green" id="sim-bar-save"></div>
+            <div class="sim-metric-body">
+              <div class="sim-metric-label">Total loss reduction</div>
+              <div class="sim-metric-value green" id="sim-val-save">¥0.41M</div>
+              <div class="sim-metric-sub" id="sim-sub-save">with 0.85 cross-lever factor</div>
+            </div>
+          </div>
+          <div class="sim-metric-card">
+            <div class="sim-metric-bar red" id="sim-bar-mcr"></div>
+            <div class="sim-metric-body">
+              <div class="sim-metric-label">Post-adjust COR</div>
+              <div class="sim-metric-value red" id="sim-val-mcr">107.38%</div>
+              <div class="sim-metric-sub" id="sim-sub-mcr">Current 107.51%  ▼0.13pp</div>
+            </div>
+          </div>
+          <div class="sim-metric-card">
+            <div class="sim-metric-bar green" id="sim-bar-lr"></div>
+            <div class="sim-metric-body">
+              <div class="sim-metric-label">Post-adjust loss ratio</div>
+              <div class="sim-metric-value green" id="sim-val-lr">76.02%</div>
+              <div class="sim-metric-sub" id="sim-sub-lr">Current 76.09%  ▼0.07pp</div>
+            </div>
+          </div>
+          <div class="sim-metric-card">
+            <div class="sim-metric-bar green" id="sim-bar-er"></div>
+            <div class="sim-metric-body">
+              <div class="sim-metric-label">Post-adjust expense ratio</div>
+              <div class="sim-metric-value green" id="sim-val-er">25.36%</div>
+              <div class="sim-metric-sub" id="sim-sub-er">Current 25.42%  ▼0.06pp</div>
+            </div>
+          </div>
+          <div class="sim-metric-card">
+            <div class="sim-metric-bar" id="sim-bar-prem"></div>
+            <div class="sim-metric-body">
+              <div class="sim-metric-label">Post-adjust gross premium</div>
+              <div class="sim-metric-value" id="sim-val-prem">¥313.54M</div>
+              <div class="sim-metric-sub" id="sim-sub-prem">Current ¥313.54M</div>
+            </div>
+          </div>
+          <div class="sim-metric-card">
+            <div class="sim-metric-bar red" id="sim-bar-profit"></div>
+            <div class="sim-metric-body">
+              <div class="sim-metric-label">Forecast underwriting profit</div>
+              <div class="sim-metric-value red" id="sim-val-profit">−¥23.13M</div>
+              <div class="sim-metric-sub" id="sim-sub-profit">Current loss ¥23.55M  ▲¥0.42M</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 图表 -->
+        <div class="sim-charts-row">
+          <div class="sim-chart-box">
+            <div class="sim-chart-title">Loss reduction by lever</div>
+            <div id="sim-chart-bar" style="height: 320px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;" _echarts_instance_="ec_1776753759194"><div style="position: relative; width: 502px; height: 320px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="1004" height="640" style="position: absolute; left: 0px; top: 0px; width: 502px; height: 320px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+          </div>
+          <div class="sim-chart-box">
+            <div class="sim-chart-title">COR before vs after</div>
+            <div id="sim-chart-stack" style="height: 320px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;" _echarts_instance_="ec_1776753759195"><div style="position: relative; width: 502px; height: 320px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="1004" height="640" style="position: absolute; left: 0px; top: 0px; width: 502px; height: 320px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="report-footer">
+    <p>Report auto-generated by the A+BI Analytics Platform · Data through March 2026 · Demo only</p>
+    <p style="margin-top:4px;">Powered by Canglan Technology · LexisNexis Risk Solutions</p>
+  </div>
+
+</div>
+
+
+<script>
+// ============================================================
+// Top Tab Navigation Active State
+// ============================================================
+var sectionIds = ['header','kpi','overview','risk','channel','anomaly','findings','simulator'];
+var tabLinks = document.querySelectorAll('.top-tabs .tab-item');
+window.addEventListener('scroll', function() {
+  var scrollPos = window.scrollY + 120;
+
+  // Update tab active state
+  for (var i = sectionIds.length - 1; i >= 0; i--) {
+    var sec = document.getElementById(sectionIds[i]);
+    if (sec && sec.offsetTop <= scrollPos) {
+      tabLinks.forEach(function(l) { l.classList.remove('active'); });
+      if (tabLinks[i]) tabLinks[i].classList.add('active');
+      break;
+    }
+  }
+
+  // Add shadow to tab bar when scrolled
+  var topTabs = document.getElementById('topTabs');
+  if (window.scrollY > 100) {
+    topTabs.classList.add('scrolled');
+  } else {
+    topTabs.classList.remove('scrolled');
+  }
+});
+
+// ============================================================
+// Color Palette
+// ============================================================
+var COLORS = ['#0369A1', '#0EA5E9', '#16A34A', '#F59E0B', '#DC2626', '#8B5CF6', '#EC4899', '#06B6D4'];
+
+// ============================================================
+// Chart 1: Region Loss Ratio + Expense Ratio Stacked Bar
+// ============================================================
+(function() {
+  var chart = echarts.init(document.getElementById('chart1'));
+  var regions = ['Hangdong', 'Jingzhou', 'Lingjiang', 'Zhongjiang'];
+  var lossRatio = [94.02, 83.99, 67.35, 62.15];
+  var expenseRatio = [17.23, 11.32, 27.52, 43.28];
+  var avgLoss = 76.09;
+  var avgExpense = 25.42;
+
+  chart.setOption({
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(p) {
+      var s = p[0].name + '<br/>';
+      p.forEach(function(item) {
+        if (item.seriesType === 'bar') s += item.marker + item.seriesName + ': ' + item.value + '%<br/>';
+      });
+      var total = lossRatio[p[0].dataIndex] + expenseRatio[p[0].dataIndex];
+      s += '<strong>Total: ' + total.toFixed(2) + '%</strong>';
+      return s;
+    }},
+    legend: { data: ['Loss ratio', 'Expense ratio', 'Loss-ratio avg', 'Expense-ratio avg'], top: 0, textStyle: { fontSize: 12 } },
+    grid: { left: 48, right: 24, top: 50, bottom: 30 },
+    xAxis: { type: 'category', data: regions, axisLabel: { fontSize: 13, fontWeight: 600 } },
+    yAxis: { type: 'value', axisLabel: { formatter: '{value}%' }, max: 140 },
+    series: [
+      {
+        name: 'Loss ratio', type: 'bar', stack: 'total', data: lossRatio,
+        itemStyle: { color: COLORS[0] }, barWidth: 50,
+        label: { show: true, position: 'inside', formatter: '{c}%', fontSize: 12, color: '#fff' }
+      },
+      {
+        name: 'Expense ratio', type: 'bar', stack: 'total', data: expenseRatio,
+        itemStyle: { color: COLORS[3] },
+        label: { show: true, position: 'inside', formatter: '{c}%', fontSize: 12, color: '#fff' }
+      },
+      {
+        name: 'Loss-ratio avg', type: 'line', data: [avgLoss, avgLoss, avgLoss, avgLoss],
+        lineStyle: { type: 'dashed', color: '#DC2626', width: 2 },
+        symbol: 'none', itemStyle: { color: '#DC2626' }
+      },
+      {
+        name: 'Expense-ratio avg', type: 'line', data: [avgLoss + avgExpense, avgLoss + avgExpense, avgLoss + avgExpense, avgLoss + avgExpense],
+        lineStyle: { type: 'dashed', color: '#8B5CF6', width: 2 },
+        symbol: 'none', itemStyle: { color: '#8B5CF6' }
+      }
+    ]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+})();
+
+// ============================================================
+// Chart 2: Waterfall Cost Breakdown
+// ============================================================
+(function() {
+  var chart = echarts.init(document.getElementById('chart2'));
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      formatter: function(p) {
+        var item = p[0];
+        if (item.dataIndex === 3) return 'COR: 107.51%';
+        return item.name + ': ' + [76.09, 25.42, 6.00][item.dataIndex] + '%';
+      }
+    },
+    grid: { left: 60, right: 40, top: 40, bottom: 40 },
+    xAxis: { type: 'category', data: ['Loss ratio', 'Expense ratio', 'Overhead', 'COR'], axisLabel: { fontSize: 13, fontWeight: 600 } },
+    yAxis: { type: 'value', axisLabel: { formatter: '{value}%' }, max: 120 },
+    series: [
+      {
+        name: 'Spacer', type: 'bar', stack: 'waterfall', barWidth: 60,
+        itemStyle: { color: 'transparent' },
+        data: [0, 76.09, 76.09 + 25.42, 0]
+      },
+      {
+        name: 'Cost', type: 'bar', stack: 'waterfall', barWidth: 60,
+        data: [
+          { value: 76.09, itemStyle: { color: COLORS[0] } },
+          { value: 25.42, itemStyle: { color: COLORS[3] } },
+          { value: 6.00, itemStyle: { color: COLORS[5] } },
+          { value: 107.51, itemStyle: { color: COLORS[4] } }
+        ],
+        label: {
+          show: true, position: 'top', fontSize: 13, fontWeight: 700,
+          formatter: function(p) {
+            return p.value + '%';
+          }
+        }
+      },
+      {
+        name: 'Break-even', type: 'line',
+        data: [100, 100, 100, 100],
+        lineStyle: { type: 'dashed', color: '#DC2626', width: 2 },
+        symbol: 'none', itemStyle: { color: '#DC2626' }
+      }
+    ]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+})();
+
+// ============================================================
+// Chart 3: Region Marginal Cost Comparison
+// ============================================================
+(function() {
+  var chart = echarts.init(document.getElementById('chart3'));
+  var regions = ['Hangdong', 'Jingzhou', 'Lingjiang', 'Zhongjiang', 'Book-wide'];
+  var costs = [117.25, 101.31, 100.86, 111.43, 107.51];
+
+  chart.setOption({
+    tooltip: { trigger: 'axis', formatter: function(p) { return p[0].name + '<br/>COR: ' + p[0].value + '%'; } },
+    grid: { left: 70, right: 40, top: 20, bottom: 40 },
+    xAxis: { type: 'category', data: regions, axisLabel: { fontSize: 13, fontWeight: 600 } },
+    yAxis: { type: 'value', min: 90, max: 125, axisLabel: { formatter: '{value}%' } },
+    series: [
+      {
+        type: 'bar', data: costs.map(function(v) {
+          return { value: v, itemStyle: { color: v > 110 ? '#DC2626' : v > 100 ? '#F59E0B' : '#16A34A' } };
+        }),
+        barWidth: 50,
+        label: { show: true, position: 'top', formatter: '{c}%', fontSize: 13, fontWeight: 700 }
+      },
+      {
+        type: 'line', data: [100, 100, 100, 100, 100],
+        lineStyle: { type: 'dashed', color: '#DC2626', width: 2 },
+        symbol: 'none', itemStyle: { color: '#DC2626' },
+        markLine: {
+          data: [{ yAxis: 100, label: { formatter: 'Break-even 100%', position: 'end', fontSize: 12 } }],
+          lineStyle: { type: 'dashed', color: '#DC2626' }
+        }
+      }
+    ]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+})();
+
+// ============================================================
+// Chart 4-7: Delayed initialization (risk section hidden)
+// ============================================================
+var riskChartInstances = [];
+function initChart4() {
+  var chart = echarts.init(document.getElementById('chart4'));
+  riskChartInstances.push(chart);
+  var categories = ['0-40%', '40-50%', '50-60%', '60-70%', '70-80%', '80-90%', '90-100%', '100-110%', '110-120%', '120-130%', '130%+'];
+  var expected = [20, 45, 55, 65, 75, 85, 95, 105, 115, 125, 140];
+  var actual = [44.16, 62.95, 66.17, 65.77, 80.35, 89.23, 80.59, 100.89, 91.14, 146.10, 126.91];
+  var premiums = [1013.17, 2353.11, 5048.76, 7197.60, 7476.72, 4126.59, 1658.22, 785.07, 502.77, 376.15, 809.55];
+  chart.setOption({
+    tooltip: { trigger: 'axis', formatter: function(p) {
+      var s = 'Expected band: ' + p[0].name + '<br/>';
+      p.forEach(function(item) { s += item.marker + item.seriesName + ': ' + item.value + '%<br/>'; });
+      s += 'Premium: ¥' + premiums[p[0].dataIndex] + 'M';
+      return s;
+    }},
+    legend: { data: ['Expected loss ratio (midpoint)', 'Actual loss ratio'], top: 0, textStyle: { fontSize: 12 } },
+    grid: { left: 50, right: 30, top: 50, bottom: 50 },
+    xAxis: { type: 'category', data: categories, axisLabel: { fontSize: 11, rotate: 30 } },
+    yAxis: { type: 'value', axisLabel: { formatter: '{value}%' }, max: 160 },
+    series: [
+      { name: 'Expected loss ratio (midpoint)', type: 'bar', data: expected, barGap: '10%', itemStyle: { color: '#BAE6FD' }, barWidth: 24 },
+      { name: 'Actual loss ratio', type: 'bar', data: actual, itemStyle: { color: function(p) { return actual[p.dataIndex] > expected[p.dataIndex] * 1.1 ? '#DC2626' : '#0369A1'; } }, barWidth: 24, label: { show: true, position: 'top', fontSize: 10, formatter: '{c}%' } },
+      { name: '45° reference', type: 'line', data: expected, lineStyle: { type: 'dashed', color: '#64748B', width: 1.5 }, symbol: 'none' }
+    ]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+}
+
+function initChart5() {
+  var chart = echarts.init(document.getElementById('chart5'));
+  riskChartInstances.push(chart);
+  var ncdLevels = ['-2 or lower', '-1', '0 or higher'];
+  var lossRatios = [74.76, 82.83, 76.04];
+  var claimFreqs = [11.37, 16.85, 28.97];
+  var premiums = [12729.13, 6080.51, 9457.65];
+  var policies = [156832, 47855, 48155];
+  chart.setOption({
+    tooltip: { trigger: 'axis', formatter: function(p) {
+      var idx = p[0].dataIndex;
+      var s = 'NCD: ' + p[0].name + '<br/>';
+      p.forEach(function(item) { s += item.marker + item.seriesName + ': ' + item.value + '%<br/>'; });
+      s += 'Premium: ¥' + premiums[idx] + 'M<br/>Policies: ' + policies[idx].toLocaleString();
+      return s;
+    }},
+    legend: { data: ['Loss ratio', 'Claim frequency'], top: 0 },
+    grid: { left: 50, right: 50, top: 50, bottom: 30 },
+    xAxis: { type: 'category', data: ncdLevels, axisLabel: { fontSize: 13, fontWeight: 600 } },
+    yAxis: [
+      { type: 'value', name: 'Loss ratio', axisLabel: { formatter: '{value}%' }, max: 100 },
+      { type: 'value', name: 'Claim freq.', axisLabel: { formatter: '{value}%' }, max: 35 }
+    ],
+    series: [
+      { name: 'Loss ratio', type: 'bar', data: lossRatios, barWidth: 50, itemStyle: { color: COLORS[0] }, label: { show: true, position: 'top', formatter: '{c}%', fontSize: 13, fontWeight: 700 } },
+      { name: 'Claim frequency', type: 'line', yAxisIndex: 1, data: claimFreqs, lineStyle: { color: COLORS[4], width: 3 }, symbol: 'circle', symbolSize: 10, itemStyle: { color: COLORS[4] }, label: { show: true, formatter: '{c}%', fontSize: 12, fontWeight: 600, color: COLORS[4] } }
+    ]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+}
+
+function initChart6() {
+  var chart = echarts.init(document.getElementById('chart6'));
+  riskChartInstances.push(chart);
+  var usages = ['Commercial', 'Private', 'Corporate'];
+  var ages = ['0–1 yr', '2–3 yrs', '4–5 yrs', '6–8 yrs', '9+ yrs'];
+  var data = [
+    [0, 0, 107.92], [0, 1, 102.99], [0, 2, 78.90],
+    [1, 0, 61.70], [1, 1, 75.81], [1, 2, 75.00], [1, 3, 75.64], [1, 4, 57.58],
+    [2, 0, 94.68], [2, 1, 89.03], [2, 2, 123.41], [2, 3, 54.85], [2, 4, 54.00]
+  ];
+  var premiumData = {
+    '0,0': 3182.09, '0,1': 2581.89, '0,2': 494.01,
+    '1,0': 7814.84, '1,1': 3278.55, '1,2': 3506.11, '1,3': 4512.52, '1,4': 4276.51,
+    '2,0': 1037.06, '2,1': 294.14, '2,2': 161.32, '2,3': 122.17, '2,4': 79.28
+  };
+  chart.setOption({
+    tooltip: { formatter: function(p) {
+      var key = p.data[0] + ',' + p.data[1];
+      return usages[p.data[0]] + ' × ' + ages[p.data[1]] + '<br/>Loss ratio: ' + p.data[2] + '%<br/>Premium: ¥' + (premiumData[key] || '-') + 'M';
+    }},
+    grid: { left: 100, right: 80, top: 20, bottom: 40 },
+    xAxis: { type: 'category', data: ages, axisLabel: { fontSize: 12 }, splitArea: { show: true } },
+    yAxis: { type: 'category', data: usages, axisLabel: { fontSize: 13, fontWeight: 600 }, splitArea: { show: true } },
+    visualMap: {
+      min: 50, max: 130, calculable: true, orient: 'vertical', right: 0, top: 'center',
+      inRange: { color: ['#DCFCE7', '#FEF3C7', '#FEE2E2', '#DC2626'] },
+      text: ['High loss', 'Low loss'], textStyle: { fontSize: 11 }
+    },
+    series: [{ type: 'heatmap', data: data, label: { show: true, fontSize: 14, fontWeight: 700, formatter: function(p) { return p.data[2] + '%'; } } }]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+}
+
+function initChart7() {
+  var chart = echarts.init(document.getElementById('chart7'));
+  riskChartInstances.push(chart);
+  var brands = ['Changan Oshan', 'GAC', 'Roewe', 'Ford', 'Acura', 'Nissan', 'BYD', 'Mitsubishi', 'Beijing Auto', 'Fengye'];
+  var lossRatios = [83.04, 84.00, 96.52, 98.72, 100.44, 116.52, 118.29, 123.20, 138.28, 181.83];
+  var premiums = [105.38, 2607.82, 1225.98, 432.00, 67.00, 1166.32, 1418.22, 250.37, 190.48, 77.57];
+  chart.setOption({
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: function(p) {
+      var idx = p[0].dataIndex;
+      return p[0].name + '<br/>Loss ratio: ' + lossRatios[idx] + '%<br/>Premium: ¥' + premiums[idx] + 'M';
+    }},
+    grid: { left: 80, right: 40, top: 20, bottom: 30 },
+    yAxis: { type: 'category', data: brands, axisLabel: { fontSize: 12, fontWeight: 600 } },
+    xAxis: { type: 'value', axisLabel: { formatter: '{value}%' }, max: 200 },
+    series: [{
+      type: 'bar', data: lossRatios.map(function(v) {
+        return { value: v, itemStyle: { color: v > 100 ? '#DC2626' : v > 85 ? '#F59E0B' : '#0369A1' } };
+      }),
+      barWidth: 24,
+      label: { show: true, position: 'right', formatter: '{c}%', fontSize: 12, fontWeight: 600 },
+      markLine: {
+        data: [{ xAxis: 100, label: { formatter: '100%', position: 'end' } }],
+        lineStyle: { type: 'dashed', color: '#DC2626' }
+      }
+    }]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+}
+
+// ============================================================
+// Chart 8: Channel Bubble Chart
+// ============================================================
+(function() {
+  var chart = echarts.init(document.getElementById('chart8'));
+  var channels = [
+    { name: 'Dealer', expense: 21.00, loss: 72.48, premium: 11986.33 },
+    { name: 'Non-dealer', expense: 27.84, loss: 78.79, premium: 18859.73 },
+    { name: 'New channel', expense: 39.92, loss: 60.72, premium: 505.82 },
+    { name: 'Head office', expense: 12.15, loss: 134.81, premium: 2.10 }
+  ];
+
+  chart.setOption({
+    tooltip: { formatter: function(p) {
+      var d = channels[p.dataIndex];
+      return d.name + '<br/>Expense ratio: ' + d.expense + '%<br/>Loss ratio: ' + d.loss + '%<br/>Premium: ¥' + d.premium + 'M<br/>COR: ' + (d.expense + d.loss + 6).toFixed(1) + '%';
+    }},
+    grid: { left: 60, right: 40, top: 20, bottom: 50 },
+    xAxis: { name: 'Expense ratio (%)', nameLocation: 'center', nameGap: 30, type: 'value', min: 5, max: 50, axisLabel: { formatter: '{value}%' } },
+    yAxis: { name: 'Loss ratio (%)', nameLocation: 'center', nameGap: 40, type: 'value', min: 50, max: 145, axisLabel: { formatter: '{value}%' } },
+    series: [{
+      type: 'scatter',
+      data: channels.map(function(c, i) {
+        return {
+          value: [c.expense, c.loss, Math.sqrt(c.premium) * 3],
+          symbolSize: Math.max(Math.sqrt(c.premium) * 1.5, 12),
+          itemStyle: { color: COLORS[i], opacity: 0.85 },
+          label: {
+            show: true, formatter: c.name, position: 'top', fontSize: 12, fontWeight: 600, color: COLORS[i]
+          }
+        };
+      })
+    },
+    {
+      type: 'line',
+      data: [[5, 95], [50, 50]],
+      lineStyle: { type: 'dashed', color: '#DC2626', width: 1.5 },
+      symbol: 'none',
+      tooltip: { show: false }
+    }]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+})();
+
+// ============================================================
+// Chart 9: Renewal Type Comparison
+// ============================================================
+(function() {
+  var chart = echarts.init(document.getElementById('chart9'));
+  var types = ['New', 'Renewal', 'Transfer'];
+  var lossRatios = [75.18, 87.11, 70.19];
+  var expenseRatios = [20.08, 18.69, 31.85];
+  var avgPremiums = [1820, 1449, 779];
+
+  chart.setOption({
+    tooltip: { trigger: 'axis' },
+    legend: { data: ['Loss ratio', 'Expense ratio', 'Avg premium (¥)'], top: 0, textStyle: { fontSize: 12 } },
+    grid: { left: 60, right: 60, top: 50, bottom: 30 },
+    xAxis: { type: 'category', data: types, axisLabel: { fontSize: 14, fontWeight: 700 } },
+    yAxis: [
+      { type: 'value', name: 'Ratio (%)', axisLabel: { formatter: '{value}%' }, max: 100 },
+      { type: 'value', name: 'Avg premium (¥)', axisLabel: { formatter: '{value}' }, max: 2200 }
+    ],
+    series: [
+      {
+        name: 'Loss ratio', type: 'bar', data: lossRatios, barWidth: 30,
+        itemStyle: { color: COLORS[0] },
+        label: { show: true, position: 'top', formatter: '{c}%', fontSize: 12, fontWeight: 600 }
+      },
+      {
+        name: 'Expense ratio', type: 'bar', data: expenseRatios, barWidth: 30,
+        itemStyle: { color: COLORS[3] },
+        label: { show: true, position: 'top', formatter: '{c}%', fontSize: 12, fontWeight: 600 }
+      },
+      {
+        name: 'Avg premium (¥)', type: 'line', yAxisIndex: 1, data: avgPremiums,
+        lineStyle: { color: COLORS[5], width: 3 },
+        symbol: 'circle', symbolSize: 10, itemStyle: { color: COLORS[5] },
+        label: { show: true, formatter: '{c}', fontSize: 12, fontWeight: 600, color: COLORS[5] }
+      }
+    ]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+})();
+
+// ============================================================
+// Cross Table (Chart 10)
+// ============================================================
+(function() {
+  var tableData = [
+    { name: 'Dealer × Hangdong', loss: 76.20, expense: 20.54, premium: 2654.17 },
+    { name: 'Dealer × Jingzhou', loss: 79.99, expense: 14.49, premium: 4678.79 },
+    { name: 'Dealer × Lingjiang', loss: 61.22, expense: 23.52, premium: 3039.50 },
+    { name: 'Dealer × Zhongjiang', loss: 65.82, expense: 35.91, premium: 1613.86 },
+    { name: 'Non-dealer × Hangdong', loss: 104.26, expense: 15.32, premium: 4612.16 },
+    { name: 'Non-dealer × Jingzhou', loss: 90.93, expense: 5.81, premium: 2692.74 },
+    { name: 'Non-dealer × Lingjiang', loss: 70.71, expense: 29.71, premium: 5528.96 },
+    { name: 'Non-dealer × Zhongjiang', loss: 61.29, expense: 45.54, premium: 6025.87 },
+    { name: 'New channel × Zhongjiang', loss: 60.72, expense: 39.92, premium: 505.82 }
+  ];
+
+  function getCellClass(val) {
+    if (val > 90) return 'cell-bad';
+    if (val > 80) return 'cell-warn';
+    if (val < 70) return 'cell-good';
+    return '';
+  }
+
+  function getExpenseClass(val) {
+    if (val > 40) return 'cell-bad';
+    if (val > 30) return 'cell-warn';
+    if (val < 15) return 'cell-good';
+    return '';
+  }
+
+  var tbody = document.querySelector('#crossTable tbody');
+  tableData.forEach(function(row) {
+    var marginal = (row.loss + row.expense + 6).toFixed(2);
+    var marginalClass = marginal > 110 ? 'cell-bad' : marginal > 100 ? 'cell-warn' : 'cell-good';
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td style="font-weight:600;text-align:left;padding-left:16px;">' + row.name + '</td>' +
+      '<td class="' + getCellClass(row.loss) + '">' + row.loss + '%</td>' +
+      '<td class="' + getExpenseClass(row.expense) + '">' + row.expense + '%</td>' +
+      '<td>' + row.premium.toLocaleString() + '</td>' +
+      '<td class="' + marginalClass + '">' + marginal + '%</td>';
+    tbody.appendChild(tr);
+  });
+})();
+
+// ============================================================
+// QA Chart Init Functions (called dynamically during chat)
+// ============================================================
+function initQAChart1(containerId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  var chart = echarts.init(el);
+  var regions = ['Hangdong', 'Jingzhou', 'Lingjiang', 'Zhongjiang'];
+  var costs = [117.25, 101.31, 100.86, 111.43];
+  chart.setOption({
+    tooltip: { trigger: 'axis', formatter: function(p) { return p[0].name + ': ' + p[0].value + '%'; } },
+    grid: { left: 50, right: 20, top: 10, bottom: 30 },
+    xAxis: { type: 'category', data: regions, axisLabel: { fontSize: 12, fontWeight: 600 } },
+    yAxis: { type: 'value', min: 95, max: 122, axisLabel: { formatter: '{value}%' } },
+    series: [{
+      type: 'bar', data: costs.map(function(v) {
+        return { value: v, itemStyle: { color: v > 110 ? '#DC2626' : v > 100 ? '#F59E0B' : '#16A34A' } };
+      }),
+      barWidth: 44,
+      label: { show: true, position: 'top', formatter: '{c}%', fontSize: 13, fontWeight: 700 },
+      markLine: { data: [{ yAxis: 100 }], lineStyle: { type: 'dashed', color: '#DC2626' }, label: { formatter: '100%' } }
+    }]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+}
+
+function initQAChart4(containerId) {
+  var el = document.getElementById(containerId);
+  if (!el) return;
+  var chart = echarts.init(el);
+  var channels = ['Dealer', 'Non-dealer', 'New channel'];
+  var expenses = [35.91, 45.54, 39.92];
+  var premiums = [1613.86, 6025.87, 505.82];
+  chart.setOption({
+    tooltip: { trigger: 'axis', formatter: function(p) {
+      var idx = p[0].dataIndex;
+      return p[0].name + '<br/>Expense ratio: ' + expenses[idx] + '%<br/>Premium: ¥' + premiums[idx] + 'M';
+    }},
+    grid: { left: 90, right: 20, top: 10, bottom: 30 },
+    yAxis: { type: 'category', data: channels, axisLabel: { fontSize: 12, fontWeight: 600 } },
+    xAxis: { type: 'value', max: 55, axisLabel: { formatter: '{value}%' } },
+    series: [{
+      type: 'bar', data: expenses.map(function(v) {
+        return { value: v, itemStyle: { color: v > 40 ? '#DC2626' : v > 30 ? '#F59E0B' : '#16A34A' } };
+      }),
+      barWidth: 28,
+      label: { show: true, position: 'right', formatter: '{c}%', fontSize: 13, fontWeight: 700 },
+      markLine: { data: [{ xAxis: 25 }], lineStyle: { type: 'dashed', color: '#16A34A' }, label: { formatter: 'Industry benchmark 25%', position: 'end', fontSize: 10 } }
+    }]
+  });
+  window.addEventListener('resize', function() { chart.resize(); });
+}
+
+// ============================================================
+// What-If 经营策略模拟器
+// ============================================================
+(function() {
+  // ---- 基础数据常量 ----
+  var BASE = {
+    totalPremium: 31354,       // 总签单保费 万元
+    totalEarnedPremium: 31354, // 总满期保费 万元（近似等于签单保费）
+    lossRatio: 0.7609,         // 赔付率
+    expenseRatio: 0.2542,      // 费用率
+    mcr: 1.0751,               // 边际成本率
+    mgmtRate: 0.06,            // 管理费率
+
+    // 策略1: 出租车
+    s1Premium: 6271,           // 满期保费
+    s1LossRatio: 1.0353,       // 赔付率 103.53%
+
+    // 策略2: 汉东省非车商
+    s2Premium: 4612,           // 满期保费
+    s2LossRatio: 1.0426,       // 赔付率 104.26%
+
+    // 策略3: 中江市费用率
+    s3Premium: 8146,           // 签单保费
+    s3ExpenseRatio: 0.4328,    // 费用率 43.28%
+
+    // 策略4: 非自然人
+    s4Premium: 6441,           // 满期保费
+    s4LossRatio: 1.0236,       // 赔付率 102.36%
+
+    // 策略5: 续保
+    s5Premium: 12542,          // 满期保费
+    s5LossRatio: 0.8711,       // 赔付率 87.11%
+
+    // 策略6: 新能源车
+    s6Premium: 2644,           // 满期保费（比亚迪1418 + 荣威1226）
+    s6LossRatio: 1.0840,       // 加权赔付率 ~108.40%
+
+    // 策略7: 优质业务扩量
+    s7Premium: 13750,          // 优质业务当前保费
+    s7LossRatio: 0.6443,       // 优质业务赔付率 64.43%
+    s7ExpenseRatio: 0.2100     // 优质业务费用率（车商渠道平均）
+  };
+
+  // 原始总赔款和总费用
+  var origTotalClaims = BASE.totalEarnedPremium * BASE.lossRatio;  // 23,856 万
+  var origTotalExpense = BASE.totalPremium * BASE.expenseRatio;     // 7,970 万
+
+  // ---- 默认值 ----
+  var DEFAULTS = { s1: 0, s2: 104.26, s3: 43.28, s4: 0, s5: 87.11, s6: 0, s7: 0 };
+
+  // ---- 双向同步 ----
+  function bindSync(rangeId, numId, onChange) {
+    var range = document.getElementById(rangeId);
+    var num = document.getElementById(numId);
+    range.addEventListener('input', function() {
+      num.value = range.value;
+      onChange();
+    });
+    num.addEventListener('input', function() {
+      var v = parseFloat(num.value);
+      if (!isNaN(v)) {
+        v = Math.max(parseFloat(range.min), Math.min(parseFloat(range.max), v));
+        range.value = v;
+        num.value = v;
+      }
+      onChange();
+    });
+  }
+
+  // ---- 计算 ----
+  function calculate() {
+    var s1 = parseFloat(document.getElementById('sim-s1-range').value) / 100;
+    var s2 = parseFloat(document.getElementById('sim-s2-range').value) / 100;
+    var s3 = parseFloat(document.getElementById('sim-s3-range').value) / 100;
+    var s4 = parseFloat(document.getElementById('sim-s4-range').value) / 100;
+    var s5 = parseFloat(document.getElementById('sim-s5-range').value) / 100;
+    var s6 = parseFloat(document.getElementById('sim-s6-range').value) / 100;
+    var s7 = parseFloat(document.getElementById('sim-s7-range').value) / 100;
+
+    // 各策略独立减亏
+    var save1 = BASE.s1Premium * s1;                              // 加费
+    var save2 = BASE.s2Premium * (BASE.s2LossRatio - s2);         // 赔付率改善
+    var save3 = BASE.s3Premium * (BASE.s3ExpenseRatio - s3);      // 费用率压降
+    var save4 = BASE.s4Premium * s4;                              // 加费
+    var save5 = BASE.s5Premium * (BASE.s5LossRatio - s5);         // 赔付率改善
+    var save6 = BASE.s6Premium * s6;                              // 新能源加费
+
+    // 策略7: 优质业务扩量（增加低赔付率保费，稀释整体赔付率）
+    var s7NewPremium = BASE.s7Premium * s7;                       // 扩量新增保费
+    var s7NewClaims = s7NewPremium * BASE.s7LossRatio;            // 扩量新增赔款
+    var s7NewExpense = s7NewPremium * BASE.s7ExpenseRatio;        // 扩量新增费用
+
+    var rawTotal = save1 + save2 + save3 + save4 + save5 + save6;
+    var crossFactor = 0.85;
+    var totalSave = rawTotal * crossFactor;
+
+    // 策略7的效果：优质业务边际成本率 ~91%，低于平衡线100%，扩量即盈利
+    var s7Profit = s7NewPremium - s7NewClaims - s7NewExpense - s7NewPremium * BASE.mgmtRate;
+
+    // 赔付端减亏（策略2/5赔付改善）
+    var claimsSave = (save2 + save5) * crossFactor;
+    // 费用端减亏（策略3）
+    var expenseSave = save3 * crossFactor;
+    // 增收端（策略1/4/6 通过加费增加保费收入）
+    var premiumIncrease = (save1 + save4 + save6) * crossFactor;
+
+    var newEarnedPremium = BASE.totalEarnedPremium + premiumIncrease + s7NewPremium;
+    var newSignedPremium = BASE.totalPremium + premiumIncrease + s7NewPremium;
+
+    var newLR = (origTotalClaims - claimsSave + s7NewClaims) / newEarnedPremium;
+    var newER = (origTotalExpense - expenseSave + s7NewExpense) / newSignedPremium;
+    var newMCR = newLR + newER + BASE.mgmtRate;
+
+    var totalSaveWithS7 = totalSave + s7Profit;
+
+    return {
+      saves: [save1 * crossFactor, save2 * crossFactor, save3 * crossFactor, save4 * crossFactor, save5 * crossFactor, save6 * crossFactor, s7Profit],
+      saveLabels: ['Taxi\nuplift', 'Hangdong non-dealer\nLR target', 'Zhongjiang\nER reduction', 'Corporate\nloading', 'Renewal\nLR target', 'NEV\nloading', 'Scale up\nquality biz'],
+      totalSave: totalSaveWithS7,
+      newMCR: newMCR,
+      newLR: newLR,
+      newER: newER,
+      newPremium: newSignedPremium,
+      origMCR: BASE.mcr,
+      origLR: BASE.lossRatio,
+      origER: BASE.expenseRatio
+    };
+  }
+
+  // ---- ECharts 实例 ----
+  var chartBar = echarts.init(document.getElementById('sim-chart-bar'));
+  var chartStack = echarts.init(document.getElementById('sim-chart-stack'));
+
+  // ---- 渲染 ----
+  function render(r) {
+    // 指标卡片
+    var valSave = document.getElementById('sim-val-save');
+    var valMCR = document.getElementById('sim-val-mcr');
+    var valLR = document.getElementById('sim-val-lr');
+    var valER = document.getElementById('sim-val-er');
+
+    valSave.textContent = '¥' + (r.totalSave / 100).toFixed(2) + 'M';
+    valSave.className = 'sim-metric-value' + (r.totalSave > 0 ? ' green' : '');
+    document.getElementById('sim-bar-save').className = 'sim-metric-bar' + (r.totalSave > 0 ? ' green' : '');
+
+    valMCR.textContent = (r.newMCR * 100).toFixed(2) + '%';
+    valMCR.className = 'sim-metric-value' + (r.newMCR < 1 ? ' green' : ' red');
+    document.getElementById('sim-bar-mcr').className = 'sim-metric-bar' + (r.newMCR < 1 ? ' green' : ' red');
+    document.getElementById('sim-sub-mcr').textContent = 'Current 107.51%' + (r.newMCR < r.origMCR ? '  ▼' + ((r.origMCR - r.newMCR) * 100).toFixed(2) + 'pp' : '');
+
+    valLR.textContent = (r.newLR * 100).toFixed(2) + '%';
+    valLR.className = 'sim-metric-value' + (r.newLR < r.origLR ? ' green' : '');
+    document.getElementById('sim-bar-lr').className = 'sim-metric-bar' + (r.newLR < r.origLR ? ' green' : ' gradient');
+    document.getElementById('sim-sub-lr').textContent = 'Current 76.09%' + (r.newLR < r.origLR ? '  ▼' + ((r.origLR - r.newLR) * 100).toFixed(2) + 'pp' : '');
+
+    valER.textContent = (r.newER * 100).toFixed(2) + '%';
+    valER.className = 'sim-metric-value' + (r.newER < r.origER ? ' green' : '');
+    document.getElementById('sim-bar-er').className = 'sim-metric-bar' + (r.newER < r.origER ? ' green' : ' gradient');
+    document.getElementById('sim-sub-er').textContent = 'Current 25.42%' + (r.newER < r.origER ? '  ▼' + ((r.origER - r.newER) * 100).toFixed(2) + 'pp' : '');
+
+    // 保费规模
+    var valPrem = document.getElementById('sim-val-prem');
+    var premDiff = r.newPremium - BASE.totalPremium;
+    valPrem.textContent = '¥' + (r.newPremium / 100).toFixed(2) + 'M';
+    valPrem.className = 'sim-metric-value' + (premDiff > 0 ? ' green' : '');
+    document.getElementById('sim-bar-prem').className = 'sim-metric-bar' + (premDiff > 0 ? ' green' : '');
+    document.getElementById('sim-sub-prem').textContent = 'Current ¥313.54M' + (premDiff > 0 ? '  ▲¥' + (premDiff / 100).toFixed(2) + 'M' : '');
+
+    // 承保利润
+    var origProfit = Math.round(BASE.totalPremium * (1 - BASE.mcr));  // -2,355
+    var newProfit = Math.round(r.newPremium * (1 - r.newMCR));
+    var valProfit = document.getElementById('sim-val-profit');
+    valProfit.textContent = (newProfit >= 0 ? '+¥' : '−¥') + Math.abs(newProfit / 100).toFixed(2) + 'M';
+    valProfit.className = 'sim-metric-value' + (newProfit >= 0 ? ' green' : ' red');
+    document.getElementById('sim-bar-profit').className = 'sim-metric-bar' + (newProfit >= 0 ? ' green' : ' red');
+    document.getElementById('sim-sub-profit').textContent = 'Current loss ¥' + (Math.abs(origProfit) / 100).toFixed(2) + 'M' + (newProfit > origProfit ? '  ▲¥' + ((newProfit - origProfit) / 100).toFixed(2) + 'M' : '');
+
+    // 柱状图：各策略减亏贡献
+    chartBar.setOption({
+      tooltip: { trigger: 'axis', formatter: function(p) { return p[0].name.replace(/\n/g, ' ') + ': ¥' + p[0].value.toFixed(0) + 'M'; } },
+      grid: { left: 50, right: 20, top: 30, bottom: 60 },
+      xAxis: {
+        type: 'category',
+        data: r.saveLabels,
+        axisLabel: { fontSize: 10, interval: 0 }
+      },
+      yAxis: {
+        type: 'value',
+        name: '¥M',
+        nameTextStyle: { fontSize: 11, padding: [0, 30, 0, 0] },
+        axisLabel: { fontSize: 10 }
+      },
+      series: [{
+        type: 'bar',
+        data: r.saves.map(function(v, i) {
+          var colors = ['#0369A1', '#0EA5E9', '#16A34A', '#8B5CF6', '#EC4899', '#F59E0B', '#06B6D4'];
+          return { value: Math.round(v), itemStyle: { color: colors[i], borderRadius: [4, 4, 0, 0] } };
+        }),
+        barWidth: '45%',
+        label: {
+          show: true,
+          position: 'top',
+          formatter: function(p) { return p.value > 0 ? p.value + '' : ''; },
+          fontSize: 11
+        }
+      }]
+    }, true);
+
+    // 堆叠对比图
+    chartStack.setOption({
+      tooltip: {
+        trigger: 'axis',
+        formatter: function(params) {
+          var s = params[0].axisValue + '<br/>';
+          var total = 0;
+          params.forEach(function(p) { s += p.marker + p.seriesName + ': ' + p.value.toFixed(2) + '%<br/>'; total += p.value; });
+          s += '<b>Total: ' + total.toFixed(2) + '%</b>';
+          return s;
+        }
+      },
+      legend: { top: 0, textStyle: { fontSize: 11 } },
+      grid: { left: 50, right: 20, top: 40, bottom: 40 },
+      xAxis: { type: 'category', data: ['Before', 'After'] },
+      yAxis: { type: 'value', name: '%', min: 0, max: 120, axisLabel: { fontSize: 11 } },
+      series: [
+        {
+          name: 'Loss ratio',
+          type: 'bar',
+          stack: 'total',
+          data: [+(r.origLR * 100).toFixed(2), +(r.newLR * 100).toFixed(2)],
+          itemStyle: { color: '#0369A1' },
+          barWidth: '40%',
+          label: { show: true, position: 'inside', formatter: function(p) { return p.value.toFixed(1) + '%'; }, fontSize: 10, color: '#fff' }
+        },
+        {
+          name: 'Expense ratio',
+          type: 'bar',
+          stack: 'total',
+          data: [+(r.origER * 100).toFixed(2), +(r.newER * 100).toFixed(2)],
+          itemStyle: { color: '#0EA5E9' },
+          barWidth: '40%',
+          label: { show: true, position: 'inside', formatter: function(p) { return p.value.toFixed(1) + '%'; }, fontSize: 10, color: '#fff' }
+        },
+        {
+          name: 'Management expense',
+          type: 'bar',
+          stack: 'total',
+          data: [6, 6],
+          itemStyle: { color: '#BAE6FD' },
+          barWidth: '40%'
+        }
+      ]
+    }, true);
+  }
+
+  function recalculate() {
+    render(calculate());
+  }
+
+  // ---- 绑定事件 ----
+  bindSync('sim-s1-range', 'sim-s1-num', recalculate);
+  bindSync('sim-s2-range', 'sim-s2-num', recalculate);
+  bindSync('sim-s3-range', 'sim-s3-num', recalculate);
+  bindSync('sim-s4-range', 'sim-s4-num', recalculate);
+  bindSync('sim-s5-range', 'sim-s5-num', recalculate);
+  bindSync('sim-s6-range', 'sim-s6-num', recalculate);
+  bindSync('sim-s7-range', 'sim-s7-num', recalculate);
+
+  // ---- 重置 ----
+  document.getElementById('sim-reset').addEventListener('click', function() {
+    document.getElementById('sim-s1-range').value = DEFAULTS.s1;
+    document.getElementById('sim-s1-num').value = DEFAULTS.s1;
+    document.getElementById('sim-s2-range').value = DEFAULTS.s2;
+    document.getElementById('sim-s2-num').value = DEFAULTS.s2;
+    document.getElementById('sim-s3-range').value = DEFAULTS.s3;
+    document.getElementById('sim-s3-num').value = DEFAULTS.s3;
+    document.getElementById('sim-s4-range').value = DEFAULTS.s4;
+    document.getElementById('sim-s4-num').value = DEFAULTS.s4;
+    document.getElementById('sim-s5-range').value = DEFAULTS.s5;
+    document.getElementById('sim-s5-num').value = DEFAULTS.s5;
+    document.getElementById('sim-s6-range').value = DEFAULTS.s6;
+    document.getElementById('sim-s6-num').value = DEFAULTS.s6;
+    document.getElementById('sim-s7-range').value = DEFAULTS.s7;
+    document.getElementById('sim-s7-num').value = DEFAULTS.s7;
+    recalculate();
+  });
+
+  // ---- 公式折叠 ----
+  document.getElementById('sim-formula-toggle').addEventListener('click', function() {
+    var body = document.getElementById('sim-formula-body');
+    var arrow = document.getElementById('sim-formula-arrow');
+    body.classList.toggle('open');
+    arrow.classList.toggle('open');
+  });
+
+  // ---- resize ----
+  window.addEventListener('resize', function() {
+    chartBar.resize();
+    chartStack.resize();
+  });
+
+  // ---- 初始渲染 ----
+  recalculate();
+})();
+
+// ============================================================
+// AIDemo Namespace — All interactive logic
+// ============================================================
+var AIDemo = {
+  chatCounter: 0,
+  isProcessing: false,
+
+  // ---- Utility: typewriter effect ----
+  typewriter: function(target, text, speed, callback) {
+    var i = 0;
+    target.innerHTML = '';
+    target.classList.add('ai-cursor');
+    function type() {
+      if (i < text.length) {
+        target.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, speed || 30);
+      } else {
+        target.classList.remove('ai-cursor');
+        if (callback) callback();
+      }
+    }
+    type();
+  },
+
+  // ---- Utility: rich typewriter (fade in paragraphs) ----
+  richTypewriter: function(target, htmlContent, callback) {
+    var wrapper = document.createElement('div');
+    wrapper.innerHTML = htmlContent;
+    var children = Array.from(wrapper.children);
+    target.innerHTML = '';
+    var i = 0;
+    function showNext() {
+      if (i < children.length) {
+        var el = children[i];
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        el.style.transition = 'opacity 0.4s, transform 0.4s';
+        target.appendChild(el);
+        requestAnimationFrame(function() {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+        i++;
+        setTimeout(showNext, 200);
+      } else {
+        if (callback) callback();
+      }
+    }
+    showNext();
+  },
+
+  // ---- Utility: stagger reveal ----
+  staggerReveal: function(elements, staggerMs, callback) {
+    var arr = Array.from(elements);
+    arr.forEach(function(el, i) {
+      setTimeout(function() {
+        el.style.display = '';
+        el.classList.remove('ai-hidden');
+        el.classList.add('ai-reveal');
+        if (i === arr.length - 1 && callback) {
+          setTimeout(callback, 500);
+        }
+      }, i * (staggerMs || 200));
+    });
+  },
+
+  // ---- Utility: show thinking dots ----
+  showThinking: function(container) {
+    var div = document.createElement('div');
+    div.className = 'thinking-dots';
+    div.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div><span class="thinking-dots-label">AI analysing…</span>';
+    container.appendChild(div);
+    return div;
+  },
+
+  // ---- Step 2: KPI Diagnosis ----
+  diagnoseKPI: function() {
+
+    setTimeout(function() {
+      // Reveal hidden KPI cards
+      var cards = [document.getElementById('kpiCard4'), document.getElementById('kpiCard5'), document.getElementById('kpiCard6')];
+      AIDemo.staggerReveal(cards, 200, function() {
+        // Show diagnosis text
+        var diagBox = document.getElementById('kpiDiagnosis');
+        diagBox.style.display = 'block';
+        var diagText = document.getElementById('kpiDiagnosisText');
+        AIDemo.typewriter(diagText,
+          'Diagnosis: the book is unprofitable — COR 107.51%, above break-even. Root cause is a high loss ratio (76.09%) stacked on an out-of-control expense ratio (Zhongjiang at 43.28%). Priority remediation: taxi/fleet business + Zhongjiang channel costs.',
+          25);
+      });
+    }, 1200);
+  },
+
+  // ---- Step 3: Risk Scan ----
+  scanRisk: function() {
+    // Show the section first
+    document.getElementById('risk').style.display = '';
+    // Show the tab
+    document.getElementById('tab-risk').style.display = '';
+    var progress = document.getElementById('riskScanProgress');
+    var status = document.getElementById('riskScanStatus');
+    progress.style.display = 'block';
+    status.style.display = 'block';
+
+    var statusTexts = ['Scanning pricing-model deviation…', 'Analysing NCD effectiveness…', 'Identifying high-risk vehicle profiles…', 'Evaluating brand risk…'];
+    var si = 0;
+    var statusInterval = setInterval(function() {
+      si++;
+      if (si < statusTexts.length) {
+        status.textContent = statusTexts[si];
+      }
+    }, 500);
+
+    setTimeout(function() {
+      clearInterval(statusInterval);
+      // Hide placeholder
+      var placeholder = document.getElementById('riskPlaceholder');
+      placeholder.style.display = 'none';
+
+      // Show row1
+      var row1 = document.getElementById('riskChartRow1');
+      row1.style.display = '';
+      row1.classList.add('ai-reveal');
+      // Init chart4 and chart5
+      initChart4();
+      initChart5();
+
+      setTimeout(function() {
+        var row2 = document.getElementById('riskChartRow2');
+        row2.style.display = '';
+        row2.classList.add('ai-reveal');
+        initChart6();
+        initChart7();
+      }, 300);
+    }, 2000);
+  },
+
+  // ---- Step 4: Anomaly Analysis ----
+  analyzeAnomalies: function() {
+    // Show the section first
+    document.getElementById('anomaly').style.display = '';
+    // Show the tab
+    document.getElementById('tab-anomaly').style.display = '';
+    var progress = document.getElementById('anomalyScanProgress');
+    var status = document.getElementById('anomalyScanStatus');
+    progress.style.display = 'block';
+    status.style.display = 'block';
+
+    var statusTexts = ['Analysing anomaly patterns…', 'Evaluating severity…', 'Correlating business impact…', 'Generating alert cards…'];
+    var si = 0;
+    var statusInterval = setInterval(function() {
+      si++;
+      if (si < statusTexts.length) status.textContent = statusTexts[si];
+    }, 500);
+
+    setTimeout(function() {
+      clearInterval(statusInterval);
+      // Hide summary
+      document.getElementById('anomalySummary').style.display = 'none';
+      // Show grid
+      var grid = document.getElementById('anomalyGrid');
+      grid.style.display = '';
+      // Stagger reveal each card
+      var cards = grid.querySelectorAll('.anomaly-card');
+      cards.forEach(function(card) {
+        card.classList.add('ai-hidden');
+        card.style.display = 'none';
+      });
+      // Show grid first, then stagger
+      AIDemo.staggerReveal(cards, 150);
+    }, 2000);
+  },
+
+  // ---- Step 5: Generate Findings ----
+  generateFindings: function() {
+    setTimeout(function() {
+      var cards = document.querySelectorAll('#findingGrid .finding-card');
+      var i = 0;
+      function expandNext() {
+        if (i < cards.length) {
+          var card = cards[i];
+          card.classList.remove('collapsed');
+          card.classList.add('ai-reveal');
+          // Hide the expand button
+          var expandBtn = card.querySelector('.ai-expand-btn');
+          if (expandBtn) expandBtn.style.display = 'none';
+          i++;
+          setTimeout(expandNext, 300);
+        }
+      }
+      expandNext();
+    }, 1500);
+  },
+
+  // ---- Step 5: Expand single finding ----
+  expandFinding: function(btn) {
+    var card = btn.closest('.finding-card');
+    if (card) {
+      card.classList.remove('collapsed');
+      card.classList.add('ai-reveal');
+      btn.style.display = 'none';
+    }
+  },
+
+  // ---- Step 6: QA Chat Data ----
+  QA_DATA: [
+    {
+      question: 'Which region has the worst underwriting loss — and why?',
+      answerHTML: '<p><strong>Hangdong Province is the worst.</strong> Combined operating ratio <span class="highlight">117.25%</span> — 17.25 points above break-even.</p>' +
+        '<p>Root causes:</p>' +
+        '<ul><li><strong>Loss ratio is far too high</strong> — Hangdong at <span class="highlight">94.02%</span> is the worst of four regions, well above the 76.09% book average.</li>' +
+        '<li><strong>The non-dealer channel drives most of it</strong> — loss ratio there is <span class="highlight">104.26%</span>; ¥46.12M of premium effectively paid straight out as claims.</li>' +
+        '<li><strong>Taxi/rental business compounds the problem</strong> — this segment runs at 103.53% loss ratio, and Hangdong is a taxi-heavy city.</li>' +
+        '<li><strong>Expense ratio is fine</strong> — Hangdong\'s 17.23% is the lowest of the four regions, so the problem is firmly on the underwriting side, not acquisition cost.</li></ul>' +
+        '<div class="qa-chart-box" id="qaChart_dyn_0"></div>' +
+        '<p>Recommendation: clean up customer quality in the Hangdong non-dealer channel; cap acceptance on high-risk taxi / fleet business.</p>',
+      chartInit: function() { initQAChart1('qaChart_dyn_0'); }
+    },
+    {
+      question: 'Why is BYD\'s loss ratio so high?',
+      answerHTML: '<p>BYD loss ratio is <span class="highlight">118.29%</span>, on ¥14.18M premium across 5,525 policies — the largest-premium brand among the worst-performers.</p>' +
+        '<p>Likely drivers:</p>' +
+        '<ul><li><strong>NEV repair costs</strong> — BYD is NEV-heavy, and battery / e-drive system repair is dramatically more expensive than on ICE vehicles.</li>' +
+        '<li><strong>High parts-to-whole ratio</strong> — parts distribution is relatively closed; a given repair bill is inflated.</li>' +
+        '<li><strong>Younger driver profile</strong> — NEV buyers skew young; drivers under 25 have 85.97% loss ratio and 29.67% claim frequency.</li>' +
+        '<li><strong>ADAS / electronics</strong> — advanced-driver-assistance systems are expensive to repair; even a minor bump can trigger a large claim.</li>' +
+        '<li><strong>Pricing model lag</strong> — the current rate card may not yet reflect the real risk profile of NEVs.</li></ul>' +
+        '<p>For context: Roewe <span class="highlight">96.52%</span>, Nissan <span class="highlight">116.52%</span>, Mitsubishi <span class="highlight">123.20%</span>. The answer is a dedicated NEV risk factor in pricing.</p>',
+      chartInit: null
+    },
+    {
+      question: 'Why is renewal loss ratio higher than new business?',
+      answerHTML: '<p>Renewal loss ratio <span class="highlight">87.11%</span> is well above new business at <span class="key-metric">75.18%</span> — an 11.93 point gap. This is a textbook <strong>adverse-selection</strong> signal.</p>' +
+        '<p>Underlying drivers:</p>' +
+        '<ul><li><strong>Adverse selection</strong> — high-risk customers (previous claims, declines elsewhere) are more likely to stay; low-risk customers are price-sensitive and get picked off by competitors.</li>' +
+        '<li><strong>Vehicle ageing</strong> — renewal policies sit on older cars with higher breakdown and repair costs.</li>' +
+        '<li><strong>Under-pricing renewals</strong> — auto-renewal discounts may be giving away too much margin without reflecting real risk.</li>' +
+        '<li><strong>Weak NCD signal</strong> — the top NCD grade still has a 28.97% claim frequency; the structure isn\'t separating good risks from bad.</li></ul>' +
+        '<p>Interestingly, transfer business has the <span class="good-hl">lowest</span> loss ratio at 70.19% — customers switching in from competitors are actually the best-quality cohort. But the 31.85% expense ratio to acquire them is steep; the trade-off is acquisition cost vs. quality.</p>' +
+        '<p>Recommendation: segment the renewal book, retain the best via service-led value, and load (or decline) the worst.</p>',
+      chartInit: null
+    },
+    {
+      question: 'How should we optimise Zhongjiang channel strategy?',
+      answerHTML: '<p>Zhongjiang\'s expense ratio of <span class="highlight">43.28%</span> is the worst of four regions and is eating the margin. Loss ratio is actually the lowest of the four (62.15%), but the expense drag still pushes COR to 111.43%.</p>' +
+        '<p>Channel cost breakdown:</p>' +
+        '<ul><li><strong>Non-dealer channel</strong> — expense ratio <span class="highlight">45.54%</span>, premium ¥60.26M — the single biggest cost drain.</li>' +
+        '<li><strong>New channel</strong> — expense ratio <span class="highlight">39.92%</span>, premium ¥5.06M — ROI not yet proven.</li>' +
+        '<li><strong>Dealer channel</strong> — expense ratio <span class="good-hl">35.91%</span>, premium ¥16.14M — better than the others in Zhongjiang, but still higher than in other regions.</li></ul>' +
+        '<div class="qa-chart-box" id="qaChart_dyn_3"></div>' +
+        '<p>Optimisation plan:</p>' +
+        '<ul><li>Cap non-dealer expense ratio at &lt; 30%; cut loose the low-efficiency intermediaries.</li>' +
+        '<li>Invest in direct-dealer capability — push dealer premium share from ~20% today to 40%.</li>' +
+        '<li>Introduce hard ROI gates on the new channel — any partner above 35% expense ratio, pause cooperation.</li>' +
+        '<li>Zhongjiang is low loss ratio but high expense ratio. That means <strong>there\'s room on price</strong> — the priority is reducing cost, not raising rates.</li></ul>',
+      chartInit: function() { initQAChart4('qaChart_dyn_3'); }
+    },
+    {
+      question: 'Which segments should we expand acceptance in?',
+      answerHTML: '<p>Cross-cutting loss ratio, expense ratio and premium volume, these segments have clear room to grow:</p>' +
+        '<p><strong>1 · By age and usage:</strong></p>' +
+        '<ul><li>Private-use × 9+ year-old vehicles — loss ratio <span class="good-hl">57.58%</span>, ¥42.77M premium — a scale opportunity.</li>' +
+        '<li>Private-use × 0–1 year-old vehicles — loss ratio <span class="good-hl">61.70%</span>, ¥78.15M premium — the biggest profitable segment.</li>' +
+        '<li>Corporate fleet × 6–8 years and 9+ years — loss ratio <span class="good-hl">54.85%</span> / <span class="good-hl">54.00%</span> — small but excellent.</li></ul>' +
+        '<p><strong>2 · By driver age:</strong></p>' +
+        '<ul><li>Ages 30–44 — loss ratio <span class="good-hl">64.43%</span>, ¥137.5M premium — the absolute core cohort; protect at all costs.</li>' +
+        '<li>Age 60+ — loss ratio <span class="good-hl">60.69%</span>, ¥7.45M premium — a low-risk, under-penetrated market.</li>' +
+        '<li>Ages 55–59 — loss ratio <span class="good-hl">67.15%</span>, ¥14.26M premium — stable, profitable.</li></ul>' +
+        '<p><strong>3 · By brand:</strong></p>' +
+        '<ul><li>Great Wall — loss ratio <span class="good-hl">51.55%</span>, ¥6.63M premium — the best brand.</li>' +
+        '<li>Honda — loss ratio <span class="good-hl">64.15%</span>, ¥54.60M premium — the biggest profitable brand.</li>' +
+        '<li>Hyundai — loss ratio <span class="good-hl">64.77%</span>, ¥8.68M premium.</li>' +
+        '<li>Wuling — loss ratio <span class="good-hl">67.11%</span>, ¥7.27M premium.</li></ul>' +
+        '<p><strong>4 · By region × channel:</strong></p>' +
+        '<ul><li>Dealer × Lingjiang — loss 61.22% / expense 23.52%, ¥30.40M premium — the best region-channel combination.</li>' +
+        '<li>Dealer channel overall — COR <span class="good-hl">99.49%</span>, almost profitable already; clear room to grow.</li></ul>' +
+        '<p>If we lean into these segments, premium could grow 15–20% <i>and</i> book-wide loss ratio fall 3–5 points at the same time.</p>',
+      chartInit: null
+    }
+  ]
+};
+
+// ============================================================
+// AIAssistant Namespace — Right Sidebar AI Assistant
+// ============================================================
+var AIAssistant = {
+  // Action intents: quick buttons & keyword triggers
+  intentMap: {
+    'risk': { section: 'risk', action: 'scanRisk',
+      response: 'On it — launching the risk scan now…',
+      complete: 'Risk scan complete. Analysis done across four dimensions: pricing deviation, NCD effectiveness, vehicle-profile risk, brand risk. Charts are on the left.' },
+    'Risk': { section: 'risk', action: 'scanRisk',
+      response: 'On it — launching the risk scan now…',
+      complete: 'Risk scan complete. See the charts on the left.' },
+    'KPI': { section: 'kpi', action: 'diagnoseKPI',
+      response: 'On it — diagnosing the core KPIs…',
+      complete: 'KPI diagnosis complete. Book-wide COR is 107.51% — the problem is high loss ratio stacked on an out-of-control expense ratio. See the diagnosis on the left.' },
+    'kpi': { section: 'kpi', action: 'diagnoseKPI',
+      response: 'On it — diagnosing the core KPIs…',
+      complete: 'KPI diagnosis complete. Expense ratio, COR and claim frequency have been surfaced.' },
+    'Diagnose': { section: 'kpi', action: 'diagnoseKPI',
+      response: 'On it — diagnosing the core KPIs…',
+      complete: 'KPI diagnosis complete. See the diagnosis on the left.' },
+    'diagnose': { section: 'kpi', action: 'diagnoseKPI',
+      response: 'On it — diagnosing the core KPIs…',
+      complete: 'KPI diagnosis complete. See the diagnosis on the left.' },
+    'anomaly': { section: 'anomaly', action: 'analyzeAnomalies',
+      response: 'On it — analysing anomaly alerts…',
+      complete: 'Anomaly analysis complete. 10 anomalies surfaced — 8 high severity, 2 medium. Alert cards are on the left.' },
+    'Anomaly': { section: 'anomaly', action: 'analyzeAnomalies',
+      response: 'On it — analysing anomaly alerts…',
+      complete: 'Anomaly analysis complete. See the alert cards on the left.' },
+    'alert': { section: 'anomaly', action: 'analyzeAnomalies',
+      response: 'On it — analysing anomaly alerts…',
+      complete: 'Anomaly analysis complete. See the alert cards on the left.' },
+    'finding': { section: 'findings', action: 'generateFindings',
+      response: 'On it — generating findings and recommendations…',
+      complete: 'Report ready. 7 actionable recommendations — each with an owner, expected impact, and verification metric.' },
+    'Finding': { section: 'findings', action: 'generateFindings',
+      response: 'On it — generating findings and recommendations…',
+      complete: 'Report ready. See the finding cards on the left.' },
+    'recommendation': { section: 'findings', action: 'generateFindings',
+      response: 'On it — generating findings and recommendations…',
+      complete: 'Report ready. See the finding cards on the left.' }
+  },
+
+  // QA keyword matching (reuses AIDemo.QA_DATA)
+  qaKeywords: [
+    ['region', 'worst', 'loss'],
+    ['BYD', 'loss ratio', 'high'],
+    ['renewal', 'new business', 'loss'],
+    ['Zhongjiang', 'channel', 'expense'],
+    ['segment', 'expand', 'acceptance', 'market']
+  ],
+
+  handleIntent: function(intent) {
+    // 1. Try action intents first
+    var matched = null;
+    for (var key in this.intentMap) {
+      if (intent.indexOf(key) !== -1) {
+        matched = this.intentMap[key];
+        break;
+      }
+    }
+
+    if (matched) {
+      this.addMessage('user', intent);
+      this.showThinking();
+      var self = this;
+
+      setTimeout(function() {
+        self.removeThinking();
+        self.addStreamingMessage(matched.response);
+
+        // Trigger AI action first (may show hidden section)
+        if (matched.action && AIDemo[matched.action]) {
+          AIDemo[matched.action]();
+        }
+
+        // Scroll to section after action has shown it
+        var section = document.getElementById(matched.section);
+        if (section) {
+          setTimeout(function() {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+
+        // Show completion message after action finishes
+        var delay = matched.action ? 4000 : 1500;
+        setTimeout(function() {
+          self.addStreamingMessage(matched.complete);
+        }, delay);
+      }, 1200);
+      return;
+    }
+
+    // 2. Try QA matching
+    var qaIdx = this._matchQA(intent);
+    if (qaIdx >= 0) {
+      this._processQA(intent, qaIdx);
+      return;
+    }
+
+    // 3. No match
+    this.addMessage('user', intent);
+    this.showThinking();
+    var self = this;
+    setTimeout(function() {
+      self.removeThinking();
+      self.addStreamingMessage('Sorry — I can\'t answer that one yet. Try one of:<br>• Risk analysis · KPI diagnosis · Anomaly alerts · Findings &amp; recommendations<br>• Which region has the worst loss?<br>• Why is BYD\'s loss ratio so high?<br>• Why is renewal loss ratio higher than new business?<br>• How should we optimise Zhongjiang channel strategy?<br>• Which segments can we expand acceptance in?');
+    }, 800);
+  },
+
+  // Match QA keywords
+  _matchQA: function(text) {
+    for (var i = 0; i < this.qaKeywords.length; i++) {
+      var score = 0;
+      this.qaKeywords[i].forEach(function(kw) {
+        if (text.indexOf(kw) !== -1) score++;
+      });
+      if (score >= 1) return i;
+    }
+    return -1;
+  },
+
+  // Process a matched QA question (rich HTML with charts)
+  _processQA: function(questionText, qaIdx) {
+    var qa = AIDemo.QA_DATA[qaIdx];
+    if (!qa) return;
+
+    this.addMessage('user', questionText);
+    this.showThinking();
+
+    var self = this;
+    self._qaCounter = (self._qaCounter || 0) + 1;
+    var suffix = '_sb' + self._qaCounter;
+
+    setTimeout(function() {
+      self.removeThinking();
+      // Keep rich HTML, replace chart containers with sidebar-sized ones and unique IDs
+      var richHTML = qa.answerHTML.replace(
+        /class="qa-chart-box" id="([^"]+)"/g,
+        'class="sidebar-chart-box" id="$1' + suffix + '"'
+      );
+      // Stream rich HTML, then initialize charts after content is fully rendered
+      self.addStreamingMessage(richHTML, function() {
+        if (qa.chartInit) {
+          setTimeout(function() {
+            if (qaIdx === 0) initQAChart1('qaChart_dyn_0' + suffix);
+            if (qaIdx === 3) initQAChart4('qaChart_dyn_3' + suffix);
+          }, 100);
+        }
+      });
+    }, 1500);
+  },
+
+  sendMessage: function() {
+    var input = document.getElementById('aiInput');
+    var text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    this.handleIntent(text);
+  },
+
+  addMessage: function(type, content) {
+    var messagesDiv = document.getElementById('aiChatMessages');
+    var emptyState = messagesDiv.querySelector('.ai-empty-state');
+    if (emptyState) emptyState.remove();
+
+    var messageDiv = document.createElement('div');
+    messageDiv.className = 'ai-message ' + type;
+    messageDiv.innerHTML = '<div class="ai-message-bubble">' + content + '</div>';
+    messagesDiv.appendChild(messageDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  },
+
+  // HTML-aware tokenizer: splits text into chars but keeps HTML tags and entities as single tokens
+  _tokenizeHTML: function(html) {
+    var tokens = [];
+    var i = 0;
+    while (i < html.length) {
+      if (html[i] === '<') {
+        var end = html.indexOf('>', i);
+        if (end !== -1) {
+          tokens.push(html.substring(i, end + 1));
+          i = end + 1;
+        } else {
+          tokens.push(html[i]);
+          i++;
+        }
+      } else if (html[i] === '&') {
+        var end = html.indexOf(';', i);
+        if (end !== -1 && end - i < 10) {
+          tokens.push(html.substring(i, end + 1));
+          i = end + 1;
+        } else {
+          tokens.push(html[i]);
+          i++;
+        }
+      } else {
+        tokens.push(html[i]);
+        i++;
+      }
+    }
+    return tokens;
+  },
+
+  // Streaming message output for assistant replies
+  addStreamingMessage: function(content, callback) {
+    var messagesDiv = document.getElementById('aiChatMessages');
+    var emptyState = messagesDiv.querySelector('.ai-empty-state');
+    if (emptyState) emptyState.remove();
+
+    var messageDiv = document.createElement('div');
+    messageDiv.className = 'ai-message assistant';
+    var bubble = document.createElement('div');
+    bubble.className = 'ai-message-bubble';
+    messageDiv.appendChild(bubble);
+    messagesDiv.appendChild(messageDiv);
+
+    var hasBlockHTML = /<(p|ul|ol|div|h[1-6]|table)[\s>]/i.test(content);
+
+    if (hasBlockHTML) {
+      // Rich HTML: parse into temp div, reveal top-level elements with stagger + fade
+      var temp = document.createElement('div');
+      temp.innerHTML = content;
+      var children = Array.from(temp.childNodes);
+      var i = 0;
+      function showNextEl() {
+        if (i < children.length) {
+          var node = children[i];
+          if (node.nodeType === 1) {
+            node.style.opacity = '0';
+            node.style.transform = 'translateY(6px)';
+            node.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+            bubble.appendChild(node);
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() {
+                node.style.opacity = '1';
+                node.style.transform = 'translateY(0)';
+              });
+            });
+          } else if (node.nodeType === 3 && node.textContent.trim()) {
+            bubble.appendChild(node);
+          }
+          messagesDiv.scrollTop = messagesDiv.scrollHeight;
+          i++;
+          var delay = (node.nodeType === 1 && (node.tagName === 'UL' || node.tagName === 'OL')) ? 250 : 120;
+          setTimeout(showNextEl, delay);
+        } else {
+          if (callback) callback();
+        }
+      }
+      showNextEl();
+    } else {
+      // Plain/simple text: character-by-character streaming with cursor
+      var tokens = this._tokenizeHTML(content);
+      var idx = 0;
+      var accumulated = '';
+      bubble.classList.add('ai-cursor');
+      function streamNext() {
+        if (idx < tokens.length) {
+          accumulated += tokens[idx];
+          bubble.innerHTML = accumulated;
+          messagesDiv.scrollTop = messagesDiv.scrollHeight;
+          var isTag = tokens[idx][0] === '<';
+          idx++;
+          setTimeout(streamNext, isTag ? 0 : 28);
+        } else {
+          bubble.classList.remove('ai-cursor');
+          if (callback) callback();
+        }
+      }
+      streamNext();
+    }
+  },
+
+  showThinking: function() {
+    var messagesDiv = document.getElementById('aiChatMessages');
+    var thinkingDiv = document.createElement('div');
+    thinkingDiv.className = 'ai-message assistant';
+    thinkingDiv.id = 'aiThinking';
+    thinkingDiv.innerHTML = '<div class="ai-thinking"><span></span><span></span><span></span></div>';
+    messagesDiv.appendChild(thinkingDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  },
+
+  removeThinking: function() {
+    var thinking = document.getElementById('aiThinking');
+    if (thinking) thinking.remove();
+  }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  var aiInput = document.getElementById('aiInput');
+  if (aiInput) {
+    aiInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') AIAssistant.sendMessage();
+    });
+  }
+});
+</script>
+
+<!-- Right AI Sidebar -->
+<aside class="ai-sidebar" id="aiSidebar">
+  <div class="ai-sidebar-header">
+    <div class="ai-avatar"><img src="./灵玑 · 智略：车险 A+BI 智能助理_files/logo.png" alt="Logo" style="height:32px;width:auto;"></div>
+    <div class="ai-header-text">
+      <h3>A+BI Assistant</h3>
+      <p>Natural-language analytics engine</p>
+    </div>
+  </div>
+
+  <div class="ai-chat-messages" id="aiChatMessages">
+    <div class="ai-empty-state">
+      <div class="empty-icon">💬</div>
+      <p>Hello — I'm your AI analyst.</p>
+      <p class="empty-hint">Type your question, or tap a quick-action below.</p>
+    </div>
+  </div>
+
+  <div class="ai-quick-actions">
+    <button class="ai-quick-btn" onclick="AIAssistant.handleIntent(&#39;Diagnose core KPIs&#39;)">
+      <span class="quick-icon">📊</span>
+      <span class="quick-text">Diagnose core KPIs</span>
+    </button>
+    <button class="ai-quick-btn" onclick="AIAssistant.handleIntent(&#39;Run the risk scan&#39;)">
+      <span class="quick-icon">🔍</span>
+      <span class="quick-text">Run the risk scan</span>
+    </button>
+    <button class="ai-quick-btn" onclick="AIAssistant.handleIntent(&#39;Show anomaly alerts&#39;)">
+      <span class="quick-icon">⚠️</span>
+      <span class="quick-text">Show anomaly alerts</span>
+    </button>
+    <button class="ai-quick-btn" onclick="AIAssistant.handleIntent(&#39;Generate findings and recommendations&#39;)">
+      <span class="quick-icon">✨</span>
+      <span class="quick-text">Generate findings &amp; recommendations</span>
+    </button>
+    <button class="ai-quick-btn" onclick="AIAssistant.handleIntent(&#39;Which region is the worst loss&#39;)">
+      <span class="quick-icon">🎯</span>
+      <span class="quick-text">Which region is the worst loss?</span>
+    </button>
+    <button class="ai-quick-btn" onclick="AIAssistant.handleIntent(&#39;Why is BYD loss ratio so high&#39;)">
+      <span class="quick-icon">🚗</span>
+      <span class="quick-text">Why is BYD loss ratio so high?</span>
+    </button>
+    <button class="ai-quick-btn" onclick="AIAssistant.handleIntent(&#39;Why is renewal loss ratio above new business&#39;)">
+      <span class="quick-icon">🔄</span>
+      <span class="quick-text">Why is renewal loss ratio above new business?</span>
+    </button>
+    <button class="ai-quick-btn" onclick="AIAssistant.handleIntent(&#39;How to optimise Zhongjiang channel strategy&#39;)">
+      <span class="quick-icon">💰</span>
+      <span class="quick-text">How to optimise Zhongjiang channel strategy?</span>
+    </button>
+    <button class="ai-quick-btn" onclick="AIAssistant.handleIntent(&#39;Which segments can we expand acceptance in&#39;)">
+      <span class="quick-icon">📈</span>
+      <span class="quick-text">Which segments can we expand acceptance in?</span>
+    </button>
+  </div>
+
+  <div class="ai-input-area">
+    <input type="text" class="ai-input" id="aiInput" placeholder="Type your question — e.g. 'Analyse the risk and underwriting'">
+    <button class="ai-send-btn" id="aiSendBtn" onclick="AIAssistant.sendMessage()">
+      <span>➤</span>
+    </button>
+  </div>
+</aside>
+
+
+
+</body></html>

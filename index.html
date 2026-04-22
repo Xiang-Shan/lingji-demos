@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LingJi — Auto Insurance AI Demos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232563EB'/><text x='16' y='22' font-size='18' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>L</text></svg>">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: #f7f8fa;
+      color: #1a1a2e;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 880px;
+      width: 100%;
+    }
+    header {
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      background: #2563EB;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 22px;
+    }
+    .brand-name {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .subtitle {
+      font-size: 18px;
+      color: #555;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 700px) {
+      .cards { grid-template-columns: 1fr 1fr; }
+      .card-wide { grid-column: span 2; }
+    }
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      display: block;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.25);
+      border-color: #2563EB;
+    }
+    .card-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #2563EB;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .card-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    .card-subtitle {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 14px;
+    }
+    .card-desc {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.55;
+    }
+    .card-arrow {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #2563EB;
+      font-weight: 500;
+    }
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      padding-top: 24px;
+      border-top: 1px solid #e5e7eb;
+    }
+    footer a {
+      color: #2563EB;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="brand-mark">L</div>
+        <div class="brand-name">LingJi · Auto Insurance AI</div>
+      </div>
+      <h1>Interactive product demos</h1>
+      <p class="subtitle">
+        AI-native tools for motor insurance — A+BI for underwriting and actuarial teams, ZhiYu for sales intelligence and call-centre operations. Click any card to open the live demo.
+      </p>
+    </header>
+
+    <main class="cards">
+      <a class="card card-wide" href="./车险全流程智能管理 — 律商联讯风险.html">
+        <span class="card-tag">Presentation Deck</span>
+        <div class="card-title">Auto Insurance End-to-End Intelligence</div>
+        <div class="card-subtitle">车险全流程智能管理 · Bilingual</div>
+        <p class="card-desc">
+          Full slide-deck overview of the LingJi platform — problem framing, the four blind spots of traditional BI, and launch points for both product demos. Arrow-key navigation.
+        </p>
+        <div class="card-arrow">Open deck →</div>
+      </a>
+
+      <a class="card" href="./LingJi-ZhiLue-Auto-Insurance-A+BI-Assistant.html">
+        <span class="card-tag">Demo · A+BI</span>
+        <div class="card-title">LingJi · ZhiLue</div>
+        <div class="card-subtitle">灵玑 · 智略 — Auto Insurance A+BI Assistant</div>
+        <p class="card-desc">
+          Conversational BI for underwriters and actuaries. Diagnose combined ratio, surface anomalies, and run live what-if simulations on pricing and portfolio decisions.
+        </p>
+        <div class="card-arrow">Launch demo →</div>
+      </a>
+
+      <a class="card" href="./LingJi-ZhiYu-Sales-Intelligence.html">
+        <span class="card-tag">Demo · Sales Intelligence</span>
+        <div class="card-title">LingJi · ZhiYu</div>
+        <div class="card-subtitle">灵玑 · 智语 — Sales Intelligence Platform</div>
+        <p class="card-desc">
+          Real-time call-centre AI. 100% call coverage, in-call coaching, and proprietary customer / competitor / market data capture routed to Claims, Underwriting, Product.
+        </p>
+        <div class="card-arrow">Launch demo →</div>
+      </a>
+    </main>
+
+    <footer>
+      Built by <a href="https://github.com/Xiang-Shan">Xiang Shan</a> · Hosted on GitHub Pages
+    </footer>
+  </div>
+</body>
+</html>
